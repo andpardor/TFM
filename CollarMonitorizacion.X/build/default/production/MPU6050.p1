@@ -1,0 +1,111 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"56 ./mcc_generated_files/examples/i2c1_master_example.h
+[; ;./mcc_generated_files/examples/i2c1_master_example.h: 56: void I2C1_Write1ByteRegister(i2c1_address_t address, uint8_t reg, uint8_t data);
+[v _I2C1_Write1ByteRegister `(v ~T0 @X0 0 ef3`uc`uc`uc ]
+"60
+[; ;./mcc_generated_files/examples/i2c1_master_example.h: 60: void I2C1_ReadDataBlock(i2c1_address_t address, uint8_t reg, uint8_t *data, size_t len);
+[v _I2C1_ReadDataBlock `(v ~T0 @X0 0 ef4`uc`uc`*uc`ui ]
+"55
+[; ;./mcc_generated_files/examples/i2c1_master_example.h: 55: uint16_t I2C1_Read2ByteRegister(i2c1_address_t address, uint8_t reg);
+[v _I2C1_Read2ByteRegister `(us ~T0 @X0 0 ef2`uc`uc ]
+"11 MPU6050.c
+[; ;MPU6050.c: 11: void initialize()
+[v _initialize `(v ~T0 @X0 1 ef ]
+"12
+[; ;MPU6050.c: 12: {
+{
+[e :U _initialize ]
+[f ]
+"13
+[; ;MPU6050.c: 13:     I2C1_Write1ByteRegister(0x68,0x6B, 1);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 107 `i `uc -> -> 1 `i `uc ]
+"14
+[; ;MPU6050.c: 14:     I2C1_Write1ByteRegister(0x68,0x1B, 0);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 27 `i `uc -> -> 0 `i `uc ]
+"15
+[; ;MPU6050.c: 15:     I2C1_Write1ByteRegister(0x68,0x1C, 0);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 28 `i `uc -> -> 0 `i `uc ]
+"16
+[; ;MPU6050.c: 16: }
+[e :UE 3 ]
+}
+"18
+[; ;MPU6050.c: 18: void autoConfigLowEnergy()
+[v _autoConfigLowEnergy `(v ~T0 @X0 1 ef ]
+"19
+[; ;MPU6050.c: 19: {
+{
+[e :U _autoConfigLowEnergy ]
+[f ]
+"20
+[; ;MPU6050.c: 20:     I2C1_Write1ByteRegister(0x68,0x6B, 0b00101000);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 107 `i `uc -> -> 40 `i `uc ]
+"21
+[; ;MPU6050.c: 21:     I2C1_Write1ByteRegister(0x68,0x6C, 0b00000111);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 108 `i `uc -> -> 7 `i `uc ]
+"22
+[; ;MPU6050.c: 22: }
+[e :UE 4 ]
+}
+"24
+[; ;MPU6050.c: 24: void getAcceleration(uint16_t *data)
+[v _getAcceleration `(v ~T0 @X0 1 ef1`*us ]
+"25
+[; ;MPU6050.c: 25: {
+{
+[e :U _getAcceleration ]
+"24
+[; ;MPU6050.c: 24: void getAcceleration(uint16_t *data)
+[v _data `*us ~T0 @X0 1 r1 ]
+"25
+[; ;MPU6050.c: 25: {
+[f ]
+"26
+[; ;MPU6050.c: 26:     I2C1_ReadDataBlock(0x68, 0x3B, (uint8_t *)data,6);
+[e ( _I2C1_ReadDataBlock (4 , , , -> -> 104 `i `uc -> -> 59 `i `uc -> _data `*uc -> -> 6 `i `ui ]
+"27
+[; ;MPU6050.c: 27: }
+[e :UE 5 ]
+}
+"29
+[; ;MPU6050.c: 29: int16_t getAccelerationX() {
+[v _getAccelerationX `(s ~T0 @X0 1 ef ]
+{
+[e :U _getAccelerationX ]
+[f ]
+"30
+[; ;MPU6050.c: 30:     return(I2C1_Read2ByteRegister(0x68, 0x3B));
+[e ) -> ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 59 `i `uc `s ]
+[e $UE 6  ]
+"31
+[; ;MPU6050.c: 31: }
+[e :UE 6 ]
+}
+"33
+[; ;MPU6050.c: 33: int16_t getAccelerationY() {
+[v _getAccelerationY `(s ~T0 @X0 1 ef ]
+{
+[e :U _getAccelerationY ]
+[f ]
+"34
+[; ;MPU6050.c: 34:     return(I2C1_Read2ByteRegister(0x68, 0x3D));
+[e ) -> ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 61 `i `uc `s ]
+[e $UE 7  ]
+"35
+[; ;MPU6050.c: 35: }
+[e :UE 7 ]
+}
+"37
+[; ;MPU6050.c: 37: int16_t getAccelerationZ() {
+[v _getAccelerationZ `(s ~T0 @X0 1 ef ]
+{
+[e :U _getAccelerationZ ]
+[f ]
+"38
+[; ;MPU6050.c: 38:     return(I2C1_Read2ByteRegister(0x68, 0x3F));
+[e ) -> ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 63 `i `uc `s ]
+[e $UE 8  ]
+"39
+[; ;MPU6050.c: 39: }
+[e :UE 8 ]
+}

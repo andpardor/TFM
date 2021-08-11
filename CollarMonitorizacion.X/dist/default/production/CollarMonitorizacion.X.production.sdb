@@ -1,0 +1,1732 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F18326 ]
+[d frameptr 6 ]
+"67 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/examples/i2c1_master_example.c
+[e E355 . `uc
+I2C1_NOERR 0
+I2C1_BUSY 1
+I2C1_FAIL 2
+]
+"68
+[e E360 . `uc
+I2C1_STOP 1
+I2C1_RESTART_READ 2
+I2C1_RESTART_WRITE 3
+I2C1_CONTINUE 4
+I2C1_RESET_LINK 5
+]
+"88 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/adc.c
+[e E6327 . `uc
+BAT 5
+channel_AVSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR 63
+]
+"146 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/i2c1_master.c
+[e E6712 . `uc
+I2C1_IDLE 0
+I2C1_SEND_ADR_READ 1
+I2C1_SEND_ADR_WRITE 2
+I2C1_TX 3
+I2C1_RX 4
+I2C1_RCEN 5
+I2C1_TX_EMPTY 6
+I2C1_SEND_RESTART_READ 7
+I2C1_SEND_RESTART_WRITE 8
+I2C1_SEND_RESTART 9
+I2C1_SEND_STOP 10
+I2C1_RX_ACK 11
+I2C1_RX_NACK_STOP 12
+I2C1_RX_NACK_RESTART 13
+I2C1_RESET 14
+I2C1_ADDRESS_NACK 15
+]
+"165
+[e E360 . `uc
+I2C1_STOP 1
+I2C1_RESTART_READ 2
+I2C1_RESTART_WRITE 3
+I2C1_CONTINUE 4
+I2C1_RESET_LINK 5
+]
+[e E355 . `uc
+I2C1_NOERR 0
+I2C1_BUSY 1
+I2C1_FAIL 2
+]
+"191
+[e E6730 . `uc
+I2C1_DATA_COMPLETE 0
+I2C1_WRITE_COLLISION 1
+I2C1_ADDR_NACK 2
+I2C1_DATA_NACK 3
+I2C1_TIMEOUT 4
+I2C1_NULL 5
+]
+"1 /opt/microchip/xc8/v2.31/pic/sources/c99/common/abs.c
+[v _abs abs `(i  1 e 2 0 ]
+"7 /opt/microchip/xc8/v2.31/pic/sources/c99/common/aodiv.c
+[v ___aodiv __aodiv `(o  1 e 8 0 ]
+"7 /opt/microchip/xc8/v2.31/pic/sources/c99/common/aomod.c
+[v ___aomod __aomod `(o  1 e 8 0 ]
+"4 /opt/microchip/xc8/v2.31/pic/sources/c99/common/atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"72 /opt/microchip/xc8/v2.31/pic/sources/c99/common/doprnt.c
+[v _pad pad `(i  1 s 2 pad ]
+"287
+[v _dtoa dtoa `(i  1 s 2 dtoa ]
+"568
+[v _stoa stoa `(i  1 s 2 stoa ]
+"692
+[v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
+"1390
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/isdigit.c
+[v _isdigit isdigit `(i  1 e 2 0 ]
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/isspace.c
+[v _isspace isspace `(i  1 e 2 0 ]
+"8 /opt/microchip/xc8/v2.31/pic/sources/c99/common/nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+"8 /opt/microchip/xc8/v2.31/pic/sources/c99/common/nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+"9 /opt/microchip/xc8/v2.31/pic/sources/c99/common/nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/printf.c
+[v _printf printf `(i  1 e 2 0 ]
+"10 /opt/microchip/xc8/v2.31/pic/sources/c99/common/sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strchr.c
+[v _strchr strchr `(*.26uc  1 e 1 0 ]
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strcspn.c
+[v _strcspn strcspn `(ui  1 e 2 0 ]
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strlen.c
+[v _strlen strlen `(ui  1 e 2 0 ]
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strncmp.c
+[v _strncmp strncmp `(i  1 e 2 0 ]
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strspn.c
+[v _strspn strspn `(ui  1 e 2 0 ]
+"4 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strstr.c
+[v _strstr strstr `(*.26uc  1 e 1 0 ]
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strtok.c
+[v _strtok strtok `(*.39uc  1 e 1 0 ]
+"15 /opt/microchip/xc8/v2.31/pic/sources/c99/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 /opt/microchip/xc8/v2.31/pic/sources/c99/common/Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"4 /opt/microchip/xc8/v2.31/pic/sources/c99/common/Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 /opt/microchip/xc8/v2.31/pic/sources/c99/pic/__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"28 /home/domi/proyectos/iot/CollarMonitorizacion.X/gps.c
+[v _uart_gps uart_gps `(v  1 e 1 0 ]
+"39
+[v _recLineaGPS recLineaGPS `(i  1 e 2 0 ]
+"90
+[v _min2grado min2grado `(us  1 e 2 0 ]
+"108
+[v _anaGPS anaGPS `(v  1 e 1 0 ]
+"174
+[v _gpscero gpscero `(v  1 e 1 0 ]
+"183
+[v _gpsRead gpsRead `(v  1 e 1 0 ]
+"18 /home/domi/proyectos/iot/CollarMonitorizacion.X/gsm.c
+[v _uart_gsm uart_gsm `(v  1 e 1 0 ]
+"30
+[v _recLineaGSM recLineaGSM `(i  1 e 2 0 ]
+"105
+[v _writeLineaGSM writeLineaGSM `(v  1 e 1 0 ]
+"119
+[v _exeuno exeuno `(i  1 e 2 0 ]
+"159
+[v _exesec exesec `(v  1 e 1 0 ]
+"173
+[v _waitIni waitIni `(i  1 e 2 0 ]
+"191
+[v _sendmsg sendmsg `(v  1 e 1 0 ]
+"217
+[v _gsmon gsmon `(v  1 e 1 0 ]
+"233
+[v _startudp startudp `(v  1 e 1 0 ]
+"239
+[v _stopudp stopudp `(v  1 e 1 0 ]
+"244
+[v _getbat getbat `(i  1 e 2 0 ]
+"259
+[v _duerme duerme `(v  1 e 1 0 ]
+"264
+[v _despierta despierta `(v  1 e 1 0 ]
+"58 /home/domi/proyectos/iot/CollarMonitorizacion.X/main.c
+[v _intTim0 intTim0 `(v  1 e 1 0 ]
+"63
+[v _tics tics `(ul  1 e 4 0 ]
+"73
+[v _swapshort swapshort `(v  1 e 1 0 ]
+"79
+[v _uart_traza uart_traza `(v  1 e 1 0 ]
+"92
+[v _main main `(v  1 e 1 0 ]
+"67 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+"38 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/delay.c
+[v _DELAY_milliseconds DELAY_milliseconds `(v  1 e 1 0 ]
+"49
+[v _DELAY_microseconds DELAY_microseconds `(v  1 e 1 0 ]
+"66 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/eusart.c
+[v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
+"94
+[v _EUSART_is_tx_ready EUSART_is_tx_ready `(a  1 e 1 0 ]
+"99
+[v _EUSART_is_rx_ready EUSART_is_rx_ready `(a  1 e 1 0 ]
+"113
+[v _EUSART_Read EUSART_Read `(uc  1 e 1 0 ]
+"132
+[v _EUSART_Write EUSART_Write `(v  1 e 1 0 ]
+"146
+[v _putch putch `(v  1 e 1 0 ]
+"153
+[v _EUSART_DefaultFramingErrorHandler EUSART_DefaultFramingErrorHandler `(v  1 e 1 0 ]
+"155
+[v _EUSART_DefaultOverrunErrorHandler EUSART_DefaultOverrunErrorHandler `(v  1 e 1 0 ]
+"163
+[v _EUSART_DefaultErrorHandler EUSART_DefaultErrorHandler `(v  1 e 1 0 ]
+"166
+[v _EUSART_SetFramingErrorHandler EUSART_SetFramingErrorHandler `(v  1 e 1 0 ]
+"170
+[v _EUSART_SetOverrunErrorHandler EUSART_SetOverrunErrorHandler `(v  1 e 1 0 ]
+"174
+[v _EUSART_SetErrorHandler EUSART_SetErrorHandler `(v  1 e 1 0 ]
+"77 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/examples/i2c1_master_example.c
+[v _I2C1_Read2ByteRegister I2C1_Read2ByteRegister `(us  1 e 2 0 ]
+"91
+[v _I2C1_Write1ByteRegister I2C1_Write1ByteRegister `(v  1 e 1 0 ]
+"128
+[v _I2C1_ReadDataBlock I2C1_ReadDataBlock `(v  1 e 1 0 ]
+"142
+[v _rd1RegCompleteHandler rd1RegCompleteHandler `(E360  1 s 1 rd1RegCompleteHandler ]
+"149
+[v _rd2RegCompleteHandler rd2RegCompleteHandler `(E360  1 s 1 rd2RegCompleteHandler ]
+"156
+[v _wr1RegCompleteHandler wr1RegCompleteHandler `(E360  1 s 1 wr1RegCompleteHandler ]
+"163
+[v _wr2RegCompleteHandler wr2RegCompleteHandler `(E360  1 s 1 wr2RegCompleteHandler ]
+"170
+[v _rdBlkRegCompleteHandler rdBlkRegCompleteHandler `(E360  1 s 1 rdBlkRegCompleteHandler ]
+"58 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/fvr.c
+[v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
+"167 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/i2c1_master.c
+[v _I2C1_Initialize I2C1_Initialize `(v  1 e 1 0 ]
+"176
+[v _I2C1_Open I2C1_Open `(E355  1 e 1 0 ]
+"209
+[v _I2C1_Close I2C1_Close `(E355  1 e 1 0 ]
+"224
+[v _I2C1_MasterOperation I2C1_MasterOperation `(E355  1 e 1 0 ]
+"246
+[v _I2C1_MasterRead I2C1_MasterRead `(E355  1 e 1 0 ]
+"251
+[v _I2C1_MasterWrite I2C1_MasterWrite `(E355  1 e 1 0 ]
+"263
+[v _I2C1_SetBuffer I2C1_SetBuffer `(v  1 e 1 0 ]
+"273
+[v _I2C1_SetDataCompleteCallback I2C1_SetDataCompleteCallback `(v  1 e 1 0 ]
+"283
+[v _I2C1_SetAddressNackCallback I2C1_SetAddressNackCallback `(v  1 e 1 0 ]
+"298
+[v _I2C1_SetCallback I2C1_SetCallback `(v  1 s 1 I2C1_SetCallback ]
+"312
+[v _I2C1_Poller I2C1_Poller `(v  1 s 1 I2C1_Poller ]
+"321
+[v _I2C1_MasterFsm I2C1_MasterFsm `T(v  1 s 1 I2C1_MasterFsm ]
+"333
+[v _I2C1_DO_IDLE I2C1_DO_IDLE `(E6712  1 s 1 I2C1_DO_IDLE ]
+"340
+[v _I2C1_DO_SEND_ADR_READ I2C1_DO_SEND_ADR_READ `(E6712  1 s 1 I2C1_DO_SEND_ADR_READ ]
+"347
+[v _I2C1_DO_SEND_ADR_WRITE I2C1_DO_SEND_ADR_WRITE `(E6712  1 s 1 I2C1_DO_SEND_ADR_WRITE ]
+"354
+[v _I2C1_DO_TX I2C1_DO_TX `(E6712  1 s 1 I2C1_DO_TX ]
+"378
+[v _I2C1_DO_RX I2C1_DO_RX `(E6712  1 s 1 I2C1_DO_RX ]
+"402
+[v _I2C1_DO_RCEN I2C1_DO_RCEN `(E6712  1 s 1 I2C1_DO_RCEN ]
+"409
+[v _I2C1_DO_TX_EMPTY I2C1_DO_TX_EMPTY `(E6712  1 s 1 I2C1_DO_TX_EMPTY ]
+"450
+[v _I2C1_DO_SEND_RESTART_READ I2C1_DO_SEND_RESTART_READ `(E6712  1 s 1 I2C1_DO_SEND_RESTART_READ ]
+"456
+[v _I2C1_DO_SEND_RESTART_WRITE I2C1_DO_SEND_RESTART_WRITE `(E6712  1 s 1 I2C1_DO_SEND_RESTART_WRITE ]
+"463
+[v _I2C1_DO_SEND_RESTART I2C1_DO_SEND_RESTART `(E6712  1 s 1 I2C1_DO_SEND_RESTART ]
+"469
+[v _I2C1_DO_SEND_STOP I2C1_DO_SEND_STOP `(E6712  1 s 1 I2C1_DO_SEND_STOP ]
+"475
+[v _I2C1_DO_RX_ACK I2C1_DO_RX_ACK `(E6712  1 s 1 I2C1_DO_RX_ACK ]
+"482
+[v _I2C1_DO_RX_NACK_STOP I2C1_DO_RX_NACK_STOP `(E6712  1 s 1 I2C1_DO_RX_NACK_STOP ]
+"488
+[v _I2C1_DO_RX_NACK_RESTART I2C1_DO_RX_NACK_RESTART `(E6712  1 s 1 I2C1_DO_RX_NACK_RESTART ]
+"494
+[v _I2C1_DO_RESET I2C1_DO_RESET `(E6712  1 s 1 I2C1_DO_RESET ]
+"500
+[v _I2C1_DO_ADDRESS_NACK I2C1_DO_ADDRESS_NACK `(E6712  1 s 1 I2C1_DO_ADDRESS_NACK ]
+"520
+[v _I2C1_CallbackReturnStop I2C1_CallbackReturnStop `(E360  1 e 1 0 ]
+"525
+[v _I2C1_CallbackReturnReset I2C1_CallbackReturnReset `(E360  1 e 1 0 ]
+"543
+[v _I2C1_MasterOpen I2C1_MasterOpen `T(a  1 s 1 I2C1_MasterOpen ]
+"557
+[v _I2C1_MasterClose I2C1_MasterClose `T(v  1 s 1 I2C1_MasterClose ]
+"563
+[v _I2C1_MasterGetRxData I2C1_MasterGetRxData `T(uc  1 s 1 I2C1_MasterGetRxData ]
+"568
+[v _I2C1_MasterSendTxData I2C1_MasterSendTxData `T(v  1 s 1 I2C1_MasterSendTxData ]
+"573
+[v _I2C1_MasterEnableRestart I2C1_MasterEnableRestart `T(v  1 s 1 I2C1_MasterEnableRestart ]
+"578
+[v _I2C1_MasterDisableRestart I2C1_MasterDisableRestart `T(v  1 s 1 I2C1_MasterDisableRestart ]
+"583
+[v _I2C1_MasterStartRx I2C1_MasterStartRx `T(v  1 s 1 I2C1_MasterStartRx ]
+"588
+[v _I2C1_MasterStart I2C1_MasterStart `T(v  1 s 1 I2C1_MasterStart ]
+"593
+[v _I2C1_MasterStop I2C1_MasterStop `T(v  1 s 1 I2C1_MasterStop ]
+"598
+[v _I2C1_MasterIsNack I2C1_MasterIsNack `T(a  1 s 1 I2C1_MasterIsNack ]
+"603
+[v _I2C1_MasterSendAck I2C1_MasterSendAck `T(v  1 s 1 I2C1_MasterSendAck ]
+"609
+[v _I2C1_MasterSendNack I2C1_MasterSendNack `T(v  1 s 1 I2C1_MasterSendNack ]
+"615
+[v _I2C1_MasterClearBusCollision I2C1_MasterClearBusCollision `T(v  1 s 1 I2C1_MasterClearBusCollision ]
+"625
+[v _I2C1_MasterEnableIrq I2C1_MasterEnableIrq `T(v  1 s 1 I2C1_MasterEnableIrq ]
+"635
+[v _I2C1_MasterDisableIrq I2C1_MasterDisableIrq `T(v  1 s 1 I2C1_MasterDisableIrq ]
+"640
+[v _I2C1_MasterClearIrq I2C1_MasterClearIrq `T(v  1 s 1 I2C1_MasterClearIrq ]
+"645
+[v _I2C1_MasterSetIrq I2C1_MasterSetIrq `T(v  1 s 1 I2C1_MasterSetIrq ]
+"650
+[v _I2C1_MasterWaitForEvent I2C1_MasterWaitForEvent `T(v  1 s 1 I2C1_MasterWaitForEvent ]
+"52 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/interrupt_manager.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+"50 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+"65
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+"79
+[v _WDT_Initialize WDT_Initialize `(v  1 e 1 0 ]
+"85
+[v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
+"55 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"61 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr0.c
+[v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
+"87
+[v _TMR0_StartTimer TMR0_StartTimer `(v  1 e 1 0 ]
+"121
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+"134
+[v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
+"138
+[v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
+"64 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr1.c
+[v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
+"120
+[v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
+"157
+[v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
+"171
+[v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
+"175
+[v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
+"11 /home/domi/proyectos/iot/CollarMonitorizacion.X/MPU6050.c
+[v _initialize initialize `(v  1 e 1 0 ]
+"18
+[v _autoConfigLowEnergy autoConfigLowEnergy `(v  1 e 1 0 ]
+"24
+[v _getAcceleration getAcceleration `(v  1 e 1 0 ]
+[s S1356 . 131 `[64]uc 1 comando 64 0 `[32]uc 1 resok 32 64 `[32]uc 1 resko 32 96 `uc 1 termi 1 128 `ui 1 tout 2 129 ]
+"41 /home/domi/proyectos/iot/CollarMonitorizacion.X/gsm.h
+[v _inicio inicio `DC[1]S1356  1 e 131 0 ]
+"45
+[v _initudp initudp `DC[3]S1356  1 e 393 0 ]
+"55
+[v _envimensa envimensa `DCS1356  1 e 131 0 ]
+"58
+[v _dormir dormir `DCS1356  1 e 131 0 ]
+"61
+[v _noeco noeco `DCS1356  1 e 131 0 ]
+"67
+[v _midebat midebat `DCS1356  1 e 131 0 ]
+"70
+[v _udpstart udpstart `S1356  1 e 131 @9993 ]
+"73
+[v _udpshut udpshut `DCS1356  1 e 131 0 ]
+"76
+[v _simpin simpin `S1356  1 e 131 @9862 ]
+"79
+[v _terminador terminador `DCuc  1 e 1 0 ]
+[s S505 . 1 `uc 1 INTEDG 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"365 /home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h
+[u S510 . 1 `S505 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES510  1 e 1 @11 ]
+[s S488 . 1 `uc 1 INTF 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIF 1 0 :1:4 
+`uc 1 TMR0IF 1 0 :1:5 
+]
+"498
+[u S493 . 1 `S488 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES493  1 e 1 @16 ]
+[s S199 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 BCL1IF 1 0 :1:2 
+`uc 1 SSP1IF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+`uc 1 TMR1GIF 1 0 :1:7 
+]
+"535
+[u S208 . 1 `S199 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES208  1 e 1 @17 ]
+"766
+[v _TMR0L TMR0L `VEuc  1 e 1 @21 ]
+"904
+[v _TMR0H TMR0H `VEuc  1 e 1 @22 ]
+"1058
+[v _T0CON0 T0CON0 `VEuc  1 e 1 @23 ]
+[s S789 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+`uc 1 T016BIT 1 0 :1:4 
+`uc 1 T0OUT 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 T0EN 1 0 :1:7 
+]
+"1078
+[s S795 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+`uc 1 T0OUTPS1 1 0 :1:1 
+`uc 1 T0OUTPS2 1 0 :1:2 
+`uc 1 T0OUTPS3 1 0 :1:3 
+]
+[u S800 . 1 `S789 1 . 1 0 `S795 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES800  1 e 1 @23 ]
+"1123
+[v _T0CON1 T0CON1 `VEuc  1 e 1 @24 ]
+"1207
+[v _TMR1L TMR1L `VEuc  1 e 1 @25 ]
+"1227
+[v _TMR1H TMR1H `VEuc  1 e 1 @26 ]
+"1247
+[v _T1CON T1CON `VEuc  1 e 1 @27 ]
+[s S662 . 1 `uc 1 TMR1ON 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 T1SYNC 1 0 :1:2 
+`uc 1 T1SOSC 1 0 :1:3 
+`uc 1 T1CKPS 1 0 :2:4 
+`uc 1 TMR1CS 1 0 :2:6 
+]
+"1269
+[s S669 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 T1CKPS0 1 0 :1:4 
+`uc 1 T1CKPS1 1 0 :1:5 
+`uc 1 TMR1CS0 1 0 :1:6 
+`uc 1 TMR1CS1 1 0 :1:7 
+]
+[u S675 . 1 `S662 1 . 1 0 `S669 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES675  1 e 1 @27 ]
+"1319
+[v _T1GCON T1GCON `VEuc  1 e 1 @28 ]
+[s S692 . 1 `uc 1 T1GSS 1 0 :2:0 
+`uc 1 T1GVAL 1 0 :1:2 
+`uc 1 T1GGO_nDONE 1 0 :1:3 
+`uc 1 T1GSPM 1 0 :1:4 
+`uc 1 T1GTM 1 0 :1:5 
+`uc 1 T1GPOL 1 0 :1:6 
+`uc 1 TMR1GE 1 0 :1:7 
+]
+"1339
+[s S700 . 1 `uc 1 T1GSS0 1 0 :1:0 
+`uc 1 T1GSS1 1 0 :1:1 
+]
+[u S703 . 1 `S692 1 . 1 0 `S700 1 . 1 0 ]
+[v _T1GCONbits T1GCONbits `VES703  1 e 1 @28 ]
+"1500
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"1545
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+[s S475 . 1 `uc 1 INTE 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+"1608
+[u S480 . 1 `S475 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES480  1 e 1 @144 ]
+[s S518 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 BCL1IE 1 0 :1:2 
+`uc 1 SSP1IE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+`uc 1 TMR1GIE 1 0 :1:7 
+]
+"1645
+[u S527 . 1 `S518 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES527  1 e 1 @145 ]
+"1876
+[v _WDTCON WDTCON `VEuc  1 e 1 @151 ]
+"1942
+[v _ADRESL ADRESL `VEuc  1 e 1 @155 ]
+"1962
+[v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
+"1982
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
+[s S339 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :6:2 
+]
+"2008
+[s S343 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 ADGO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 CHS4 1 0 :1:6 
+`uc 1 CHS5 1 0 :1:7 
+]
+[s S352 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[u S355 . 1 `S339 1 . 1 0 `S343 1 . 1 0 `S352 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES355  1 e 1 @157 ]
+"2068
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
+"2140
+[v _ADACT ADACT `VEuc  1 e 1 @159 ]
+"2192
+[v _LATA LATA `VEuc  1 e 1 @268 ]
+"2237
+[v _LATC LATC `VEuc  1 e 1 @270 ]
+"2596
+[v _FVRCON FVRCON `VEuc  1 e 1 @279 ]
+[s S587 . 1 `uc 1 ADFVR 1 0 :2:0 
+`uc 1 CDAFVR 1 0 :2:2 
+`uc 1 TSRNG 1 0 :1:4 
+`uc 1 TSEN 1 0 :1:5 
+`uc 1 FVRRDY 1 0 :1:6 
+`uc 1 FVREN 1 0 :1:7 
+]
+"2617
+[s S594 . 1 `uc 1 ADFVR0 1 0 :1:0 
+`uc 1 ADFVR1 1 0 :1:1 
+`uc 1 CDAFVR0 1 0 :1:2 
+`uc 1 CDAFVR1 1 0 :1:3 
+]
+[u S599 . 1 `S587 1 . 1 0 `S594 1 . 1 0 ]
+[v _FVRCONbits FVRCONbits `VES599  1 e 1 @279 ]
+"2780
+[v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
+"2825
+[v _ANSELC ANSELC `VEuc  1 e 1 @398 ]
+"2896
+[v _RC1REG RC1REG `VEuc  1 e 1 @409 ]
+"2950
+[v _TX1REG TX1REG `VEuc  1 e 1 @410 ]
+"3011
+[v _SP1BRGL SP1BRGL `VEuc  1 e 1 @411 ]
+"3081
+[v _SP1BRGH SP1BRGH `VEuc  1 e 1 @412 ]
+"3135
+[v _RC1STA RC1STA `VEuc  1 e 1 @413 ]
+[s S241 . 1 `uc 1 RX9D 1 0 :1:0 
+`uc 1 OERR 1 0 :1:1 
+`uc 1 FERR 1 0 :1:2 
+`uc 1 ADDEN 1 0 :1:3 
+`uc 1 CREN 1 0 :1:4 
+`uc 1 SREN 1 0 :1:5 
+`uc 1 RX9 1 0 :1:6 
+`uc 1 SPEN 1 0 :1:7 
+]
+"3161
+[u S250 . 1 `S241 1 . 1 0 ]
+[v _RC1STAbits RC1STAbits `VES250  1 e 1 @413 ]
+"3315
+[v _TX1STA TX1STA `VEuc  1 e 1 @414 ]
+[s S220 . 1 `uc 1 TX9D 1 0 :1:0 
+`uc 1 TRMT 1 0 :1:1 
+`uc 1 BRGH 1 0 :1:2 
+`uc 1 SENDB 1 0 :1:3 
+`uc 1 SYNC 1 0 :1:4 
+`uc 1 TXEN 1 0 :1:5 
+`uc 1 TX9 1 0 :1:6 
+`uc 1 CSRC 1 0 :1:7 
+]
+"3341
+[u S229 . 1 `S220 1 . 1 0 ]
+[v _TX1STAbits TX1STAbits `VES229  1 e 1 @414 ]
+"3495
+[v _BAUD1CON BAUD1CON `VEuc  1 e 1 @415 ]
+"3741
+[v _WPUA WPUA `VEuc  1 e 1 @524 ]
+"3791
+[v _WPUC WPUC `VEuc  1 e 1 @526 ]
+"3841
+[v _SSP1BUF SSP1BUF `VEuc  1 e 1 @529 ]
+"4095
+[v _SSP1ADD SSP1ADD `VEuc  1 e 1 @530 ]
+"4603
+[v _SSP1STAT SSP1STAT `VEuc  1 e 1 @532 ]
+[s S1155 . 1 `uc 1 BF 1 0 :1:0 
+`uc 1 UA 1 0 :1:1 
+`uc 1 R_nW 1 0 :1:2 
+`uc 1 S 1 0 :1:3 
+`uc 1 P 1 0 :1:4 
+`uc 1 D_nA 1 0 :1:5 
+`uc 1 CKE 1 0 :1:6 
+`uc 1 SMP 1 0 :1:7 
+]
+"4625
+[u S1164 . 1 `S1155 1 . 1 0 ]
+[v _SSP1STATbits SSP1STATbits `VES1164  1 e 1 @532 ]
+"4725
+[v _SSP1CON1 SSP1CON1 `VEuc  1 e 1 @533 ]
+[s S957 . 1 `uc 1 SSPM 1 0 :4:0 
+`uc 1 CKP 1 0 :1:4 
+`uc 1 SSPEN 1 0 :1:5 
+`uc 1 SSPOV 1 0 :1:6 
+`uc 1 WCOL 1 0 :1:7 
+]
+"4758
+[s S963 . 1 `uc 1 SSPM0 1 0 :1:0 
+`uc 1 SSPM1 1 0 :1:1 
+`uc 1 SSPM2 1 0 :1:2 
+`uc 1 SSPM3 1 0 :1:3 
+]
+[u S968 . 1 `S957 1 . 1 0 `S963 1 . 1 0 ]
+[v _SSP1CON1bits SSP1CON1bits `VES968  1 e 1 @533 ]
+"4995
+[v _SSP1CON2 SSP1CON2 `VEuc  1 e 1 @534 ]
+[s S1122 . 1 `uc 1 SEN 1 0 :1:0 
+`uc 1 RSEN 1 0 :1:1 
+`uc 1 PEN 1 0 :1:2 
+`uc 1 RCEN 1 0 :1:3 
+`uc 1 ACKEN 1 0 :1:4 
+`uc 1 ACKDT 1 0 :1:5 
+`uc 1 ACKSTAT 1 0 :1:6 
+`uc 1 GCEN 1 0 :1:7 
+]
+"5017
+[u S1131 . 1 `S1122 1 . 1 0 ]
+[v _SSP1CON2bits SSP1CON2bits `VES1131  1 e 1 @534 ]
+"5947
+[v _ODCONA ODCONA `VEuc  1 e 1 @652 ]
+"5992
+[v _ODCONC ODCONC `VEuc  1 e 1 @654 ]
+"6446
+[v _SLRCONA SLRCONA `VEuc  1 e 1 @780 ]
+"6491
+[v _SLRCONC SLRCONC `VEuc  1 e 1 @782 ]
+"6857
+[v _INLVLA INLVLA `VEuc  1 e 1 @908 ]
+"6907
+[v _INLVLC INLVLC `VEuc  1 e 1 @910 ]
+"11576
+[v _PMD0 PMD0 `VEuc  1 e 1 @2321 ]
+"11621
+[v _PMD1 PMD1 `VEuc  1 e 1 @2322 ]
+"11683
+[v _PMD2 PMD2 `VEuc  1 e 1 @2323 ]
+"11723
+[v _PMD3 PMD3 `VEuc  1 e 1 @2324 ]
+"11785
+[v _PMD4 PMD4 `VEuc  1 e 1 @2325 ]
+"11819
+[v _PMD5 PMD5 `VEuc  1 e 1 @2326 ]
+"11928
+[v _OSCCON1 OSCCON1 `VEuc  1 e 1 @2329 ]
+"12068
+[v _OSCCON3 OSCCON3 `VEuc  1 e 1 @2331 ]
+"12165
+[v _OSCEN OSCEN `VEuc  1 e 1 @2333 ]
+"12211
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @2334 ]
+"12269
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2335 ]
+"13167
+[v _SSP1CLKPPS SSP1CLKPPS `VEuc  1 e 1 @3616 ]
+"13219
+[v _SSP1DATPPS SSP1DATPPS `VEuc  1 e 1 @3617 ]
+"13323
+[v _RXPPS RXPPS `VEuc  1 e 1 @3620 ]
+"13819
+[v _RA2PPS RA2PPS `VEuc  1 e 1 @3730 ]
+"13975
+[v _RC0PPS RC0PPS `VEuc  1 e 1 @3744 ]
+"14079
+[v _RC2PPS RC2PPS `VEuc  1 e 1 @3746 ]
+"14183
+[v _RC4PPS RC4PPS `VEuc  1 e 1 @3748 ]
+"55 /opt/microchip/xc8/v2.31/pic/sources/c99/common/doprnt.c
+[v _flags flags `i  1 s 2 flags ]
+[v _prec prec `i  1 s 2 prec ]
+[v _width width `i  1 s 2 width ]
+"66
+[v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
+"69
+[v _nout nout `i  1 s 2 nout ]
+"17 /home/domi/proyectos/iot/CollarMonitorizacion.X/gps.c
+[v _cabgps cabgps `DC[7]uc  1 e 7 0 ]
+"25
+[v _maxtime maxtime `ul  1 e 4 0 ]
+"26
+[v _len len `i  1 e 2 0 ]
+"52 /home/domi/proyectos/iot/CollarMonitorizacion.X/main.c
+[v _milisegundos milisegundos `ul  1 e 4 0 ]
+"53
+[v _linear linear `[100]uc  1 e 100 @10124 ]
+[s S1362 . 18 `l 1 telefono 4 0 `us 1 latituddec 2 4 `us 1 longituddec 2 6 `us 1 actividad 2 8 `us 1 bat 2 10 `us 1 secuencia 2 12 `c 1 modo_nsat 1 14 `c 1 latitudint 1 15 `c 1 longitudint 1 16 `c 1 cksum 1 17 ]
+"55
+[v _collar collar `S1362  1 e 18 0 ]
+[s S153 . 1 `uc 1 perr 1 0 :1:0 
+`uc 1 ferr 1 0 :1:1 
+`uc 1 oerr 1 0 :1:2 
+`uc 1 reserved 1 0 :5:3 
+]
+"52 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/eusart.c
+[u S158 . 1 `S153 1 . 1 0 `uc 1 status 1 0 ]
+[v _eusartRxLastError eusartRxLastError `VES158  1 e 1 0 ]
+"58
+[v _EUSART_FramingErrorHandler EUSART_FramingErrorHandler `*.37(v  1 e 2 0 ]
+"59
+[v _EUSART_OverrunErrorHandler EUSART_OverrunErrorHandler `*.37(v  1 e 2 0 ]
+"60
+[v _EUSART_ErrorHandler EUSART_ErrorHandler `*.37(v  1 e 2 0 ]
+"146 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/i2c1_master.c
+[v _i2c1_fsmStateTable i2c1_fsmStateTable `DC[16]*.37(E6712  1 e 32 0 ]
+[s S931 . 30 `[6]*.37(E360 1 callbackTable 12 0 `[6]*.4v 1 callbackPayload 6 12 `us 1 time_out 2 18 `us 1 time_out_value 2 20 `uc 1 address 1 22 `*.39uc 1 data_ptr 2 23 `ui 1 data_length 2 25 `E6712 1 state 1 27 `E355 1 error 1 28 `uc 1 addressNackCheck 1 29 :1:0 
+`uc 1 busy 1 29 :1:1 
+`uc 1 inUse 1 29 :1:2 
+`uc 1 bufferFree 1 29 :1:3 
+]
+"165
+[v _I2C1_Status I2C1_Status `S931  1 e 30 0 ]
+"59 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr0.c
+[v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
+"57 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr1.c
+[v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
+"58
+[v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
+"92 /home/domi/proyectos/iot/CollarMonitorizacion.X/main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"94
+[v main@acel acel `[3]us  1 a 6 2 ]
+"97
+[v main@valtmp valtmp `i  1 a 2 0 ]
+"148
+} 0
+"73
+[v _swapshort swapshort `(v  1 e 1 0 ]
+{
+[v swapshort@data data `*.5us  1 a 1 wreg ]
+[v swapshort@data data `*.5us  1 a 1 wreg ]
+"75
+[v swapshort@data data `*.5us  1 a 1 9 ]
+"76
+} 0
+"239 /home/domi/proyectos/iot/CollarMonitorizacion.X/gsm.c
+[v _stopudp stopudp `(v  1 e 1 0 ]
+{
+[v stopudp@linea linea `*.39uc  1 p 2 52 ]
+[v stopudp@maxlen maxlen `i  1 p 2 54 ]
+"242
+} 0
+"191
+[v _sendmsg sendmsg `(v  1 e 1 0 ]
+{
+[v sendmsg@msg msg `*.25uc  1 p 2 52 ]
+[v sendmsg@msglen msglen `i  1 p 2 54 ]
+[v sendmsg@linea linea `*.39uc  1 p 2 56 ]
+[v sendmsg@maxlen maxlen `i  1 p 2 58 ]
+"214
+} 0
+"105
+[v _writeLineaGSM writeLineaGSM `(v  1 e 1 0 ]
+{
+"107
+[v writeLineaGSM@i i `i  1 a 2 0 ]
+"105
+[v writeLineaGSM@linea linea `*.25uc  1 p 2 5 ]
+[v writeLineaGSM@len len `ui  1 p 2 7 ]
+"115
+} 0
+"94 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/eusart.c
+[v _EUSART_is_tx_ready EUSART_is_tx_ready `(a  1 e 1 0 ]
+{
+"97
+} 0
+"9 /opt/microchip/xc8/v2.31/pic/sources/c99/common/nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[s S2310 _IO_FILE 6 `*.25uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+"13
+[v sprintf@f f `S2310  1 a 6 14 ]
+"12
+[v sprintf@ap ap `[1]*.4v  1 a 1 13 ]
+"9
+[v sprintf@s s `*.25uc  1 p 2 4 ]
+[v sprintf@fmt fmt `*.25DCuc  1 p 2 6 ]
+"23
+} 0
+"11 /home/domi/proyectos/iot/CollarMonitorizacion.X/MPU6050.c
+[v _initialize initialize `(v  1 e 1 0 ]
+{
+"16
+} 0
+"217 /home/domi/proyectos/iot/CollarMonitorizacion.X/gsm.c
+[v _gsmon gsmon `(v  1 e 1 0 ]
+{
+"219
+[v gsmon@i i `i  1 a 2 72 ]
+"217
+[v gsmon@linea linea `*.39uc  1 p 2 67 ]
+[v gsmon@maxlen maxlen `i  1 p 2 69 ]
+"231
+} 0
+"233
+[v _startudp startudp `(v  1 e 1 0 ]
+{
+[v startudp@linea linea `*.39uc  1 p 2 63 ]
+[v startudp@maxlen maxlen `i  1 p 2 65 ]
+"237
+} 0
+"159
+[v _exesec exesec `(v  1 e 1 0 ]
+{
+"161
+[v exesec@i i `i  1 a 2 61 ]
+[s S1356 . 131 `[64]uc 1 comando 64 0 `[32]uc 1 resok 32 64 `[32]uc 1 resko 32 96 `uc 1 termi 1 128 `ui 1 tout 2 129 ]
+"159
+[v exesec@comandos comandos `*.25S1356  1 p 2 52 ]
+[v exesec@num num `i  1 p 2 54 ]
+[v exesec@linea linea `*.39uc  1 p 2 56 ]
+[v exesec@maxlen maxlen `i  1 p 2 58 ]
+"169
+} 0
+"183 /home/domi/proyectos/iot/CollarMonitorizacion.X/gps.c
+[v _gpsRead gpsRead `(v  1 e 1 0 ]
+{
+[v gpsRead@linear linear `*.39uc  1 p 2 20 ]
+[v gpsRead@maxlen maxlen `i  1 p 2 22 ]
+[v gpsRead@tout tout `ui  1 p 2 24 ]
+[s S1362 . 18 `l 1 telefono 4 0 `us 1 latituddec 2 4 `us 1 longituddec 2 6 `us 1 actividad 2 8 `us 1 bat 2 10 `us 1 secuencia 2 12 `c 1 modo_nsat 1 14 `c 1 latitudint 1 15 `c 1 longitudint 1 16 `c 1 cksum 1 17 ]
+[v gpsRead@gps gps `*.5S1362  1 p 1 26 ]
+"210
+} 0
+"39
+[v _recLineaGPS recLineaGPS `(i  1 e 2 0 ]
+{
+"44
+[v recLineaGPS@tfin tfin `ul  1 a 4 10 ]
+"41
+[v recLineaGPS@i i `i  1 a 2 17 ]
+"43
+[v recLineaGPS@lencab lencab `i  1 a 2 14 ]
+"42
+[v recLineaGPS@c c `uc  1 a 1 16 ]
+"39
+[v recLineaGPS@linea linea `*.39uc  1 p 2 0 ]
+[v recLineaGPS@maxlen maxlen `i  1 p 2 2 ]
+[v recLineaGPS@tout tout `ui  1 p 2 4 ]
+"81
+} 0
+"28
+[v _uart_gps uart_gps `(v  1 e 1 0 ]
+{
+"33
+} 0
+"174
+[v _gpscero gpscero `(v  1 e 1 0 ]
+{
+[s S1362 . 18 `l 1 telefono 4 0 `us 1 latituddec 2 4 `us 1 longituddec 2 6 `us 1 actividad 2 8 `us 1 bat 2 10 `us 1 secuencia 2 12 `c 1 modo_nsat 1 14 `c 1 latitudint 1 15 `c 1 longitudint 1 16 `c 1 cksum 1 17 ]
+[v gpscero@collar collar `*.5S1362  1 a 1 wreg ]
+[v gpscero@collar collar `*.5S1362  1 a 1 wreg ]
+"176
+"174
+[v gpscero@collar collar `*.5S1362  1 a 1 2 ]
+"181
+} 0
+"108
+[v _anaGPS anaGPS `(v  1 e 1 0 ]
+{
+"110
+[v anaGPS@punte punte `*.39uc  1 a 2 42 ]
+"108
+[v anaGPS@linea linea `*.39uc  1 p 2 36 ]
+[s S1362 . 18 `l 1 telefono 4 0 `us 1 latituddec 2 4 `us 1 longituddec 2 6 `us 1 actividad 2 8 `us 1 bat 2 10 `us 1 secuencia 2 12 `c 1 modo_nsat 1 14 `c 1 latitudint 1 15 `c 1 longitudint 1 16 `c 1 cksum 1 17 ]
+[v anaGPS@gps gps `*.5S1362  1 p 1 38 ]
+"171
+} 0
+"90
+[v _min2grado min2grado `(us  1 e 2 0 ]
+{
+"92
+[v min2grado@entero entero `ul  1 a 4 32 ]
+[v min2grado@tmp tmp `ul  1 a 4 26 ]
+"93
+[v min2grado@punte punte `*.26uc  1 a 2 30 ]
+"90
+[v min2grado@valor valor `*.39uc  1 p 2 20 ]
+"104
+} 0
+"15 /opt/microchip/xc8/v2.31/pic/sources/c99/common/Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+{
+"17
+[v ___lmul@product product `ul  1 a 4 0 ]
+"15
+[v ___lmul@multiplier multiplier `ul  1 p 4 2 ]
+[v ___lmul@multiplicand multiplicand `ul  1 p 4 6 ]
+"129
+} 0
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 19 ]
+[v ___awmod@counter counter `uc  1 a 1 18 ]
+"5
+[v ___awmod@divisor divisor `i  1 p 2 13 ]
+[v ___awmod@dividend dividend `i  1 p 2 15 ]
+"34
+} 0
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 20 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 19 ]
+[v ___awdiv@counter counter `uc  1 a 1 18 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 13 ]
+[v ___awdiv@dividend dividend `i  1 p 2 15 ]
+"41
+} 0
+"244 /home/domi/proyectos/iot/CollarMonitorizacion.X/gsm.c
+[v _getbat getbat `(i  1 e 2 0 ]
+{
+"246
+[v getbat@ptmp ptmp `*.39uc  1 a 2 56 ]
+"244
+[v getbat@linea linea `*.39uc  1 p 2 52 ]
+[v getbat@maxlen maxlen `i  1 p 2 54 ]
+"257
+} 0
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strtok.c
+[v _strtok strtok `(*.39uc  1 e 1 0 ]
+{
+[v strtok@s s `*.39uc  1 p 2 8 ]
+[v strtok@sep sep `*.25DCuc  1 p 2 10 ]
+"5
+[v strtok@p p `*.39uc  1 s 2 p ]
+"13
+} 0
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strspn.c
+[v _strspn strspn `(ui  1 e 2 0 ]
+{
+"5
+[v strspn@i i `ui  1 a 2 6 ]
+"3
+[v strspn@s s `*.39DCuc  1 p 2 0 ]
+[v strspn@c c `*.25DCuc  1 p 2 2 ]
+"13
+} 0
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strcspn.c
+[v _strcspn strcspn `(ui  1 e 2 0 ]
+{
+"5
+[v strcspn@i i `ui  1 a 2 6 ]
+"3
+[v strcspn@s s `*.39DCuc  1 p 2 0 ]
+[v strcspn@c c `*.25DCuc  1 p 2 2 ]
+"13
+} 0
+"4 /opt/microchip/xc8/v2.31/pic/sources/c99/common/atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+{
+"6
+[v atoi@n n `i  1 a 2 11 ]
+[v atoi@neg neg `i  1 a 2 4 ]
+"4
+[v atoi@s s `*.26DCuc  1 p 2 8 ]
+"16
+} 0
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/isspace.c
+[v _isspace isspace `(i  1 e 2 0 ]
+{
+[v isspace@c c `i  1 p 2 2 ]
+"8
+} 0
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/isdigit.c
+[v _isdigit isdigit `(i  1 e 2 0 ]
+{
+[v isdigit@c c `i  1 p 2 2 ]
+"8
+} 0
+"15 /opt/microchip/xc8/v2.31/pic/sources/c99/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 6 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 2 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 4 ]
+"53
+} 0
+"24 /home/domi/proyectos/iot/CollarMonitorizacion.X/MPU6050.c
+[v _getAcceleration getAcceleration `(v  1 e 1 0 ]
+{
+[v getAcceleration@data data `*.5us  1 a 1 wreg ]
+[v getAcceleration@data data `*.5us  1 a 1 wreg ]
+"26
+[v getAcceleration@data data `*.5us  1 a 1 22 ]
+"27
+} 0
+"128 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/examples/i2c1_master_example.c
+[v _I2C1_ReadDataBlock I2C1_ReadDataBlock `(v  1 e 1 0 ]
+{
+[v I2C1_ReadDataBlock@address address `uc  1 a 1 wreg ]
+[s S94 . 3 `ui 1 len 2 0 `*.5uc 1 data 1 2 ]
+"130
+[v I2C1_ReadDataBlock@bufferBlock bufferBlock `S94  1 a 3 17 ]
+"128
+[v I2C1_ReadDataBlock@address address `uc  1 a 1 wreg ]
+[v I2C1_ReadDataBlock@reg reg `uc  1 p 1 11 ]
+[v I2C1_ReadDataBlock@data data `*.5uc  1 p 1 12 ]
+[v I2C1_ReadDataBlock@len len `ui  1 p 2 13 ]
+"131
+[v I2C1_ReadDataBlock@address address `uc  1 a 1 16 ]
+"140
+} 0
+"259 /home/domi/proyectos/iot/CollarMonitorizacion.X/gsm.c
+[v _duerme duerme `(v  1 e 1 0 ]
+{
+[v duerme@linea linea `*.39uc  1 p 2 52 ]
+[v duerme@maxlen maxlen `i  1 p 2 54 ]
+"262
+} 0
+"264
+[v _despierta despierta `(v  1 e 1 0 ]
+{
+[v despierta@linea linea `*.39uc  1 p 2 59 ]
+[v despierta@maxlen maxlen `i  1 p 2 61 ]
+"267
+} 0
+"173
+[v _waitIni waitIni `(i  1 e 2 0 ]
+{
+"175
+[v waitIni@ret ret `i  1 a 2 57 ]
+"173
+[v waitIni@linea linea `*.39uc  1 p 2 52 ]
+[v waitIni@maxlen maxlen `i  1 p 2 54 ]
+"188
+} 0
+"119
+[v _exeuno exeuno `(i  1 e 2 0 ]
+{
+"121
+[v exeuno@ret ret `i  1 a 2 50 ]
+[s S1356 . 131 `[64]uc 1 comando 64 0 `[32]uc 1 resok 32 64 `[32]uc 1 resko 32 96 `uc 1 termi 1 128 `ui 1 tout 2 129 ]
+"119
+[v exeuno@comandos comandos `*.26S1356  1 p 2 39 ]
+[v exeuno@linea linea `*.39uc  1 p 2 41 ]
+[v exeuno@maxlen maxlen `i  1 p 2 43 ]
+"156
+} 0
+"4 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strstr.c
+[v _strstr strstr `(*.26uc  1 e 1 0 ]
+{
+"7
+[v strstr@nl nl `ui  1 a 2 10 ]
+"4
+[v strstr@h h `*.26DCuc  1 p 2 4 ]
+[v strstr@n n `*.26DCuc  1 p 2 6 ]
+"15
+} 0
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strncmp.c
+[v _strncmp strncmp `(i  1 e 2 0 ]
+{
+"5
+[v strncmp@r r `*.26DCuc  1 a 2 2 ]
+[v strncmp@l l `*.26DCuc  1 a 2 0 ]
+"3
+[v strncmp@_l _l `*.26DCuc  1 p 2 2 ]
+[v strncmp@_r _r `*.26DCuc  1 p 2 4 ]
+[v strncmp@n n `ui  1 p 2 6 ]
+"9
+} 0
+"3 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strchr.c
+[v _strchr strchr `(*.26uc  1 e 1 0 ]
+{
+[v strchr@s s `*.26DCuc  1 p 2 2 ]
+[v strchr@c c `i  1 p 2 4 ]
+"11
+} 0
+"30 /home/domi/proyectos/iot/CollarMonitorizacion.X/gsm.c
+[v _recLineaGSM recLineaGSM `(i  1 e 2 0 ]
+{
+"35
+[v recLineaGSM@tfin tfin `ul  1 a 4 31 ]
+"32
+[v recLineaGSM@ptmp ptmp `*.39uc  1 a 2 37 ]
+"33
+[v recLineaGSM@ncar ncar `i  1 a 2 35 ]
+"30
+[v recLineaGSM@linea linea `*.39uc  1 p 2 20 ]
+[v recLineaGSM@maxlen maxlen `i  1 p 2 22 ]
+[v recLineaGSM@tout tout `ui  1 p 2 24 ]
+[v recLineaGSM@term term `uc  1 p 1 26 ]
+"76
+} 0
+"79 /home/domi/proyectos/iot/CollarMonitorizacion.X/main.c
+[v _uart_traza uart_traza `(v  1 e 1 0 ]
+{
+"85
+} 0
+"18 /home/domi/proyectos/iot/CollarMonitorizacion.X/gsm.c
+[v _uart_gsm uart_gsm `(v  1 e 1 0 ]
+{
+"25
+} 0
+"38 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/delay.c
+[v _DELAY_milliseconds DELAY_milliseconds `(v  1 e 1 0 ]
+{
+[v DELAY_milliseconds@milliseconds milliseconds `us  1 p 2 2 ]
+"42
+} 0
+"63 /home/domi/proyectos/iot/CollarMonitorizacion.X/main.c
+[v _tics tics `(ul  1 e 4 0 ]
+{
+"65
+[v tics@tmp tmp `ul  1 a 4 6 ]
+"71
+} 0
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/printf.c
+[v _printf printf `(i  1 e 2 0 ]
+{
+"8
+[v printf@ap ap `[1]*.4v  1 a 1 19 ]
+"5
+[v printf@fmt fmt `*.25DCuc  1 p 2 4 ]
+"13
+} 0
+"1390 /opt/microchip/xc8/v2.31/pic/sources/c99/common/doprnt.c
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+{
+"1393
+[v vfprintf@cfmt cfmt `*.25uc  1 a 2 2 ]
+[s S2336 _IO_FILE 0 ]
+"1390
+[v vfprintf@fp fp `*.39S2336  1 p 2 75 ]
+[v vfprintf@fmt fmt `*.25DCuc  1 p 2 77 ]
+[v vfprintf@ap ap `*.4*.4v  1 p 1 79 ]
+"1404
+} 0
+"692
+[v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
+{
+"696
+[v vfpfcnvrt@ll ll `o  1 a 8 65 ]
+"694
+[v vfpfcnvrt@cp cp `*.26uc  1 a 2 73 ]
+[s S2336 _IO_FILE 0 ]
+"692
+[v vfpfcnvrt@fp fp `*.39S2336  1 p 2 57 ]
+[v vfpfcnvrt@fmt fmt `*.4*.25uc  1 p 1 59 ]
+[v vfpfcnvrt@ap ap `*.4*.4v  1 p 1 60 ]
+"1387
+} 0
+"568
+[v _stoa stoa `(i  1 s 2 stoa ]
+{
+"570
+[v stoa@nuls nuls `[7]uc  1 a 7 9 ]
+"571
+[v stoa@l l `i  1 a 2 24 ]
+[v stoa@p p `i  1 a 2 22 ]
+"570
+[v stoa@cp cp `*.26uc  1 a 2 20 ]
+"571
+[v stoa@w w `i  1 a 2 18 ]
+[v stoa@i i `i  1 a 2 16 ]
+[s S2336 _IO_FILE 0 ]
+"568
+[v stoa@fp fp `*.39S2336  1 p 2 5 ]
+[v stoa@s s `*.26uc  1 p 2 7 ]
+"570
+[v stoa@F1141 F1141 `[7]uc  1 s 7 F1141 ]
+"611
+} 0
+"287
+[v _dtoa dtoa `(i  1 s 2 dtoa ]
+{
+"290
+[v dtoa@n n `o  1 a 8 47 ]
+"289
+[v dtoa@i i `i  1 a 2 55 ]
+[v dtoa@s s `i  1 a 2 45 ]
+[v dtoa@w w `i  1 a 2 43 ]
+[v dtoa@p p `i  1 a 2 41 ]
+[s S2336 _IO_FILE 0 ]
+"287
+[v dtoa@fp fp `*.39S2336  1 p 2 26 ]
+[v dtoa@d d `o  1 p 8 28 ]
+"328
+} 0
+"72
+[v _pad pad `(i  1 s 2 pad ]
+{
+"74
+[v pad@w w `i  1 a 2 19 ]
+[v pad@i i `i  1 a 2 17 ]
+[s S2336 _IO_FILE 0 ]
+"72
+[v pad@fp fp `*.39S2336  1 p 2 11 ]
+[v pad@buf buf `*.5uc  1 p 1 13 ]
+[v pad@p p `i  1 p 2 14 ]
+"95
+} 0
+"5 /opt/microchip/xc8/v2.31/pic/sources/c99/common/strlen.c
+[v _strlen strlen `(ui  1 e 2 0 ]
+{
+"7
+[v strlen@a a `*.26DCuc  1 a 2 5 ]
+"5
+[v strlen@s s `*.26DCuc  1 p 2 2 ]
+"12
+} 0
+"8 /opt/microchip/xc8/v2.31/pic/sources/c99/common/nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+{
+[v fputs@s s `*.5DCuc  1 a 1 wreg ]
+"11
+[v fputs@i i `i  1 a 2 8 ]
+"10
+[v fputs@c c `uc  1 a 1 7 ]
+"8
+[v fputs@s s `*.5DCuc  1 a 1 wreg ]
+[s S2310 _IO_FILE 6 `*.25uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.39S2310  1 p 2 8 ]
+"13
+[v fputs@s s `*.5DCuc  1 a 1 10 ]
+"19
+} 0
+"8 /opt/microchip/xc8/v2.31/pic/sources/c99/common/nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+{
+[v fputc@c c `i  1 p 2 4 ]
+[s S2310 _IO_FILE 6 `*.25uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.39S2310  1 p 2 6 ]
+"24
+} 0
+"146 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/eusart.c
+[v _putch putch `(v  1 e 1 0 ]
+{
+[v putch@txData txData `uc  1 a 1 wreg ]
+[v putch@txData txData `uc  1 a 1 wreg ]
+"148
+[v putch@txData txData `uc  1 a 1 3 ]
+"149
+} 0
+"132
+[v _EUSART_Write EUSART_Write `(v  1 e 1 0 ]
+{
+[v EUSART_Write@txData txData `uc  1 a 1 wreg ]
+[v EUSART_Write@txData txData `uc  1 a 1 wreg ]
+[v EUSART_Write@txData txData `uc  1 a 1 2 ]
+"139
+} 0
+"1 /opt/microchip/xc8/v2.31/pic/sources/c99/common/abs.c
+[v _abs abs `(i  1 e 2 0 ]
+{
+[v abs@a a `i  1 p 2 5 ]
+"4
+} 0
+"7 /opt/microchip/xc8/v2.31/pic/sources/c99/common/aomod.c
+[v ___aomod __aomod `(o  1 e 8 0 ]
+{
+"12
+[v ___aomod@sign sign `uc  1 a 1 4 ]
+[v ___aomod@counter counter `uc  1 a 1 3 ]
+"7
+[v ___aomod@divisor divisor `o  1 p 8 0 ]
+[v ___aomod@dividend dividend `o  1 p 8 8 ]
+"36
+} 0
+"7 /opt/microchip/xc8/v2.31/pic/sources/c99/common/aodiv.c
+[v ___aodiv __aodiv `(o  1 e 8 0 ]
+{
+"12
+[v ___aodiv@quotient quotient `o  1 a 8 18 ]
+"13
+[v ___aodiv@sign sign `uc  1 a 1 17 ]
+[v ___aodiv@counter counter `uc  1 a 1 16 ]
+"7
+[v ___aodiv@divisor divisor `o  1 p 8 0 ]
+[v ___aodiv@dividend dividend `o  1 p 8 8 ]
+"43
+} 0
+"99 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/eusart.c
+[v _EUSART_is_rx_ready EUSART_is_rx_ready `(a  1 e 1 0 ]
+{
+"102
+} 0
+"113
+[v _EUSART_Read EUSART_Read `(uc  1 e 1 0 ]
+{
+"130
+} 0
+"49 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/delay.c
+[v _DELAY_microseconds DELAY_microseconds `(v  1 e 1 0 ]
+{
+[v DELAY_microseconds@microseconds microseconds `us  1 p 2 2 ]
+"60
+} 0
+"18 /home/domi/proyectos/iot/CollarMonitorizacion.X/MPU6050.c
+[v _autoConfigLowEnergy autoConfigLowEnergy `(v  1 e 1 0 ]
+{
+"22
+} 0
+"91 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/examples/i2c1_master_example.c
+[v _I2C1_Write1ByteRegister I2C1_Write1ByteRegister `(v  1 e 1 0 ]
+{
+[v I2C1_Write1ByteRegister@address address `uc  1 a 1 wreg ]
+[v I2C1_Write1ByteRegister@address address `uc  1 a 1 wreg ]
+[v I2C1_Write1ByteRegister@reg reg `uc  1 p 1 11 ]
+[v I2C1_Write1ByteRegister@data data `uc  1 p 1 12 ]
+[v I2C1_Write1ByteRegister@address address `uc  1 a 1 14 ]
+"99
+} 0
+"283 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/i2c1_master.c
+[v _I2C1_SetAddressNackCallback I2C1_SetAddressNackCallback `(v  1 e 1 0 ]
+{
+[v I2C1_SetAddressNackCallback@cb cb `*.37(E360  1 p 2 7 ]
+[v I2C1_SetAddressNackCallback@ptr ptr `*.1v  1 p 1 9 ]
+"286
+} 0
+"176
+[v _I2C1_Open I2C1_Open `(E355  1 e 1 0 ]
+{
+[v I2C1_Open@address address `uc  1 a 1 wreg ]
+"178
+[v I2C1_Open@returnValue returnValue `E355  1 a 1 4 ]
+"176
+[v I2C1_Open@address address `uc  1 a 1 wreg ]
+"178
+[v I2C1_Open@address address `uc  1 a 1 3 ]
+"207
+} 0
+"543
+[v _I2C1_MasterOpen I2C1_MasterOpen `T(a  1 s 1 I2C1_MasterOpen ]
+{
+"555
+} 0
+"251
+[v _I2C1_MasterWrite I2C1_MasterWrite `(E355  1 e 1 0 ]
+{
+"254
+} 0
+"224
+[v _I2C1_MasterOperation I2C1_MasterOperation `(E355  1 e 1 0 ]
+{
+[v I2C1_MasterOperation@read read `a  1 a 1 wreg ]
+"226
+[v I2C1_MasterOperation@returnValue returnValue `E355  1 a 1 10 ]
+"224
+[v I2C1_MasterOperation@read read `a  1 a 1 wreg ]
+"226
+[v I2C1_MasterOperation@read read `a  1 a 1 9 ]
+"244
+} 0
+"312
+[v _I2C1_Poller I2C1_Poller `(v  1 s 1 I2C1_Poller ]
+{
+"319
+} 0
+"650
+[v _I2C1_MasterWaitForEvent I2C1_MasterWaitForEvent `T(v  1 s 1 I2C1_MasterWaitForEvent ]
+{
+"659
+} 0
+"321
+[v _I2C1_MasterFsm I2C1_MasterFsm `T(v  1 s 1 I2C1_MasterFsm ]
+{
+"330
+} 0
+"500
+[v _I2C1_DO_ADDRESS_NACK I2C1_DO_ADDRESS_NACK `(E6712  1 s 1 I2C1_DO_ADDRESS_NACK ]
+{
+"512
+} 0
+"494
+[v _I2C1_DO_RESET I2C1_DO_RESET `(E6712  1 s 1 I2C1_DO_RESET ]
+{
+"499
+} 0
+"488
+[v _I2C1_DO_RX_NACK_RESTART I2C1_DO_RX_NACK_RESTART `(E6712  1 s 1 I2C1_DO_RX_NACK_RESTART ]
+{
+"492
+} 0
+"482
+[v _I2C1_DO_RX_NACK_STOP I2C1_DO_RX_NACK_STOP `(E6712  1 s 1 I2C1_DO_RX_NACK_STOP ]
+{
+"486
+} 0
+"475
+[v _I2C1_DO_RX_ACK I2C1_DO_RX_ACK `(E6712  1 s 1 I2C1_DO_RX_ACK ]
+{
+"479
+} 0
+"469
+[v _I2C1_DO_SEND_STOP I2C1_DO_SEND_STOP `(E6712  1 s 1 I2C1_DO_SEND_STOP ]
+{
+"473
+} 0
+"463
+[v _I2C1_DO_SEND_RESTART I2C1_DO_SEND_RESTART `(E6712  1 s 1 I2C1_DO_SEND_RESTART ]
+{
+"467
+} 0
+"456
+[v _I2C1_DO_SEND_RESTART_WRITE I2C1_DO_SEND_RESTART_WRITE `(E6712  1 s 1 I2C1_DO_SEND_RESTART_WRITE ]
+{
+"460
+} 0
+"450
+[v _I2C1_DO_SEND_RESTART_READ I2C1_DO_SEND_RESTART_READ `(E6712  1 s 1 I2C1_DO_SEND_RESTART_READ ]
+{
+"454
+} 0
+"402
+[v _I2C1_DO_RCEN I2C1_DO_RCEN `(E6712  1 s 1 I2C1_DO_RCEN ]
+{
+"407
+} 0
+"378
+[v _I2C1_DO_RX I2C1_DO_RX `(E6712  1 s 1 I2C1_DO_RX ]
+{
+"400
+} 0
+"354
+[v _I2C1_DO_TX I2C1_DO_TX `(E6712  1 s 1 I2C1_DO_TX ]
+{
+"376
+} 0
+"347
+[v _I2C1_DO_SEND_ADR_WRITE I2C1_DO_SEND_ADR_WRITE `(E6712  1 s 1 I2C1_DO_SEND_ADR_WRITE ]
+{
+"352
+} 0
+"340
+[v _I2C1_DO_SEND_ADR_READ I2C1_DO_SEND_ADR_READ `(E6712  1 s 1 I2C1_DO_SEND_ADR_READ ]
+{
+"345
+} 0
+"333
+[v _I2C1_DO_IDLE I2C1_DO_IDLE `(E6712  1 s 1 I2C1_DO_IDLE ]
+{
+"338
+} 0
+"409
+[v _I2C1_DO_TX_EMPTY I2C1_DO_TX_EMPTY `(E6712  1 s 1 I2C1_DO_TX_EMPTY ]
+{
+"424
+} 0
+"645
+[v _I2C1_MasterSetIrq I2C1_MasterSetIrq `T(v  1 s 1 I2C1_MasterSetIrq ]
+{
+"648
+} 0
+"598
+[v _I2C1_MasterIsNack I2C1_MasterIsNack `T(a  1 s 1 I2C1_MasterIsNack ]
+{
+"601
+} 0
+"568
+[v _I2C1_MasterSendTxData I2C1_MasterSendTxData `T(v  1 s 1 I2C1_MasterSendTxData ]
+{
+[v I2C1_MasterSendTxData@data data `uc  1 a 1 wreg ]
+[v I2C1_MasterSendTxData@data data `uc  1 a 1 wreg ]
+"570
+[v I2C1_MasterSendTxData@data data `uc  1 a 1 2 ]
+"571
+} 0
+"603
+[v _I2C1_MasterSendAck I2C1_MasterSendAck `T(v  1 s 1 I2C1_MasterSendAck ]
+{
+"607
+} 0
+"563
+[v _I2C1_MasterGetRxData I2C1_MasterGetRxData `T(uc  1 s 1 I2C1_MasterGetRxData ]
+{
+"566
+} 0
+"609
+[v _I2C1_MasterSendNack I2C1_MasterSendNack `T(v  1 s 1 I2C1_MasterSendNack ]
+{
+"613
+} 0
+"583
+[v _I2C1_MasterStartRx I2C1_MasterStartRx `T(v  1 s 1 I2C1_MasterStartRx ]
+{
+"586
+} 0
+"525
+[v _I2C1_CallbackReturnReset I2C1_CallbackReturnReset `(E360  1 e 1 0 ]
+{
+[v I2C1_CallbackReturnReset@funPtr funPtr `*.4v  1 p 1 1 ]
+"528
+} 0
+"520
+[v _I2C1_CallbackReturnStop I2C1_CallbackReturnStop `(E360  1 e 1 0 ]
+{
+"523
+} 0
+"170 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/examples/i2c1_master_example.c
+[v _rdBlkRegCompleteHandler rdBlkRegCompleteHandler `(E360  1 s 1 rdBlkRegCompleteHandler ]
+{
+[v rdBlkRegCompleteHandler@ptr ptr `*.4v  1 p 1 1 ]
+"175
+} 0
+"156
+[v _wr1RegCompleteHandler wr1RegCompleteHandler `(E360  1 s 1 wr1RegCompleteHandler ]
+{
+[v wr1RegCompleteHandler@ptr ptr `*.4v  1 p 1 1 ]
+"161
+} 0
+"149
+[v _rd2RegCompleteHandler rd2RegCompleteHandler `(E360  1 s 1 rd2RegCompleteHandler ]
+{
+[v rd2RegCompleteHandler@ptr ptr `*.4v  1 p 1 1 ]
+"154
+} 0
+"142
+[v _rd1RegCompleteHandler rd1RegCompleteHandler `(E360  1 s 1 rd1RegCompleteHandler ]
+{
+[v rd1RegCompleteHandler@ptr ptr `*.4v  1 p 1 1 ]
+"147
+} 0
+"163
+[v _wr2RegCompleteHandler wr2RegCompleteHandler `(E360  1 s 1 wr2RegCompleteHandler ]
+{
+[v wr2RegCompleteHandler@ptr ptr `*.4v  1 p 1 1 ]
+"168
+} 0
+"273 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/i2c1_master.c
+[v _I2C1_SetDataCompleteCallback I2C1_SetDataCompleteCallback `(v  1 e 1 0 ]
+{
+[v I2C1_SetDataCompleteCallback@cb cb `*.37(E360  1 p 2 7 ]
+[v I2C1_SetDataCompleteCallback@ptr ptr `*.4v  1 p 1 9 ]
+"276
+} 0
+"298
+[v _I2C1_SetCallback I2C1_SetCallback `(v  1 s 1 I2C1_SetCallback ]
+{
+[v I2C1_SetCallback@idx idx `E6730  1 a 1 wreg ]
+[v I2C1_SetCallback@idx idx `E6730  1 a 1 wreg ]
+[v I2C1_SetCallback@cb cb `*.37(E360  1 p 2 2 ]
+[v I2C1_SetCallback@ptr ptr `*.4v  1 p 1 4 ]
+"300
+[v I2C1_SetCallback@idx idx `E6730  1 a 1 6 ]
+"310
+} 0
+"263
+[v _I2C1_SetBuffer I2C1_SetBuffer `(v  1 e 1 0 ]
+{
+[v I2C1_SetBuffer@buffer buffer `*.39v  1 p 2 2 ]
+[v I2C1_SetBuffer@bufferSize bufferSize `ui  1 p 2 4 ]
+"271
+} 0
+"593
+[v _I2C1_MasterStop I2C1_MasterStop `T(v  1 s 1 I2C1_MasterStop ]
+{
+"596
+} 0
+"573
+[v _I2C1_MasterEnableRestart I2C1_MasterEnableRestart `T(v  1 s 1 I2C1_MasterEnableRestart ]
+{
+"576
+} 0
+"588
+[v _I2C1_MasterStart I2C1_MasterStart `T(v  1 s 1 I2C1_MasterStart ]
+{
+"591
+} 0
+"209
+[v _I2C1_Close I2C1_Close `(E355  1 e 1 0 ]
+{
+"211
+[v I2C1_Close@returnValue returnValue `E355  1 a 1 3 ]
+"222
+} 0
+"635
+[v _I2C1_MasterDisableIrq I2C1_MasterDisableIrq `T(v  1 s 1 I2C1_MasterDisableIrq ]
+{
+"638
+} 0
+"557
+[v _I2C1_MasterClose I2C1_MasterClose `T(v  1 s 1 I2C1_MasterClose ]
+{
+"561
+} 0
+"640
+[v _I2C1_MasterClearIrq I2C1_MasterClearIrq `T(v  1 s 1 I2C1_MasterClearIrq ]
+{
+"643
+} 0
+"87 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr0.c
+[v _TMR0_StartTimer TMR0_StartTimer `(v  1 e 1 0 ]
+{
+"91
+} 0
+"50 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+{
+"63
+} 0
+"79
+[v _WDT_Initialize WDT_Initialize `(v  1 e 1 0 ]
+{
+"83
+} 0
+"64 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr1.c
+[v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
+{
+"91
+} 0
+"171
+[v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v TMR1_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 2 ]
+"173
+} 0
+"61 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr0.c
+[v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
+{
+"85
+} 0
+"134
+[v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v TMR0_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 2 ]
+"136
+} 0
+"85 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/mcc.c
+[v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
+{
+"99
+} 0
+"55 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+{
+"112
+} 0
+"65 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/mcc.c
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+{
+"77
+} 0
+"167 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/i2c1_master.c
+[v _I2C1_Initialize I2C1_Initialize `(v  1 e 1 0 ]
+{
+"174
+} 0
+"58 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/fvr.c
+[v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
+{
+"62
+} 0
+"66 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/eusart.c
+[v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
+{
+"92
+} 0
+"170
+[v _EUSART_SetOverrunErrorHandler EUSART_SetOverrunErrorHandler `(v  1 e 1 0 ]
+{
+[v EUSART_SetOverrunErrorHandler@interruptHandler interruptHandler `*.37(v  1 p 2 2 ]
+"172
+} 0
+"166
+[v _EUSART_SetFramingErrorHandler EUSART_SetFramingErrorHandler `(v  1 e 1 0 ]
+{
+[v EUSART_SetFramingErrorHandler@interruptHandler interruptHandler `*.37(v  1 p 2 2 ]
+"168
+} 0
+"174
+[v _EUSART_SetErrorHandler EUSART_SetErrorHandler `(v  1 e 1 0 ]
+{
+[v EUSART_SetErrorHandler@interruptHandler interruptHandler `*.37(v  1 p 2 2 ]
+"176
+} 0
+"67 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+{
+"86
+} 0
+"52 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/interrupt_manager.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+{
+"74
+} 0
+"157 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr1.c
+[v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
+{
+"168
+} 0
+"120
+[v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
+{
+[v TMR1_WriteTimer@timerVal timerVal `us  1 p 2 0 ]
+"140
+} 0
+"175
+[v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"178
+} 0
+"121 /home/domi/proyectos/iot/CollarMonitorizacion.X/mcc_generated_files/tmr0.c
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+{
+"131
+} 0
+"138
+[v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"141
+} 0
+"58 /home/domi/proyectos/iot/CollarMonitorizacion.X/main.c
+[v _intTim0 intTim0 `(v  1 e 1 0 ]
+{
+"61
+} 0
