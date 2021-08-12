@@ -84,31 +84,44 @@ void uart_traza()
     DELAY_milliseconds(3);
 }
 
-
-
 /*
                          Main application
  */
 void main(void)
 {
-    uint16_t acel[3];
+    int16_t acel[3];
     unsigned long maxtime;
     int len;
     int valtmp;
+    int pasos = 0;
+    int primero = 1;  //variable con funcionamiento booleano
+    int32_t vector[2];
+    int32_t actual;
+    
     // initialize the device
     SYSTEM_Initialize();
-    // Habilita interrupción por timmer0 y lo inicializa
+    
+    // Habilita interrupción por timmer0
+    // Inicializa timmer0
     TMR0_SetInterruptHandler(intTim0);
     TMR0_StartTimer();
+    
+    // Habilita interrupciones del sistema
     INTERRUPT_PeripheralInterruptEnable();
     INTERRUPT_GlobalInterruptEnable();
  
     uart_traza();
     printf("Hola\r\n");
-    initialize();
-    autoConfigLowEnergy();
+    
+    // Inicialización del acelerometro
+    // Configuración baja energia acelerometro
+    initialize(); 
+    autoConfigLowEnergy(); 
 
-    gsmon(linear,sizeof(linear));
+    // Inicialización del GSM
+    // Obtención estado bateria
+    // Modo sleep GSM
+    gsmon(linear,sizeof(linear)); 
     valtmp = getbat(linear,sizeof(linear));
     uart_traza();
     printf("BAT=>%d\r\n",valtmp);
@@ -116,23 +129,40 @@ void main(void)
     
     while (1)
     {
-  
-        // Obtiene las coordenadas x,y,z del acelerometro cada segundo
-        // RC0 -> SDA acelerometro
-        // RA2 -> SCL acelerometro
+        // ACELEROMETRO
+        // Obtiene las coordenadas x,y,z del acelerometro cada segundo.
+        // Obtiene modulo del vector coordenadas.
+        // Obtine numero pasos realizados
+        // RC0 -> SDA acelerometro.
+        // RA2 -> SCL acelerometro.
         getAcceleration(acel);
         swapshort(&acel[0]);
         swapshort(&acel[1]);
         swapshort(&acel[2]);
+        actual = modulo(acel);
+        pasos += steps(vector,actual);
         uart_traza();
-        printf("X: %d Y: %d Z: %d\r\n",acel[0],acel[1],acel[2]);
+        printf("Pasos: %d /r/n",pasos);
         DELAY_milliseconds(1000);
         
-        //FUNCIONALIDAD GPS 
+        
+        // FUNCIONALIDAD GPS
+        // Activar GPS al recibir comando
+        // Apagar GPS al recibir comando
         gpsRead(linear,sizeof(linear),10000,&collar);
         DELAY_milliseconds(1000);
         
-        //FUNCIONALIDAD GSM 
+        
+        // FUNCIONALIDAD GSM
+        // Cada x tiempo...
+        // Abrir socket.
+            // Codificación mensaje en AES.
+            // Base 64 de la codificación AES.
+            // Enviar trama de datos.
+            // Respuesta del mensaje enviado.
+        // Cerrar socket.
+        // Si se recibe llamada, apertura socket.
+        // Cuando finalice la llamada, cierre socket.
         despierta(linear,sizeof(linear));
         valtmp = getbat(linear,sizeof(linear));
         uart_traza();

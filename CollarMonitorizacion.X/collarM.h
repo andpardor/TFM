@@ -48,9 +48,10 @@ typedef struct {
      uint16_t 	latituddec;
      uint16_t 	longituddec;
      uint16_t   actividad;
+     uint16_t   tmpActividad;
      uint16_t 	bat;
      uint16_t 	secuencia;
-     int8_t		modo_nsat;
+     int8_t		nsat;
      int8_t 	latitudint;
      int8_t 	longitudint;
      int8_t 	cksum;

@@ -125,7 +125,7 @@ void anaGPS(char *linea,COLLARM_t *gps)
         }
         else    // No hay info de latitud.
         {
-            gps->modo_nsat = 0;
+            gps->nsat = 0;
             return;
         }
     }
@@ -147,7 +147,7 @@ void anaGPS(char *linea,COLLARM_t *gps)
         }
         else    // No hay info longitud.
         {
-            gps->modo_nsat = 0;
+            gps->nsat = 0;
             return;
         }
     }
@@ -163,9 +163,9 @@ void anaGPS(char *linea,COLLARM_t *gps)
     punte = strtok(NULL,",");   // Numero satelites.
     if(punte != NULL)
     {
-        gps->modo_nsat =  atoi(punte) & 0xff;
-        if(gps->modo_nsat > 15) // Como mucho consideramos 15 satelites.
-            gps->modo_nsat = 15;
+        gps->nsat =  atoi(punte) & 0xff;
+        if(gps->nsat > 15) // Como mucho consideramos 15 satelites.
+            gps->nsat = 15;
     }
     // Ignoramos resto de campos.
 }
@@ -177,7 +177,7 @@ void gpscero(COLLARM_t *collar)
     collar->latitudint = 0;
     collar->longituddec = 0;
     collar->longitudint = 0;
-    collar->modo_nsat = 0;
+    collar->nsat = 0;
 }
 
 void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
@@ -201,12 +201,12 @@ void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
             uart_gps();
             gpscero(gps);
         }
-        if(gps->modo_nsat != 0)
+        if(gps->nsat != 0)
             break;
     }
     uart_traza();
     printf("LON:%d.%d LAT:%d.%d SAT:%d\r\n",gps->latitudint,gps->latituddec,
-            gps->longitudint,gps->longituddec,gps->modo_nsat);
+            gps->longitudint,gps->longituddec,gps->nsat);
 }
 
 

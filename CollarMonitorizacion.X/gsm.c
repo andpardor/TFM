@@ -230,17 +230,20 @@ void gsmon(char *linea,int maxlen)
     startudp(linea,maxlen);
 }
 
+// Activa conexión UDP
 void startudp(char *linea,int maxlen)
 {
     exesec(initudp,3,linea,maxlen);  // Conexion red de datos. 
     exeuno(&udpstart,linea,maxlen);  // Activacion socket UDP.
 }
 
+// Finaliza conexión UDP
 void stopudp(char *linea,int maxlen)
 {
     exeuno(&udpshut,linea,maxlen);
 }
 
+// Obtención del estado de la bateria
 int getbat(char *linea,int maxlen)
 {
     char *ptmp;
@@ -256,11 +259,13 @@ int getbat(char *linea,int maxlen)
     
 }
 
+// Pone en modo sleep al GSM
 void duerme(char *linea,int maxlen)
 {
     exeuno(&dormir,linea,maxlen);
 }
 
+// Quita del modo sleep al GSM
 void despierta(char *linea,int maxlen)
 {
     waitIni(linea,maxlen);

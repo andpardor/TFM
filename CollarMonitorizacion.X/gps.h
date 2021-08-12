@@ -37,8 +37,6 @@
 void uart_gps();
 void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
 
-
-
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation
 

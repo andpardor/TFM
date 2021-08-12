@@ -433,6 +433,8 @@ void getAcceleration(uint16_t *data);
 int16_t getAccelerationX();
 int16_t getAccelerationY();
 int16_t getAccelerationZ();
+int32_t modulo(int16_t *acel);
+int steps(int32_t *vector, int32_t actual);
     
 #ifdef	__cplusplus
 }
