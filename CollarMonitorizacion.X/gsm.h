@@ -70,13 +70,16 @@ const COMANDAT_t	midebat = {"at+cbc\r\n",":","ERROR",'\n',1000};
 COMANDAT_t udpstart = {"at+cipstart=\"UDP\",\"chuchomalo.es\",\"25000\"\r\n","CONNECT","ERROR",'\n',4000};
 
 // cierre socket UDP
-const COMANDAT_t	udpshut = {"at+cipshut\r\n","OK","ERROR",'\n',60000};
+const COMANDAT_t	udpshut[2] = {{"at+cipclose=1\r\n","OK","ERROR",'\n',3000},
+                    {"at+cipshut\r\n","OK","ERROR",'\n',6000}};
 
 // Activacion de SIM, se completa con datos de EEPROM en MAIN.
 COMANDAT_t simpin = {"at+cpin=\"9593\"\r\n","SMS","ERROR",'\n',5000};
 
 // Terminador mensaje UDP.
 const char terminador = '\x1A';
+
+
 void gsmon(char *linea,int maxlen);
 void sendmsg(char *msg,int msglen,char *linea,int maxlen);
 int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);

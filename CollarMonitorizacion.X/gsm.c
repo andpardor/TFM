@@ -227,12 +227,13 @@ void gsmon(char *linea,int maxlen)
     
     exeuno(&simpin,linea,maxlen);    // Activamos SIM y conexion a la red
 	exesec(inicio,1,linea,maxlen);   // Modo SMS
-    startudp(linea,maxlen);
+    // startudp(linea,maxlen);
 }
 
 // Activa conexión UDP
 void startudp(char *linea,int maxlen)
 {
+	waitIni(linea,maxlen);
     exesec(initudp,3,linea,maxlen);  // Conexion red de datos. 
     exeuno(&udpstart,linea,maxlen);  // Activacion socket UDP.
 }
@@ -240,6 +241,7 @@ void startudp(char *linea,int maxlen)
 // Finaliza conexión UDP
 void stopudp(char *linea,int maxlen)
 {
+	waitIni(linea,maxlen);
     exeuno(&udpshut,linea,maxlen);
 }
 
@@ -264,7 +266,6 @@ void duerme(char *linea,int maxlen)
 {
     exeuno(&dormir,linea,maxlen);
 }
-
 
 // Quita del modo sleep al GSM
 void despierta(char *linea,int maxlen)
