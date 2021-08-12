@@ -163,6 +163,7 @@ void main(void)
         // Cerrar socket.
         // Si se recibe llamada, apertura socket.
         // Cuando finalice la llamada, cierre socket.
+
         despierta(linear,sizeof(linear));
         valtmp = getbat(linear,sizeof(linear));
         uart_traza();

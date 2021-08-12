@@ -265,6 +265,7 @@ void duerme(char *linea,int maxlen)
     exeuno(&dormir,linea,maxlen);
 }
 
+
 // Quita del modo sleep al GSM
 void despierta(char *linea,int maxlen)
 {

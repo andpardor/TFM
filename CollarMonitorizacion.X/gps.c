@@ -180,6 +180,7 @@ void gpscero(COLLARM_t *collar)
     collar->nsat = 0;
 }
 
+// Lee los datos del GPS
 void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
 {
     maxtime = tics() + tout; // 10 segundos

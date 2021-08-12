@@ -15,6 +15,7 @@ extern "C" {
 unsigned long tics(); 
 void uart_traza();
 
+
 #ifdef	__cplusplus
 }
 #endif

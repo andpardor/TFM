@@ -77,7 +77,6 @@ COMANDAT_t simpin = {"at+cpin=\"9593\"\r\n","SMS","ERROR",'\n',5000};
 
 // Terminador mensaje UDP.
 const char terminador = '\x1A';
-
 void gsmon(char *linea,int maxlen);
 void sendmsg(char *msg,int msglen,char *linea,int maxlen);
 int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);
@@ -87,6 +86,7 @@ void stopudp(char *linea,int maxlen);
 void duerme(char *linea,int maxlen);
 void despierta(char *linea,int maxlen);
 int getbat(char *linea,int maxlen);
+
 
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation

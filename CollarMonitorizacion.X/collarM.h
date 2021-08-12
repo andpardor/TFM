@@ -56,6 +56,7 @@ typedef struct {
      int8_t 	longitudint;
      int8_t 	cksum;
 } COLLARM_t; 
+
  
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation
