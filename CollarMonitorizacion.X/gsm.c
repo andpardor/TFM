@@ -10,8 +10,14 @@
 #include <string.h>
 #include "gsm.h"
 #include "funaux.h"
+#include "eeprom.h"
 #include "mcc_generated_files/mcc.h"
 
+// Activacion socket UDP, se completa con datos de EEPROM en MAIN.
+COMANDAT_t udpstart = {"","CONNECT","ERROR",'\n',4000};
+
+// Activacion de SIM, se completa con datos de EEPROM en MAIN.
+COMANDAT_t simpin = {"","SMS","ERROR",'\n',5000};
 
 //================= Funciones canal comunicacion GSM ===========================
 
@@ -20,6 +26,7 @@ void uart_gsm()
     DELAY_milliseconds(3); 
     RC2PPS = 0; 
     RC4PPS = 0x14;
+    RA4PPS = 0;
     RXPPS = 0x15;
     DELAY_milliseconds(3);
 }
@@ -218,6 +225,10 @@ void gsmon(char *linea,int maxlen)
 { 
     int i;
     
+    getDominio(linea);    
+    sprintf(udpstart.comando,"at+cipstart=\"UDP\",\"%s\",\"%d\"\r\n",linea,getPort());
+    sprintf(simpin.comando,"at+cpin=%04d\r\n",getPin());
+    
     uart_gsm();         // conectamos UART a GSM.
     for(i=0;i<10;i++)   // Esperamos arranque GSM.
     {
@@ -227,6 +238,8 @@ void gsmon(char *linea,int maxlen)
     
     exeuno(&simpin,linea,maxlen);    // Activamos SIM y conexion a la red
 	exesec(inicio,1,linea,maxlen);   // Modo SMS
+    exesec(sonidoadj,5);             // Ajustes de sonido.
+    exeuno(&dormir);                 // Bajo consumo.
     // startudp(linea,maxlen);
 }
 

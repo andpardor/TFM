@@ -77,6 +77,7 @@ void uart_traza()
     DELAY_milliseconds(3); 
     RC2PPS = 0x14; 
     RC4PPS = 0;
+    RA4PPS = 0;
     DELAY_milliseconds(3);
 }
 

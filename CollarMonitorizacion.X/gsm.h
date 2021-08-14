@@ -66,15 +66,21 @@ const COMANDAT_t	rssi = {"at+csq\r\n",":","ERROR",'\n',5000};
 // secuencia determinacion nivel de bateria.
 const COMANDAT_t	midebat = {"at+cbc\r\n",":","ERROR",'\n',1000};
 
-// Activacion socket UDP, se completa con datos de EEPROM en MAIN.
-COMANDAT_t udpstart = {"at+cipstart=\"UDP\",\"chuchomalo.es\",\"25000\"\r\n","CONNECT","ERROR",'\n',4000};
-
 // cierre socket UDP
 const COMANDAT_t	udpshut[2] = {{"at+cipclose=1\r\n","OK","ERROR",'\n',3000},
                     {"at+cipshut\r\n","OK","ERROR",'\n',6000}};
 
-// Activacion de SIM, se completa con datos de EEPROM en MAIN.
-COMANDAT_t simpin = {"at+cpin=\"9593\"\r\n","SMS","ERROR",'\n',5000};
+const COMANDAT_t	descuelga = {"ata\r\n","OK","CARRIER",'\n',5000};
+const COMANDAT_t	cuelga = {"AT+HVOIC\r\n","OK","ERROR",'\n',5000};
+
+// Secuencia configuracion sonido.
+const COMANDAT_t	sonidoadj[5] = {
+    {"at+clvl=100\r\n","OK","ERROR",'\n',100},  // altavoz 100%
+    {"at+cmic=0,15\r\n","OK","ERROR",'\n',100}, // Micro max vol
+    {"at+cmic=1,0\r\n","OK","ERROR",'\n',100},
+    {"at+caas=0\r\n","OK","ERROR",'\n',100},
+    {"at+chf=0,0\r\n","OK","ERROR",'\n',100}
+};
 
 // Terminador mensaje UDP.
 const char terminador = '\x1A';
@@ -89,7 +95,8 @@ void stopudp(char *linea,int maxlen);
 void duerme(char *linea,int maxlen);
 void despierta(char *linea,int maxlen);
 int getbat(char *linea,int maxlen);
-
+void cuelgagsm(char *linea,int maxlen);
+void descuelgagsm(char *linea,int maxlen);
 
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation

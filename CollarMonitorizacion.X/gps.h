@@ -30,13 +30,22 @@
 // more than once.  
 #ifndef GPS_H
 #define	GPS_H
+
 #include "collarM.h"
+
+//==============================================================================
+// PROGRAMACION GPS.
+const char cabgps[] = "$GPGGA";                     // Cabecera NMEA GGA
+const uint8_t gpssleep[] = { 0xb5, 0x62, 0x02, 0x41, 0x08, 0x00,0x00, 0x00, 0x00, 0x00,
+                            0x02, 0x00, 0x00, 0x00 };
+const uint8_t gpswake = 0xb5;
 
 // Comment a function and leverage automatic documentation with slash star star
 
 void uart_gps();
 void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
-
+void gpson();
+void gpsoff();
 
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation

@@ -12,13 +12,7 @@
 
 extern unsigned long tics();
 extern void uart_traza();
-//==============================================================================
-// PROGRAMACION GPS.
-const char cabgps[] = "$GPGGA";                     // Cabecera NMEA GGA
-const char gpsglp[] = "$PQGLP,W,1,1*21\r\n";        // Activa modo GLP
-const char cabglp[] = "$PQGLP";                     // Cabecera respuesta GLP
-const char satall[] = "$PMTK353,1,1,1,0,0*2A\r\n";   // Activa todos los sistemas de satelite(GPS,GLONASS,GALILEO).   
-const char cabmtk[] = "$PMTK";                      // Cabecera respuesta a satall.
+
 
 //==============================================================================
 
@@ -28,7 +22,10 @@ int len;
 void uart_gps()
 {
     DELAY_milliseconds(3);
-    RXPPS = 0x11; // Entrada por RC1
+    RC2PPS = 0; 
+    RC4PPS = 0;
+    RA4PPS = 0x14;
+    RXPPS = 0x11;
     DELAY_milliseconds(3);
 }
 
@@ -210,5 +207,51 @@ void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
             gps->longitudint,gps->longituddec,gps->nsat);
 }
 
+// Escribe mensaje a GPS (Configuracion).
+void writegps(uint8_t *msg,uint8_t len)
+{
+    int i;
+   
+    for(i=0;i<len;i++)
+    {
+        while(!EUSART_is_tx_ready());
+        EUSART_Write(msg[i]);
+    }
+}
 
+// Calcula CKSUM para protocolo UBX
+void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
+{
+    int i;
+
+    *cka = 0;
+    *ckb = 0;
+    for(i=2;i<len;i++)
+    {
+        *cka += msg[i];
+        *ckb += *cka;
+    }
+}
+
+// saca al GPS del modo SLEEP.
+void gpson()
+{
+    uint8_t wake = gpswake;
+    
+    uart_gps();
+    writegps(&wake,1);
+}
+
+// Pone al GPS en modo SLEEP.
+void gpsoff()
+{
+    uint8_t cka;
+    uint8_t ckb;
+    
+    uart_gps();
+    gpscksum(gpssleep,sizeof(gpssleep),&cka,&ckb);
+    writegps(gpssleep,sizeof(gpssleep));
+    writegps(&cka,1);
+    writegps(&ckb,1);
+}
 
