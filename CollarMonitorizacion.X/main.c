@@ -70,10 +70,6 @@ unsigned long tics()
     return tmp;
 }
 
-void swapshort(uint16_t *data)
-{
-    *data = (*data << 8) | (*data >> 8);
-}
 
 // Pone la UART al pin de consola para sacar trazas
 void uart_traza()
@@ -116,7 +112,7 @@ void main(void)
     // Inicialización del acelerometro
     // Configuración baja energia acelerometro
     initialize(); 
-    autoConfigLowEnergy(); 
+    fifoconfig(); 
 
     // Inicialización del GSM
     // Obtención estado bateria
@@ -136,11 +132,8 @@ void main(void)
         // RC0 -> SDA acelerometro.
         // RA2 -> SCL acelerometro.
         getAcceleration(acel);
-        swapshort(&acel[0]);
-        swapshort(&acel[1]);
-        swapshort(&acel[2]);
         actual = modulo(acel);
-        pasos += steps(vector,actual);
+        pasos += picos(vector,actual);
         uart_traza();
         printf("Pasos: %d /r/n",pasos);
         DELAY_milliseconds(1000);

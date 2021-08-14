@@ -77,25 +77,25 @@
 #define RA2_SetAnalogMode()         do { ANSELAbits.ANSA2 = 1; } while(0)
 #define RA2_SetDigitalMode()        do { ANSELAbits.ANSA2 = 0; } while(0)
 
-// get/set RING aliases
-#define RING_TRIS                 TRISAbits.TRISA4
-#define RING_LAT                  LATAbits.LATA4
-#define RING_PORT                 PORTAbits.RA4
-#define RING_WPU                  WPUAbits.WPUA4
-#define RING_OD                   ODCONAbits.ODCA4
-#define RING_ANS                  ANSELAbits.ANSA4
-#define RING_SetHigh()            do { LATAbits.LATA4 = 1; } while(0)
-#define RING_SetLow()             do { LATAbits.LATA4 = 0; } while(0)
-#define RING_Toggle()             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0)
-#define RING_GetValue()           PORTAbits.RA4
-#define RING_SetDigitalInput()    do { TRISAbits.TRISA4 = 1; } while(0)
-#define RING_SetDigitalOutput()   do { TRISAbits.TRISA4 = 0; } while(0)
-#define RING_SetPullup()          do { WPUAbits.WPUA4 = 1; } while(0)
-#define RING_ResetPullup()        do { WPUAbits.WPUA4 = 0; } while(0)
-#define RING_SetPushPull()        do { ODCONAbits.ODCA4 = 0; } while(0)
-#define RING_SetOpenDrain()       do { ODCONAbits.ODCA4 = 1; } while(0)
-#define RING_SetAnalogMode()      do { ANSELAbits.ANSA4 = 1; } while(0)
-#define RING_SetDigitalMode()     do { ANSELAbits.ANSA4 = 0; } while(0)
+// get/set TX_GPS aliases
+#define TX_GPS_TRIS                 TRISAbits.TRISA4
+#define TX_GPS_LAT                  LATAbits.LATA4
+#define TX_GPS_PORT                 PORTAbits.RA4
+#define TX_GPS_WPU                  WPUAbits.WPUA4
+#define TX_GPS_OD                   ODCONAbits.ODCA4
+#define TX_GPS_ANS                  ANSELAbits.ANSA4
+#define TX_GPS_SetHigh()            do { LATAbits.LATA4 = 1; } while(0)
+#define TX_GPS_SetLow()             do { LATAbits.LATA4 = 0; } while(0)
+#define TX_GPS_Toggle()             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0)
+#define TX_GPS_GetValue()           PORTAbits.RA4
+#define TX_GPS_SetDigitalInput()    do { TRISAbits.TRISA4 = 1; } while(0)
+#define TX_GPS_SetDigitalOutput()   do { TRISAbits.TRISA4 = 0; } while(0)
+#define TX_GPS_SetPullup()          do { WPUAbits.WPUA4 = 1; } while(0)
+#define TX_GPS_ResetPullup()        do { WPUAbits.WPUA4 = 0; } while(0)
+#define TX_GPS_SetPushPull()        do { ODCONAbits.ODCA4 = 0; } while(0)
+#define TX_GPS_SetOpenDrain()       do { ODCONAbits.ODCA4 = 1; } while(0)
+#define TX_GPS_SetAnalogMode()      do { ANSELAbits.ANSA4 = 1; } while(0)
+#define TX_GPS_SetDigitalMode()     do { ANSELAbits.ANSA4 = 0; } while(0)
 
 // get/set BAT aliases
 #define BAT_TRIS                 TRISAbits.TRISA5

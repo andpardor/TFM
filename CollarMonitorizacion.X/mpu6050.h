@@ -41,6 +41,7 @@
 
 // Comment a function and leverage automatic documentation with slash star star
 
+// Registros de MPU6050.
 #define MPU6050_ADDRESS_AD0_LOW     0x68 // address pin low (GND), default for InvenSense evaluation board
 #define MPU6050_ADDRESS_AD0_HIGH    0x69 // address pin high (VCC)
 #define MPU6050_DEFAULT_ADDRESS     MPU6050_ADDRESS_AD0_LOW
@@ -160,6 +161,7 @@
 #define MPU6050_RA_FIFO_R_W         0x74
 #define MPU6050_RA_WHO_AM_I         0x75
 
+// definicion campos de registros.
 #define MPU6050_SELF_TEST_XA_1_BIT     0x07
 #define MPU6050_SELF_TEST_XA_1_LENGTH  0x03
 #define MPU6050_SELF_TEST_XA_2_BIT     0x05
@@ -426,15 +428,16 @@
 extern "C" {
 #endif /* __cplusplus */
 
-void initialize();
-void autoConfigLowEnergy();
+#define UMBRALG     500     // Umbral minimo aceleracion.
+    
+void initialize();  // config inicial acelerometro
+void fifoconfig();  // config activacion fifo para acelerometro.
 
-void getAcceleration(uint16_t *data);
-int16_t getAccelerationX();
-int16_t getAccelerationY();
-int16_t getAccelerationZ();
-int32_t modulo(int16_t *acel);
-int steps(int32_t *vector, int32_t actual);
+void getAcceleration(uint16_t *data);       // get ultimo valor registros accel.
+int getAccelAcu(uint8_t *data,int maxlen);  // get datos accel en fifo.
+void swapshort(uint16_t *data);             // swap de un short.
+int32_t modulo(int16_t *acel);              // modulo de un vector de aceleracion.
+int picos(int32_t *hmodulos, int32_t actual);   // busqueda de maximo relativo en curva accel.
     
 #ifdef	__cplusplus
 }
