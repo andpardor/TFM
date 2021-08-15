@@ -7,9 +7,22 @@
 
 
 #include "mpu6050.h"
+#include "funaux.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+uint16_t bufaccel[255];
+uint32_t tinicial;
+uint16_t hmodulos[2];
+uint16_t picos;
+uint16_t maxmod;
+int32_t acux;
+int32_t acuy;
+int32_t acuz;
+uint16_t nmues;
+uint32_t tanterior;
+
 
 // Funcion para intercambiar bytes en un short (swap).
 void swapshort(uint16_t *data)
@@ -63,7 +76,7 @@ int getAccelAcu(uint8_t *data,int maxlen)
     if((tmp & 0x10) || (fifolen == 1024))   // overrun de fifo, reseteamos y despreciamos lectura.
     {
             I2C1_Write1ByteRegister(MPU6050_DEFAULT_ADDRESS,MPU6050_RA_USER_CTRL, 0b01000100);
-            return 0;
+            return -1;
     }
  
     // transferimos el minimo entre contenido fifo y tamanho buffer.
@@ -87,7 +100,7 @@ int getAccelAcu(uint8_t *data,int maxlen)
 }
 
 // calcula el modulo del vector
-int32_t modulo(int16_t *acel)
+uint16_t cmodulo(int16_t *acel)
 {
     float tmp;
     tmp = acel[0]*acel[0] + acel[1]*acel[1] + acel[2]*acel[2];
@@ -96,7 +109,7 @@ int32_t modulo(int16_t *acel)
 }
 
 // Calcula picos de aceleracion (maximos).
-int picos(int32_t *hmodulos, int32_t actual)
+int cpicos(uint16_t *hmodulos, uint16_t actual)
 {
     int picos = 0;
     if(abs(hmodulos[1]-actual) > UMBRALG)
@@ -110,3 +123,68 @@ int picos(int32_t *hmodulos, int32_t actual)
     return picos;  
 }
 
+// Inicia y configura acelerometro.
+void iniacel()
+{
+    initialize();
+    fifoconfig();
+    resetAcell();
+    tanterior = tics();
+}
+
+// proceso periodico de la info acelerometro.
+void procAcell()
+{
+    int i,len;
+    int16_t *pacel;
+    uint16_t modtmp;
+    
+    if((tics() - tanterior) > 15000)
+    {
+        len = getAccelAcu(bufaccel,sizeof(bufaccel));
+        if(len > 0)
+        {
+            pacel = bufaccel;
+            for(i=0;i<len/2;i+=3,pacel+=3)
+            {
+                acux += *pacel;
+                acuy += *(pacel+1);
+                acuz += *(pacel+2);
+                nmues++;
+                modtmp = cmodulo(pacel);
+                picos += picos(hmodulos,modtmp);
+            }
+        }
+        else if(len < 0)
+        {
+            uart_traza();
+            printf("OVER_ACCEL\r\n");
+        }
+        tanterior = tics();
+    }
+}
+
+// rellena la estructura collar con la info actual del acelerometro.
+void llenaTramaAccel(COLLARM_t *tacel)
+{
+    tacel->actividad = picos;
+    tacel->amodmax = maxmod;
+    tacel->tmpActividad = (tics() - tinicial)/1000;
+    tacel->amedx = acux/nmues;
+    tacel->amedy = acuy/nmues;
+    tacel->amedz = acuz/nmues;
+}
+
+// Inicia las variables de calculo del acelerometro.
+void resetAcell()
+{
+    tinicial = tics();
+    hmodulos[0] = 0;
+    hmodulos[1] = 0;
+    picos = 0;
+    maxmod = 0xffff;
+    acux = 0;
+    acuy = 0;
+    acuz = 0;
+    nmues = 0;
+}

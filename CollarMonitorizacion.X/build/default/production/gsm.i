@@ -389,9 +389,10 @@ typedef struct {
      uint16_t latituddec;
      uint16_t longituddec;
      uint16_t actividad;
+     uint16_t tmpActividad;
      uint16_t bat;
      uint16_t secuencia;
-     int8_t modo_nsat;
+     int8_t nsat;
      int8_t latitudint;
      int8_t longitudint;
      int8_t cksum;
@@ -433,13 +434,20 @@ const COMANDAT_t rssi = {"at+csq\r\n",":","ERROR",'\n',5000};
 const COMANDAT_t midebat = {"at+cbc\r\n",":","ERROR",'\n',1000};
 
 
-COMANDAT_t udpstart = {"at+cipstart=\"UDP\",\"chuchomalo.es\",\"25000\"\r\n","CONNECT","ERROR",'\n',4000};
+const COMANDAT_t udpshut[2] = {{"at+cipclose=1\r\n","OK","ERROR",'\n',3000},
+                    {"at+cipshut\r\n","OK","ERROR",'\n',6000}};
+
+const COMANDAT_t descuelga = {"ata\r\n","OK","CARRIER",'\n',5000};
+const COMANDAT_t cuelga = {"AT+HVOIC\r\n","OK","ERROR",'\n',5000};
 
 
-const COMANDAT_t udpshut = {"at+cipshut\r\n","OK","ERROR",'\n',60000};
-
-
-COMANDAT_t simpin = {"at+cpin=\"9593\"\r\n","SMS","ERROR",'\n',5000};
+const COMANDAT_t sonidoadj[5] = {
+    {"at+clvl=100\r\n","OK","ERROR",'\n',100},
+    {"at+cmic=0,15\r\n","OK","ERROR",'\n',100},
+    {"at+cmic=1,0\r\n","OK","ERROR",'\n',100},
+    {"at+caas=0\r\n","OK","ERROR",'\n',100},
+    {"at+chf=0,0\r\n","OK","ERROR",'\n',100}
+};
 
 
 const char terminador = '\x1A';
@@ -454,12 +462,18 @@ void stopudp(char *linea,int maxlen);
 void duerme(char *linea,int maxlen);
 void despierta(char *linea,int maxlen);
 int getbat(char *linea,int maxlen);
+void cuelgagsm(char *linea,int maxlen);
+void descuelgagsm(char *linea,int maxlen);
 # 12 "gsm.c" 2
 # 1 "./funaux.h" 1
 # 15 "./funaux.h"
 unsigned long tics();
 void uart_traza();
 # 13 "gsm.c" 2
+# 1 "./eeprom.h" 1
+
+
+
 # 1 "./mcc_generated_files/mcc.h" 1
 # 49 "./mcc_generated_files/mcc.h"
 # 1 "/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/xc.h" 1 3
@@ -11041,6 +11055,21 @@ void TMR0_DefaultInterruptHandler(void);
 _Bool FVR_IsOutputReady(void);
 # 59 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/memory.h" 1
+# 99 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "./mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 60 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/adc.h" 1
 # 72 "./mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
@@ -11076,7 +11105,7 @@ adc_result_t ADC_GetConversionResult(void);
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 # 317 "./mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
-# 60 "./mcc_generated_files/mcc.h" 2
+# 61 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/eusart.h" 1
 # 76 "./mcc_generated_files/eusart.h"
@@ -11109,23 +11138,38 @@ void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 398 "./mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 61 "./mcc_generated_files/mcc.h" 2
+# 62 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/delay.h" 1
 # 34 "./mcc_generated_files/delay.h"
 void DELAY_milliseconds(uint16_t milliseconds);
 void DELAY_microseconds(uint16_t microseconds);
-# 62 "./mcc_generated_files/mcc.h" 2
-# 77 "./mcc_generated_files/mcc.h"
+# 63 "./mcc_generated_files/mcc.h" 2
+# 78 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 90 "./mcc_generated_files/mcc.h"
+# 91 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 102 "./mcc_generated_files/mcc.h"
+# 103 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 114 "./mcc_generated_files/mcc.h"
+# 115 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
+# 5 "./eeprom.h" 2
+
+
+
+uint32_t getId();
+void getDominio(char *linea);
+uint16_t getPort();
+void getClAes(char *linea);
+uint16_t getPin();
 # 14 "gsm.c" 2
 
+
+
+COMANDAT_t udpstart = {"","CONNECT","ERROR",'\n',4000};
+
+
+COMANDAT_t simpin = {"","SMS","ERROR",'\n',5000};
 
 
 
@@ -11134,6 +11178,7 @@ void uart_gsm()
     DELAY_milliseconds(3);
     RC2PPS = 0;
     RC4PPS = 0x14;
+    RA4PPS = 0;
     RXPPS = 0x15;
     DELAY_milliseconds(3);
 }
@@ -11332,6 +11377,10 @@ void gsmon(char *linea,int maxlen)
 {
     int i;
 
+    getDominio(linea);
+    sprintf(udpstart.comando,"at+cipstart=\"UDP\",\"%s\",\"%d\"\r\n",linea,getPort());
+    sprintf(simpin.comando,"at+cpin=%04d\r\n",getPin());
+
     uart_gsm();
     for(i=0;i<10;i++)
     {
@@ -11341,19 +11390,26 @@ void gsmon(char *linea,int maxlen)
 
     exeuno(&simpin,linea,maxlen);
  exesec(inicio,1,linea,maxlen);
-    startudp(linea,maxlen);
+    exesec(sonidoadj,5);
+    exeuno(&dormir);
+
 }
+
 
 void startudp(char *linea,int maxlen)
 {
+ waitIni(linea,maxlen);
     exesec(initudp,3,linea,maxlen);
     exeuno(&udpstart,linea,maxlen);
 }
 
+
 void stopudp(char *linea,int maxlen)
 {
+ waitIni(linea,maxlen);
     exeuno(&udpshut,linea,maxlen);
 }
+
 
 int getbat(char *linea,int maxlen)
 {
@@ -11370,10 +11426,12 @@ int getbat(char *linea,int maxlen)
 
 }
 
+
 void duerme(char *linea,int maxlen)
 {
     exeuno(&dormir,linea,maxlen);
 }
+
 
 void despierta(char *linea,int maxlen)
 {

@@ -10907,6 +10907,21 @@ void TMR0_DefaultInterruptHandler(void);
 _Bool FVR_IsOutputReady(void);
 # 59 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/memory.h" 1
+# 99 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "./mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 60 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/adc.h" 1
 # 72 "./mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
@@ -10942,7 +10957,7 @@ adc_result_t ADC_GetConversionResult(void);
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 # 317 "./mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
-# 60 "./mcc_generated_files/mcc.h" 2
+# 61 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/eusart.h" 1
 # 76 "./mcc_generated_files/eusart.h"
@@ -10975,20 +10990,20 @@ void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 398 "./mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 61 "./mcc_generated_files/mcc.h" 2
+# 62 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/delay.h" 1
 # 34 "./mcc_generated_files/delay.h"
 void DELAY_milliseconds(uint16_t milliseconds);
 void DELAY_microseconds(uint16_t microseconds);
-# 62 "./mcc_generated_files/mcc.h" 2
-# 77 "./mcc_generated_files/mcc.h"
+# 63 "./mcc_generated_files/mcc.h" 2
+# 78 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 90 "./mcc_generated_files/mcc.h"
+# 91 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 102 "./mcc_generated_files/mcc.h"
+# 103 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 114 "./mcc_generated_files/mcc.h"
+# 115 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
 # 9 "gps.c" 2
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/string.h" 1 3
@@ -11047,7 +11062,7 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 10 "gps.c" 2
 # 1 "./gps.h" 1
-# 33 "./gps.h"
+# 34 "./gps.h"
 # 1 "./collarM.h" 1
 # 38 "./collarM.h"
 typedef struct {
@@ -11063,19 +11078,29 @@ typedef struct {
      uint16_t latituddec;
      uint16_t longituddec;
      uint16_t actividad;
+     uint16_t tmpActividad;
      uint16_t bat;
      uint16_t secuencia;
-     int8_t modo_nsat;
+     int8_t nsat;
      int8_t latitudint;
      int8_t longitudint;
      int8_t cksum;
 } COLLARM_t;
-# 34 "./gps.h" 2
+# 35 "./gps.h" 2
+
+
+
+const char cabgps[] = "$GPGGA";
+const uint8_t gpssleep[] = { 0xb5, 0x62, 0x02, 0x41, 0x08, 0x00,0x00, 0x00, 0x00, 0x00,
+                            0x02, 0x00, 0x00, 0x00 };
+const uint8_t gpswake = 0xb5;
 
 
 
 void uart_gps();
 void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
+void gpson();
+void gpsoff();
 # 11 "gps.c" 2
 # 1 "./funaux.h" 1
 # 15 "./funaux.h"
@@ -11087,12 +11112,6 @@ extern unsigned long tics();
 extern void uart_traza();
 
 
-const char cabgps[] = "$GPGGA";
-const char gpsglp[] = "$PQGLP,W,1,1*21\r\n";
-const char cabglp[] = "$PQGLP";
-const char satall[] = "$PMTK353,1,1,1,0,0*2A\r\n";
-const char cabmtk[] = "$PMTK";
-
 
 
 unsigned long maxtime;
@@ -11101,6 +11120,9 @@ int len;
 void uart_gps()
 {
     DELAY_milliseconds(3);
+    RC2PPS = 0;
+    RC4PPS = 0;
+    RA4PPS = 0x14;
     RXPPS = 0x11;
     DELAY_milliseconds(3);
 }
@@ -11152,7 +11174,7 @@ int recLineaGPS(char *linea,int maxlen,unsigned int tout)
         DELAY_microseconds(100);
     }
 }
-# 90 "gps.c"
+# 87 "gps.c"
 uint16_t min2grado(char *valor)
 {
     uint32_t tmp,entero;
@@ -11191,7 +11213,7 @@ void anaGPS(char *linea,COLLARM_t *gps)
         }
         else
         {
-            gps->modo_nsat = 0;
+            gps->nsat = 0;
             return;
         }
     }
@@ -11213,7 +11235,7 @@ void anaGPS(char *linea,COLLARM_t *gps)
         }
         else
         {
-            gps->modo_nsat = 0;
+            gps->nsat = 0;
             return;
         }
     }
@@ -11229,9 +11251,9 @@ void anaGPS(char *linea,COLLARM_t *gps)
     punte = strtok(((void*)0),",");
     if(punte != ((void*)0))
     {
-        gps->modo_nsat = atoi(punte) & 0xff;
-        if(gps->modo_nsat > 15)
-            gps->modo_nsat = 15;
+        gps->nsat = atoi(punte) & 0xff;
+        if(gps->nsat > 15)
+            gps->nsat = 15;
     }
 
 }
@@ -11243,8 +11265,9 @@ void gpscero(COLLARM_t *collar)
     collar->latitudint = 0;
     collar->longituddec = 0;
     collar->longitudint = 0;
-    collar->modo_nsat = 0;
+    collar->nsat = 0;
 }
+
 
 void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
 {
@@ -11267,10 +11290,58 @@ void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
             uart_gps();
             gpscero(gps);
         }
-        if(gps->modo_nsat != 0)
+        if(gps->nsat != 0)
             break;
     }
     uart_traza();
     printf("LON:%d.%d LAT:%d.%d SAT:%d\r\n",gps->latitudint,gps->latituddec,
-            gps->longitudint,gps->longituddec,gps->modo_nsat);
+            gps->longitudint,gps->longituddec,gps->nsat);
+}
+
+
+void writegps(uint8_t *msg,uint8_t len)
+{
+    int i;
+
+    for(i=0;i<len;i++)
+    {
+        while(!EUSART_is_tx_ready());
+        EUSART_Write(msg[i]);
+    }
+}
+
+
+void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
+{
+    int i;
+
+    *cka = 0;
+    *ckb = 0;
+    for(i=2;i<len;i++)
+    {
+        *cka += msg[i];
+        *ckb += *cka;
+    }
+}
+
+
+void gpson()
+{
+    uint8_t wake = gpswake;
+
+    uart_gps();
+    writegps(&wake,1);
+}
+
+
+void gpsoff()
+{
+    uint8_t cka;
+    uint8_t ckb;
+
+    uart_gps();
+    gpscksum(gpssleep,sizeof(gpssleep),&cka,&ckb);
+    writegps(gpssleep,sizeof(gpssleep));
+    writegps(&cka,1);
+    writegps(&ckb,1);
 }

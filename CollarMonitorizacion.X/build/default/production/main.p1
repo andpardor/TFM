@@ -5,8 +5,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S929 . comando resok resko termi tout ]
 "46
 [; ;./collarM.h: 46: typedef struct {
-[s S930 `l 1 `us 1 `us 1 `us 1 `us 1 `us 1 `c 1 `c 1 `c 1 `c 1 ]
-[n S930 . telefono latituddec longituddec actividad bat secuencia modo_nsat latitudint longitudint cksum ]
+[s S930 `l 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `c 1 `c 1 `c 1 `c 1 ]
+[n S930 . telefono latituddec longituddec actividad tmpActividad bat secuencia nsat latitudint longitudint cksum ]
 "358 /home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 358:     struct {
 [s S34 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -27,9 +27,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "14183
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 14183: extern volatile unsigned char RC4PPS __attribute__((address(0xEA4)));
 [v _RC4PPS `Vuc ~T0 @X0 0 e@3748 ]
+"13871
+[; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 13871: extern volatile unsigned char RA4PPS __attribute__((address(0xE94)));
+[v _RA4PPS `Vuc ~T0 @X0 0 e@3732 ]
 [p mainexit ]
-"77 ./mcc_generated_files/mcc.h
-[; ;./mcc_generated_files/mcc.h: 77: void SYSTEM_Initialize(void);
+"78 ./mcc_generated_files/mcc.h
+[; ;./mcc_generated_files/mcc.h: 78: void SYSTEM_Initialize(void);
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 [v F6921 `(v ~T0 @X0 0 tf ]
 "310 ./mcc_generated_files/tmr0.h
@@ -40,41 +43,47 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _TMR0_StartTimer `(v ~T0 @X0 0 ef ]
 "111 /opt/microchip/xc8/v2.31/pic/include/c99/stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"429 ./mpu6050.h
-[; ;./mpu6050.h: 429: void initialize();
+"433 ./mpu6050.h
+[; ;./mpu6050.h: 433: void initialize();
 [v _initialize `(v ~T0 @X0 0 e? ]
-"430
-[; ;./mpu6050.h: 430: void autoConfigLowEnergy();
-[v _autoConfigLowEnergy `(v ~T0 @X0 0 e? ]
-"82 ./gsm.h
-[; ;./gsm.h: 82: void gsmon(char *linea,int maxlen);
-[v _gsmon `(v ~T0 @X0 0 ef2`*uc`i ]
-"90
-[; ;./gsm.h: 90: int getbat(char *linea,int maxlen);
-[v _getbat `(i ~T0 @X0 0 ef2`*uc`i ]
-"88
-[; ;./gsm.h: 88: void duerme(char *linea,int maxlen);
-[v _duerme `(v ~T0 @X0 0 ef2`*uc`i ]
-"432 ./mpu6050.h
-[; ;./mpu6050.h: 432: void getAcceleration(uint16_t *data);
-[v _getAcceleration `(v ~T0 @X0 0 ef1`*us ]
-"38 ./gps.h
-[; ;./gps.h: 38: void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
-[v _gpsRead `(v ~T0 @X0 0 ef4`*uc`i`ui`*S930 ]
+"434
+[; ;./mpu6050.h: 434: void fifoconfig();
+[v _fifoconfig `(v ~T0 @X0 0 e? ]
 "89 ./gsm.h
-[; ;./gsm.h: 89: void despierta(char *linea,int maxlen);
+[; ;./gsm.h: 89: void gsmon(char *linea,int maxlen);
+[v _gsmon `(v ~T0 @X0 0 ef2`*uc`i ]
+"97
+[; ;./gsm.h: 97: int getbat(char *linea,int maxlen);
+[v _getbat `(i ~T0 @X0 0 ef2`*uc`i ]
+"95
+[; ;./gsm.h: 95: void duerme(char *linea,int maxlen);
+[v _duerme `(v ~T0 @X0 0 ef2`*uc`i ]
+"436 ./mpu6050.h
+[; ;./mpu6050.h: 436: void getAcceleration(uint16_t *data);
+[v _getAcceleration `(v ~T0 @X0 0 ef1`*us ]
+"439
+[; ;./mpu6050.h: 439: int32_t modulo(int16_t *acel);
+[v _modulo `(l ~T0 @X0 0 ef1`*s ]
+"440
+[; ;./mpu6050.h: 440: int picos(int32_t *hmodulos, int32_t actual);
+[v _picos `(i ~T0 @X0 0 ef2`*l`l ]
+"46 ./gps.h
+[; ;./gps.h: 46: void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
+[v _gpsRead `(v ~T0 @X0 0 ef4`*uc`i`ui`*S930 ]
+"96 ./gsm.h
+[; ;./gsm.h: 96: void despierta(char *linea,int maxlen);
 [v _despierta `(v ~T0 @X0 0 ef2`*uc`i ]
-"83
-[; ;./gsm.h: 83: void sendmsg(char *msg,int msglen,char *linea,int maxlen);
+"90
+[; ;./gsm.h: 90: void sendmsg(char *msg,int msglen,char *linea,int maxlen);
 [v _sendmsg `(v ~T0 @X0 0 ef4`*uc`i`*uc`i ]
-"85
-[; ;./gsm.h: 85: int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
+"92
+[; ;./gsm.h: 92: int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
 [v _recLineaGSM `(i ~T0 @X0 0 ef4`*uc`i`ui`uc ]
-"87
-[; ;./gsm.h: 87: void stopudp(char *linea,int maxlen);
+"94
+[; ;./gsm.h: 94: void stopudp(char *linea,int maxlen);
 [v _stopudp `(v ~T0 @X0 0 ef2`*uc`i ]
-"86
-[; ;./gsm.h: 86: void startudp(char *linea,int maxlen);
+"93
+[; ;./gsm.h: 93: void startudp(char *linea,int maxlen);
 [v _startudp `(v ~T0 @X0 0 ef2`*uc`i ]
 "55 /home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 55: __asm("INDF0 equ 00h");
@@ -1084,6 +1093,47 @@ Version 4.0 HI-TECH Software Intermediate Code
 "18779
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 18779: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
+"38 ./gps.h
+[; ;./gps.h: 38: const char cabgps[] = "$GPGGA";
+[v _cabgps `Cuc ~T0 @X0 -> 7 `i e ]
+[i _cabgps
+:U ..
+-> 36 `c
+-> 71 `c
+-> 80 `c
+-> 71 `c
+-> 71 `c
+-> 65 `c
+-> 0 `c
+..
+]
+"39
+[; ;./gps.h: 39: const uint8_t gpssleep[] = { 0xb5, 0x62, 0x02, 0x41, 0x08, 0x00,0x00, 0x00, 0x00, 0x00,
+[v _gpssleep `Cuc ~T0 @X0 -> 14 `i e ]
+[i _gpssleep
+:U ..
+-> -> 181 `i `uc
+-> -> 98 `i `uc
+-> -> 2 `i `uc
+-> -> 65 `i `uc
+-> -> 8 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 2 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+]
+"41
+[; ;./gps.h: 41: const uint8_t gpswake = 0xb5;
+[v _gpswake `Cuc ~T0 @X0 1 e ]
+[i _gpswake
+-> -> 181 `i `uc
+]
 "41 ./gsm.h
 [; ;./gsm.h: 41: const COMANDAT_t inicio[1] = {
 [v _inicio `CS929 ~T0 @X0 -> -> 1 `i `ux e ]
@@ -1457,9 +1507,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "70
-[; ;./gsm.h: 70: COMANDAT_t udpstart = {"at+cipstart=\"UDP\",\"chuchomalo.es\",\"25000\"\r\n","CONNECT","ERROR",'\n',4000};
-[v _udpstart `S929 ~T0 @X0 1 e ]
-[i _udpstart
+[; ;./gsm.h: 70: const COMANDAT_t udpshut[2] = {{"at+cipclose=1\r\n","OK","ERROR",'\n',3000},
+[v _udpshut `CS929 ~T0 @X0 -> 2 `i e ]
+[i _udpshut
 :U ..
 :U ..
 :U ..
@@ -1469,53 +1519,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 99 `c
 -> 105 `c
 -> 112 `c
--> 115 `c
--> 116 `c
--> 97 `c
--> 114 `c
--> 116 `c
--> 61 `c
--> 34 `c
--> 85 `c
--> 68 `c
--> 80 `c
--> 34 `c
--> 44 `c
--> 34 `c
 -> 99 `c
--> 104 `c
--> 117 `c
--> 99 `c
--> 104 `c
--> 111 `c
--> 109 `c
--> 97 `c
 -> 108 `c
 -> 111 `c
--> 46 `c
--> 101 `c
 -> 115 `c
--> 34 `c
--> 44 `c
--> 34 `c
--> 50 `c
--> 53 `c
--> 48 `c
--> 48 `c
--> 48 `c
--> 34 `c
+-> 101 `c
+-> 61 `c
+-> 49 `c
 -> 13 `c
 -> 10 `c
 -> 0 `c
 ..
 :U ..
--> 67 `c
 -> 79 `c
--> 78 `c
--> 78 `c
--> 69 `c
--> 67 `c
--> 84 `c
+-> 75 `c
 -> 0 `c
 ..
 :U ..
@@ -1527,15 +1544,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 -> -> 10 `ui `uc
--> -> 4000 `i `ui
+-> -> 3000 `i `ui
 ..
-..
-]
-"73
-[; ;./gsm.h: 73: const COMANDAT_t udpshut = {"at+cipshut\r\n","OK","ERROR",'\n',60000};
-[v _udpshut `CS929 ~T0 @X0 1 e ]
-[i _udpshut
-:U ..
 :U ..
 :U ..
 -> 97 `c
@@ -1566,39 +1576,66 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 -> -> 10 `ui `uc
--> -> 60000 `l `ui
+-> -> 6000 `i `ui
 ..
 ..
 ]
-"76
-[; ;./gsm.h: 76: COMANDAT_t simpin = {"at+cpin=\"9593\"\r\n","SMS","ERROR",'\n',5000};
-[v _simpin `S929 ~T0 @X0 1 e ]
-[i _simpin
+"73
+[; ;./gsm.h: 73: const COMANDAT_t descuelga = {"ata\r\n","OK","CARRIER",'\n',5000};
+[v _descuelga `CS929 ~T0 @X0 1 e ]
+[i _descuelga
 :U ..
 :U ..
 :U ..
 -> 97 `c
 -> 116 `c
--> 43 `c
--> 99 `c
--> 112 `c
--> 105 `c
--> 110 `c
--> 61 `c
--> 34 `c
--> 57 `c
--> 53 `c
--> 57 `c
--> 51 `c
--> 34 `c
+-> 97 `c
 -> 13 `c
 -> 10 `c
 -> 0 `c
 ..
 :U ..
--> 83 `c
--> 77 `c
--> 83 `c
+-> 79 `c
+-> 75 `c
+-> 0 `c
+..
+:U ..
+-> 67 `c
+-> 65 `c
+-> 82 `c
+-> 82 `c
+-> 73 `c
+-> 69 `c
+-> 82 `c
+-> 0 `c
+..
+-> -> 10 `ui `uc
+-> -> 5000 `i `ui
+..
+..
+]
+"74
+[; ;./gsm.h: 74: const COMANDAT_t cuelga = {"AT+HVOIC\r\n","OK","ERROR",'\n',5000};
+[v _cuelga `CS929 ~T0 @X0 1 e ]
+[i _cuelga
+:U ..
+:U ..
+:U ..
+-> 65 `c
+-> 84 `c
+-> 43 `c
+-> 72 `c
+-> 86 `c
+-> 79 `c
+-> 73 `c
+-> 67 `c
+-> 13 `c
+-> 10 `c
+-> 0 `c
+..
+:U ..
+-> 79 `c
+-> 75 `c
 -> 0 `c
 ..
 :U ..
@@ -1614,8 +1651,178 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"79
-[; ;./gsm.h: 79: const char terminador = '\x1A';
+"77
+[; ;./gsm.h: 77: const COMANDAT_t sonidoadj[5] = {
+[v _sonidoadj `CS929 ~T0 @X0 -> 5 `i e ]
+[i _sonidoadj
+:U ..
+:U ..
+:U ..
+-> 97 `c
+-> 116 `c
+-> 43 `c
+-> 99 `c
+-> 108 `c
+-> 118 `c
+-> 108 `c
+-> 61 `c
+-> 49 `c
+-> 48 `c
+-> 48 `c
+-> 13 `c
+-> 10 `c
+-> 0 `c
+..
+:U ..
+-> 79 `c
+-> 75 `c
+-> 0 `c
+..
+:U ..
+-> 69 `c
+-> 82 `c
+-> 82 `c
+-> 79 `c
+-> 82 `c
+-> 0 `c
+..
+-> -> 10 `ui `uc
+-> -> 100 `i `ui
+..
+:U ..
+:U ..
+-> 97 `c
+-> 116 `c
+-> 43 `c
+-> 99 `c
+-> 109 `c
+-> 105 `c
+-> 99 `c
+-> 61 `c
+-> 48 `c
+-> 44 `c
+-> 49 `c
+-> 53 `c
+-> 13 `c
+-> 10 `c
+-> 0 `c
+..
+:U ..
+-> 79 `c
+-> 75 `c
+-> 0 `c
+..
+:U ..
+-> 69 `c
+-> 82 `c
+-> 82 `c
+-> 79 `c
+-> 82 `c
+-> 0 `c
+..
+-> -> 10 `ui `uc
+-> -> 100 `i `ui
+..
+:U ..
+:U ..
+-> 97 `c
+-> 116 `c
+-> 43 `c
+-> 99 `c
+-> 109 `c
+-> 105 `c
+-> 99 `c
+-> 61 `c
+-> 49 `c
+-> 44 `c
+-> 48 `c
+-> 13 `c
+-> 10 `c
+-> 0 `c
+..
+:U ..
+-> 79 `c
+-> 75 `c
+-> 0 `c
+..
+:U ..
+-> 69 `c
+-> 82 `c
+-> 82 `c
+-> 79 `c
+-> 82 `c
+-> 0 `c
+..
+-> -> 10 `ui `uc
+-> -> 100 `i `ui
+..
+:U ..
+:U ..
+-> 97 `c
+-> 116 `c
+-> 43 `c
+-> 99 `c
+-> 97 `c
+-> 97 `c
+-> 115 `c
+-> 61 `c
+-> 48 `c
+-> 13 `c
+-> 10 `c
+-> 0 `c
+..
+:U ..
+-> 79 `c
+-> 75 `c
+-> 0 `c
+..
+:U ..
+-> 69 `c
+-> 82 `c
+-> 82 `c
+-> 79 `c
+-> 82 `c
+-> 0 `c
+..
+-> -> 10 `ui `uc
+-> -> 100 `i `ui
+..
+:U ..
+:U ..
+-> 97 `c
+-> 116 `c
+-> 43 `c
+-> 99 `c
+-> 104 `c
+-> 102 `c
+-> 61 `c
+-> 48 `c
+-> 44 `c
+-> 48 `c
+-> 13 `c
+-> 10 `c
+-> 0 `c
+..
+:U ..
+-> 79 `c
+-> 75 `c
+-> 0 `c
+..
+:U ..
+-> 69 `c
+-> 82 `c
+-> 82 `c
+-> 79 `c
+-> 82 `c
+-> 0 `c
+..
+-> -> 10 `ui `uc
+-> -> 100 `i `ui
+..
+..
+]
+"86
+[; ;./gsm.h: 86: const char terminador = '\x1A';
 [v _terminador `Cuc ~T0 @X0 1 e ]
 [i _terminador
 -> -> 26 `ui `uc
@@ -1675,189 +1882,183 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 71: }
 [e :UE 932 ]
 }
-"73
-[; ;main.c: 73: void swapshort(uint16_t *data)
-[v _swapshort `(v ~T0 @X0 1 ef1`*us ]
-"74
-[; ;main.c: 74: {
-{
-[e :U _swapshort ]
-"73
-[; ;main.c: 73: void swapshort(uint16_t *data)
-[v _data `*us ~T0 @X0 1 r1 ]
-"74
-[; ;main.c: 74: {
-[f ]
 "75
-[; ;main.c: 75:     *data = (*data << 8) | (*data >> 8);
-[e = *U _data -> | << -> *U _data `ui -> 8 `i >> -> *U _data `ui -> 8 `i `us ]
-"76
-[; ;main.c: 76: }
-[e :UE 933 ]
-}
-"79
-[; ;main.c: 79: void uart_traza()
+[; ;main.c: 75: void uart_traza()
 [v _uart_traza `(v ~T0 @X0 1 ef ]
-"80
-[; ;main.c: 80: {
+"76
+[; ;main.c: 76: {
 {
 [e :U _uart_traza ]
 [f ]
+"77
+[; ;main.c: 77:     DELAY_milliseconds(3);
+[e ( _DELAY_milliseconds (1 -> -> 3 `i `us ]
+"78
+[; ;main.c: 78:     RC2PPS = 0x14;
+[e = _RC2PPS -> -> 20 `i `uc ]
+"79
+[; ;main.c: 79:     RC4PPS = 0;
+[e = _RC4PPS -> -> 0 `i `uc ]
+"80
+[; ;main.c: 80:     RA4PPS = 0;
+[e = _RA4PPS -> -> 0 `i `uc ]
 "81
 [; ;main.c: 81:     DELAY_milliseconds(3);
 [e ( _DELAY_milliseconds (1 -> -> 3 `i `us ]
 "82
-[; ;main.c: 82:     RC2PPS = 0x14;
-[e = _RC2PPS -> -> 20 `i `uc ]
-"83
-[; ;main.c: 83:     RC4PPS = 0;
-[e = _RC4PPS -> -> 0 `i `uc ]
-"84
-[; ;main.c: 84:     DELAY_milliseconds(3);
-[e ( _DELAY_milliseconds (1 -> -> 3 `i `us ]
-"85
-[; ;main.c: 85: }
-[e :UE 934 ]
+[; ;main.c: 82: }
+[e :UE 933 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"92
-[; ;main.c: 92: void main(void)
+"87
+[; ;main.c: 87: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"93
-[; ;main.c: 93: {
+"88
+[; ;main.c: 88: {
 {
 [e :U _main ]
 [f ]
-"94
-[; ;main.c: 94:     uint16_t acel[3];
-[v _acel `us ~T0 @X0 -> 3 `i a ]
-"95
-[; ;main.c: 95:     unsigned long maxtime;
+"89
+[; ;main.c: 89:     int16_t acel[3];
+[v _acel `s ~T0 @X0 -> 3 `i a ]
+"90
+[; ;main.c: 90:     unsigned long maxtime;
 [v _maxtime `ul ~T0 @X0 1 a ]
-"96
-[; ;main.c: 96:     int len;
+"91
+[; ;main.c: 91:     int len;
 [v _len `i ~T0 @X0 1 a ]
-"97
-[; ;main.c: 97:     int valtmp;
+"92
+[; ;main.c: 92:     int valtmp;
 [v _valtmp `i ~T0 @X0 1 a ]
+"93
+[; ;main.c: 93:     int pasos = 0;
+[v _pasos `i ~T0 @X0 1 a ]
+[e = _pasos -> 0 `i ]
+"94
+[; ;main.c: 94:     int primero = 1;
+[v _primero `i ~T0 @X0 1 a ]
+[e = _primero -> 1 `i ]
+"95
+[; ;main.c: 95:     int32_t vector[2];
+[v _vector `l ~T0 @X0 -> 2 `i a ]
+"96
+[; ;main.c: 96:     int32_t actual;
+[v _actual `l ~T0 @X0 1 a ]
 "99
 [; ;main.c: 99:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"101
-[; ;main.c: 101:     TMR0_SetInterruptHandler(intTim0);
-[e ( _TMR0_SetInterruptHandler (1 &U _intTim0 ]
-"102
-[; ;main.c: 102:     TMR0_StartTimer();
-[e ( _TMR0_StartTimer ..  ]
 "103
-[; ;main.c: 103:     (INTCONbits.PEIE = 1);
-[e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 103:     TMR0_SetInterruptHandler(intTim0);
+[e ( _TMR0_SetInterruptHandler (1 &U _intTim0 ]
 "104
-[; ;main.c: 104:     (INTCONbits.GIE = 1);
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"106
-[; ;main.c: 106:     uart_traza();
-[e ( _uart_traza ..  ]
+[; ;main.c: 104:     TMR0_StartTimer();
+[e ( _TMR0_StartTimer ..  ]
 "107
-[; ;main.c: 107:     printf("Hola\r\n");
-[e ( _printf :s 1C ]
+[; ;main.c: 107:     (INTCONbits.PEIE = 1);
+[e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
 "108
-[; ;main.c: 108:     initialize();
-[e ( _initialize ..  ]
-"109
-[; ;main.c: 109:     autoConfigLowEnergy();
-[e ( _autoConfigLowEnergy ..  ]
+[; ;main.c: 108:     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"110
+[; ;main.c: 110:     uart_traza();
+[e ( _uart_traza ..  ]
 "111
-[; ;main.c: 111:     gsmon(linear,sizeof(linear));
-[e ( _gsmon (2 , &U _linear -> -> # _linear `ui `i ]
-"112
-[; ;main.c: 112:     valtmp = getbat(linear,sizeof(linear));
-[e = _valtmp ( _getbat (2 , &U _linear -> -> # _linear `ui `i ]
-"113
-[; ;main.c: 113:     uart_traza();
-[e ( _uart_traza ..  ]
-"114
-[; ;main.c: 114:     printf("BAT=>%d\r\n",valtmp);
-[e ( _printf , (. :s 2C _valtmp ]
+[; ;main.c: 111:     printf("Hola\r\n");
+[e ( _printf :s 1C ]
 "115
-[; ;main.c: 115:     duerme(linear,sizeof(linear));
-[e ( _duerme (2 , &U _linear -> -> # _linear `ui `i ]
-"117
-[; ;main.c: 117:     while (1)
-[e :U 937 ]
-"118
-[; ;main.c: 118:     {
-{
-"123
-[; ;main.c: 123:         getAcceleration(acel);
-[e ( _getAcceleration (1 &U _acel ]
-"124
-[; ;main.c: 124:         swapshort(&acel[0]);
-[e ( _swapshort (1 &U *U + &U _acel * -> -> -> 0 `i `ui `ux -> -> # *U &U _acel `ui `ux ]
-"125
-[; ;main.c: 125:         swapshort(&acel[1]);
-[e ( _swapshort (1 &U *U + &U _acel * -> -> -> 1 `i `ui `ux -> -> # *U &U _acel `ui `ux ]
-"126
-[; ;main.c: 126:         swapshort(&acel[2]);
-[e ( _swapshort (1 &U *U + &U _acel * -> -> -> 2 `i `ui `ux -> -> # *U &U _acel `ui `ux ]
-"127
-[; ;main.c: 127:         uart_traza();
-[e ( _uart_traza ..  ]
-"128
-[; ;main.c: 128:         printf("X: %d Y: %d Z: %d\r\n",acel[0],acel[1],acel[2]);
-[e ( _printf , , , (. :s 3C -> *U + &U _acel * -> -> -> 0 `i `ui `ux -> -> # *U &U _acel `ui `ux `ui -> *U + &U _acel * -> -> -> 1 `i `ui `ux -> -> # *U &U _acel `ui `ux `ui -> *U + &U _acel * -> -> -> 2 `i `ui `ux -> -> # *U &U _acel `ui `ux `ui ]
-"129
-[; ;main.c: 129:         DELAY_milliseconds(1000);
-[e ( _DELAY_milliseconds (1 -> -> 1000 `i `us ]
-"132
-[; ;main.c: 132:         gpsRead(linear,sizeof(linear),10000,&collar);
-[e ( _gpsRead (4 , , , &U _linear -> -> # _linear `ui `i -> -> 10000 `i `ui &U _collar ]
-"133
-[; ;main.c: 133:         DELAY_milliseconds(1000);
-[e ( _DELAY_milliseconds (1 -> -> 1000 `i `us ]
-"136
-[; ;main.c: 136:         despierta(linear,sizeof(linear));
-[e ( _despierta (2 , &U _linear -> -> # _linear `ui `i ]
-"137
-[; ;main.c: 137:         valtmp = getbat(linear,sizeof(linear));
+[; ;main.c: 115:     initialize();
+[e ( _initialize ..  ]
+"116
+[; ;main.c: 116:     fifoconfig();
+[e ( _fifoconfig ..  ]
+"121
+[; ;main.c: 121:     gsmon(linear,sizeof(linear));
+[e ( _gsmon (2 , &U _linear -> -> # _linear `ui `i ]
+"122
+[; ;main.c: 122:     valtmp = getbat(linear,sizeof(linear));
 [e = _valtmp ( _getbat (2 , &U _linear -> -> # _linear `ui `i ]
+"123
+[; ;main.c: 123:     uart_traza();
+[e ( _uart_traza ..  ]
+"124
+[; ;main.c: 124:     printf("BAT=>%d\r\n",valtmp);
+[e ( _printf , (. :s 2C _valtmp ]
+"125
+[; ;main.c: 125:     duerme(linear,sizeof(linear));
+[e ( _duerme (2 , &U _linear -> -> # _linear `ui `i ]
+"127
+[; ;main.c: 127:     while (1)
+[e :U 936 ]
+"128
+[; ;main.c: 128:     {
+{
+"135
+[; ;main.c: 135:         getAcceleration(acel);
+[e ( _getAcceleration (1 -> &U _acel `*us ]
+"136
+[; ;main.c: 136:         actual = modulo(acel);
+[e = _actual ( _modulo (1 &U _acel ]
+"137
+[; ;main.c: 137:         pasos += picos(vector,actual);
+[e =+ _pasos ( _picos (2 , &U _vector _actual ]
 "138
 [; ;main.c: 138:         uart_traza();
 [e ( _uart_traza ..  ]
 "139
-[; ;main.c: 139:         printf("BAT=>%d\r\n",valtmp);
-[e ( _printf , (. :s 4C _valtmp ]
+[; ;main.c: 139:         printf("Pasos: %d /r/n",pasos);
+[e ( _printf , (. :s 3C _pasos ]
 "140
-[; ;main.c: 140:         sendmsg("hola",4,linear,sizeof(linear));
-[e ( _sendmsg (4 , , , :s 5C -> 4 `i &U _linear -> -> # _linear `ui `i ]
-"141
-[; ;main.c: 141:         recLineaGSM(linear,sizeof(linear),10000,'\n');
-[e ( _recLineaGSM (4 , , , &U _linear -> -> # _linear `ui `i -> -> 10000 `i `ui -> -> 10 `ui `uc ]
-"142
-[; ;main.c: 142:         stopudp(linear,sizeof(linear));
-[e ( _stopudp (2 , &U _linear -> -> # _linear `ui `i ]
-"143
-[; ;main.c: 143:         duerme(linear,sizeof(linear));
-[e ( _duerme (2 , &U _linear -> -> # _linear `ui `i ]
-"144
-[; ;main.c: 144:         DELAY_milliseconds(10000);
-[e ( _DELAY_milliseconds (1 -> -> 10000 `i `us ]
-"145
-[; ;main.c: 145:         startudp(linear,sizeof(linear));
-[e ( _startudp (2 , &U _linear -> -> # _linear `ui `i ]
+[; ;main.c: 140:         DELAY_milliseconds(1000);
+[e ( _DELAY_milliseconds (1 -> -> 1000 `i `us ]
+"146
+[; ;main.c: 146:         gpsRead(linear,sizeof(linear),10000,&collar);
+[e ( _gpsRead (4 , , , &U _linear -> -> # _linear `ui `i -> -> 10000 `i `ui &U _collar ]
 "147
-[; ;main.c: 147:     }
+[; ;main.c: 147:         DELAY_milliseconds(1000);
+[e ( _DELAY_milliseconds (1 -> -> 1000 `i `us ]
+"161
+[; ;main.c: 161:         despierta(linear,sizeof(linear));
+[e ( _despierta (2 , &U _linear -> -> # _linear `ui `i ]
+"162
+[; ;main.c: 162:         valtmp = getbat(linear,sizeof(linear));
+[e = _valtmp ( _getbat (2 , &U _linear -> -> # _linear `ui `i ]
+"163
+[; ;main.c: 163:         uart_traza();
+[e ( _uart_traza ..  ]
+"164
+[; ;main.c: 164:         printf("BAT=>%d\r\n",valtmp);
+[e ( _printf , (. :s 4C _valtmp ]
+"165
+[; ;main.c: 165:         sendmsg("hola",4,linear,sizeof(linear));
+[e ( _sendmsg (4 , , , :s 5C -> 4 `i &U _linear -> -> # _linear `ui `i ]
+"166
+[; ;main.c: 166:         recLineaGSM(linear,sizeof(linear),10000,'\n');
+[e ( _recLineaGSM (4 , , , &U _linear -> -> # _linear `ui `i -> -> 10000 `i `ui -> -> 10 `ui `uc ]
+"167
+[; ;main.c: 167:         stopudp(linear,sizeof(linear));
+[e ( _stopudp (2 , &U _linear -> -> # _linear `ui `i ]
+"168
+[; ;main.c: 168:         duerme(linear,sizeof(linear));
+[e ( _duerme (2 , &U _linear -> -> # _linear `ui `i ]
+"169
+[; ;main.c: 169:         DELAY_milliseconds(10000);
+[e ( _DELAY_milliseconds (1 -> -> 10000 `i `us ]
+"170
+[; ;main.c: 170:         startudp(linear,sizeof(linear));
+[e ( _startudp (2 , &U _linear -> -> # _linear `ui `i ]
+"172
+[; ;main.c: 172:     }
 }
-[e :U 936 ]
-[e $U 937  ]
-[e :U 938 ]
-"148
-[; ;main.c: 148: }
-[e :UE 935 ]
+[e :U 935 ]
+[e $U 936  ]
+[e :U 937 ]
+"173
+[; ;main.c: 173: }
+[e :UE 934 ]
 }
 [p f _printf 8388736 ]
+[a 3C 80 97 115 111 115 58 32 37 100 32 47 114 47 110 0 ]
 [a 5C 104 111 108 97 0 ]
 [a 2C 66 65 84 61 62 37 100 13 10 0 ]
 [a 4C 66 65 84 61 62 37 100 13 10 0 ]
-[a 3C 88 58 32 37 100 32 89 58 32 37 100 32 90 58 32 37 100 13 10 0 ]
 [a 1C 72 111 108 97 13 10 0 ]

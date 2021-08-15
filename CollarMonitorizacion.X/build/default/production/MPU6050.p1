@@ -5,107 +5,312 @@ Version 4.0 HI-TECH Software Intermediate Code
 "60
 [; ;./mcc_generated_files/examples/i2c1_master_example.h: 60: void I2C1_ReadDataBlock(i2c1_address_t address, uint8_t reg, uint8_t *data, size_t len);
 [v _I2C1_ReadDataBlock `(v ~T0 @X0 0 ef4`uc`uc`*uc`ui ]
+"54
+[; ;./mcc_generated_files/examples/i2c1_master_example.h: 54: uint8_t I2C1_Read1ByteRegister(i2c1_address_t address, uint8_t reg);
+[v _I2C1_Read1ByteRegister `(uc ~T0 @X0 0 ef2`uc`uc ]
 "55
 [; ;./mcc_generated_files/examples/i2c1_master_example.h: 55: uint16_t I2C1_Read2ByteRegister(i2c1_address_t address, uint8_t reg);
 [v _I2C1_Read2ByteRegister `(us ~T0 @X0 0 ef2`uc`uc ]
-"11 MPU6050.c
-[; ;MPU6050.c: 11: void initialize()
+"373 /opt/microchip/xc8/v2.31/pic/include/c99/math.h
+[; ;/opt/microchip/xc8/v2.31/pic/include/c99/math.h: 373: float sqrtf(float);
+[v _sqrtf `(f ~T0 @X0 0 ef1`f ]
+"174
+[; ;/opt/microchip/xc8/v2.31/pic/include/c99/math.h: 174: float floorf(float);
+[v _floorf `(f ~T0 @X0 0 ef1`f ]
+"51 /opt/microchip/xc8/v2.31/pic/include/c99/stdlib.h
+[; ;/opt/microchip/xc8/v2.31/pic/include/c99/stdlib.h: 51: int abs (int);
+[v _abs `(i ~T0 @X0 0 ef1`i ]
+"15 MPU6050.c
+[; ;MPU6050.c: 15: void swapshort(uint16_t *data)
+[v _swapshort `(v ~T0 @X0 1 ef1`*us ]
+"16
+[; ;MPU6050.c: 16: {
+{
+[e :U _swapshort ]
+"15
+[; ;MPU6050.c: 15: void swapshort(uint16_t *data)
+[v _data `*us ~T0 @X0 1 r1 ]
+"16
+[; ;MPU6050.c: 16: {
+[f ]
+"17
+[; ;MPU6050.c: 17:     *data = (*data << 8) | (*data >> 8);
+[e = *U _data -> | << -> *U _data `ui -> 8 `i >> -> *U _data `ui -> 8 `i `us ]
+"18
+[; ;MPU6050.c: 18: }
+[e :UE 8 ]
+}
+"21
+[; ;MPU6050.c: 21: void initialize()
 [v _initialize `(v ~T0 @X0 1 ef ]
-"12
-[; ;MPU6050.c: 12: {
+"22
+[; ;MPU6050.c: 22: {
 {
 [e :U _initialize ]
 [f ]
-"13
-[; ;MPU6050.c: 13:     I2C1_Write1ByteRegister(0x68,0x6B, 1);
+"23
+[; ;MPU6050.c: 23:     I2C1_Write1ByteRegister(0x68,0x19, 255);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 25 `i `uc -> -> 255 `i `uc ]
+"24
+[; ;MPU6050.c: 24:     I2C1_Write1ByteRegister(0x68,0x6B, 1);
 [e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 107 `i `uc -> -> 1 `i `uc ]
-"14
-[; ;MPU6050.c: 14:     I2C1_Write1ByteRegister(0x68,0x1B, 0);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 27 `i `uc -> -> 0 `i `uc ]
-"15
-[; ;MPU6050.c: 15:     I2C1_Write1ByteRegister(0x68,0x1C, 0);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 28 `i `uc -> -> 0 `i `uc ]
-"16
-[; ;MPU6050.c: 16: }
-[e :UE 3 ]
-}
-"18
-[; ;MPU6050.c: 18: void autoConfigLowEnergy()
-[v _autoConfigLowEnergy `(v ~T0 @X0 1 ef ]
-"19
-[; ;MPU6050.c: 19: {
-{
-[e :U _autoConfigLowEnergy ]
-[f ]
-"20
-[; ;MPU6050.c: 20:     I2C1_Write1ByteRegister(0x68,0x6B, 0b00101000);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 107 `i `uc -> -> 40 `i `uc ]
-"21
-[; ;MPU6050.c: 21:     I2C1_Write1ByteRegister(0x68,0x6C, 0b00000111);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 108 `i `uc -> -> 7 `i `uc ]
-"22
-[; ;MPU6050.c: 22: }
-[e :UE 4 ]
-}
-"24
-[; ;MPU6050.c: 24: void getAcceleration(uint16_t *data)
-[v _getAcceleration `(v ~T0 @X0 1 ef1`*us ]
 "25
-[; ;MPU6050.c: 25: {
-{
-[e :U _getAcceleration ]
-"24
-[; ;MPU6050.c: 24: void getAcceleration(uint16_t *data)
-[v _data `*us ~T0 @X0 1 r1 ]
-"25
-[; ;MPU6050.c: 25: {
-[f ]
+[; ;MPU6050.c: 25:     I2C1_Write1ByteRegister(0x68,0x1A, 1);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 26 `i `uc -> -> 1 `i `uc ]
 "26
-[; ;MPU6050.c: 26:     I2C1_ReadDataBlock(0x68, 0x3B, (uint8_t *)data,6);
-[e ( _I2C1_ReadDataBlock (4 , , , -> -> 104 `i `uc -> -> 59 `i `uc -> _data `*uc -> -> 6 `i `ui ]
+[; ;MPU6050.c: 26:     I2C1_Write1ByteRegister(0x68,0x1C, 0);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 28 `i `uc -> -> 0 `i `uc ]
 "27
-[; ;MPU6050.c: 27: }
-[e :UE 5 ]
-}
+[; ;MPU6050.c: 27:     I2C1_Write1ByteRegister(0x68,0x1B, 0x18);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 27 `i `uc -> -> 24 `i `uc ]
+"28
+[; ;MPU6050.c: 28:     I2C1_Write1ByteRegister(0x68,0x38, 0b00000001);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 56 `i `uc -> -> 1 `i `uc ]
 "29
-[; ;MPU6050.c: 29: int16_t getAccelerationX() {
-[v _getAccelerationX `(s ~T0 @X0 1 ef ]
-{
-[e :U _getAccelerationX ]
-[f ]
-"30
-[; ;MPU6050.c: 30:     return(I2C1_Read2ByteRegister(0x68, 0x3B));
-[e ) -> ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 59 `i `uc `s ]
-[e $UE 6  ]
-"31
-[; ;MPU6050.c: 31: }
-[e :UE 6 ]
+[; ;MPU6050.c: 29: }
+[e :UE 9 ]
 }
+"32
+[; ;MPU6050.c: 32: void fifoconfig()
+[v _fifoconfig `(v ~T0 @X0 1 ef ]
 "33
-[; ;MPU6050.c: 33: int16_t getAccelerationY() {
-[v _getAccelerationY `(s ~T0 @X0 1 ef ]
+[; ;MPU6050.c: 33: {
 {
-[e :U _getAccelerationY ]
+[e :U _fifoconfig ]
 [f ]
 "34
-[; ;MPU6050.c: 34:     return(I2C1_Read2ByteRegister(0x68, 0x3D));
-[e ) -> ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 61 `i `uc `s ]
-[e $UE 7  ]
+[; ;MPU6050.c: 34:     I2C1_Write1ByteRegister(0x68,0x6A, 0b00000100);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 4 `i `uc ]
 "35
-[; ;MPU6050.c: 35: }
-[e :UE 7 ]
-}
+[; ;MPU6050.c: 35:     I2C1_Write1ByteRegister(0x68,0x6A, 0b01000000);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 64 `i `uc ]
+"36
+[; ;MPU6050.c: 36:     I2C1_Write1ByteRegister(0x68,0x23, 0b00001000);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 35 `i `uc -> -> 8 `i `uc ]
 "37
-[; ;MPU6050.c: 37: int16_t getAccelerationZ() {
-[v _getAccelerationZ `(s ~T0 @X0 1 ef ]
+[; ;MPU6050.c: 37: }
+[e :UE 10 ]
+}
+"40
+[; ;MPU6050.c: 40: void getAcceleration(uint16_t *data)
+[v _getAcceleration `(v ~T0 @X0 1 ef1`*us ]
+"41
+[; ;MPU6050.c: 41: {
 {
-[e :U _getAccelerationZ ]
+[e :U _getAcceleration ]
+"40
+[; ;MPU6050.c: 40: void getAcceleration(uint16_t *data)
+[v _data `*us ~T0 @X0 1 r1 ]
+"41
+[; ;MPU6050.c: 41: {
 [f ]
-"38
-[; ;MPU6050.c: 38:     return(I2C1_Read2ByteRegister(0x68, 0x3F));
-[e ) -> ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 63 `i `uc `s ]
-[e $UE 8  ]
-"39
-[; ;MPU6050.c: 39: }
-[e :UE 8 ]
+"42
+[; ;MPU6050.c: 42:     int i;
+[v _i `i ~T0 @X0 1 a ]
+"44
+[; ;MPU6050.c: 44:     I2C1_ReadDataBlock(0x68, 0x3B, (uint8_t *)data,6);
+[e ( _I2C1_ReadDataBlock (4 , , , -> -> 104 `i `uc -> -> 59 `i `uc -> _data `*uc -> -> 6 `i `ui ]
+"45
+[; ;MPU6050.c: 45:     for(i=0;i<3;i++)
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 3 `i 12  ]
+[e $U 13  ]
+[e :U 12 ]
+"46
+[; ;MPU6050.c: 46:         swapshort(data+i);
+[e ( _swapshort (1 + _data * -> _i `x -> -> # *U _data `i `x ]
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 3 `i 12  ]
+[e :U 13 ]
+}
+"47
+[; ;MPU6050.c: 47: }
+[e :UE 11 ]
+}
+"52
+[; ;MPU6050.c: 52: int getAccelAcu(uint8_t *data,int maxlen)
+[v _getAccelAcu `(i ~T0 @X0 1 ef2`*uc`i ]
+"53
+[; ;MPU6050.c: 53: {
+{
+[e :U _getAccelAcu ]
+"52
+[; ;MPU6050.c: 52: int getAccelAcu(uint8_t *data,int maxlen)
+[v _data `*uc ~T0 @X0 1 r1 ]
+[v _maxlen `i ~T0 @X0 1 r2 ]
+"53
+[; ;MPU6050.c: 53: {
+[f ]
+"54
+[; ;MPU6050.c: 54:     uint16_t fifolen = 0;
+[v _fifolen `us ~T0 @X0 1 a ]
+[e = _fifolen -> -> 0 `i `us ]
+"55
+[; ;MPU6050.c: 55:     uint16_t traslen = 0;
+[v _traslen `us ~T0 @X0 1 a ]
+[e = _traslen -> -> 0 `i `us ]
+"56
+[; ;MPU6050.c: 56:     uint8_t *ptmp = data;
+[v _ptmp `*uc ~T0 @X0 1 a ]
+[e = _ptmp _data ]
+"57
+[; ;MPU6050.c: 57:     int i;
+[v _i `i ~T0 @X0 1 a ]
+"58
+[; ;MPU6050.c: 58:     uint8_t tmp;
+[v _tmp `uc ~T0 @X0 1 a ]
+"60
+[; ;MPU6050.c: 60:     tmp = I2C1_Read1ByteRegister(0x68, 0x3A);
+[e = _tmp ( _I2C1_Read1ByteRegister (2 , -> -> 104 `i `uc -> -> 58 `i `uc ]
+"62
+[; ;MPU6050.c: 62:     fifolen = I2C1_Read2ByteRegister(0x68, 0x72);
+[e = _fifolen ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 114 `i `uc ]
+"63
+[; ;MPU6050.c: 63:     if((tmp & 0x10) || (fifolen == 1024))
+[e $ ! || != & -> _tmp `i -> 16 `i -> 0 `i == -> _fifolen `ui -> -> 1024 `i `ui 16  ]
+"64
+[; ;MPU6050.c: 64:     {
+{
+"65
+[; ;MPU6050.c: 65:             I2C1_Write1ByteRegister(0x68,0x6A, 0b01000100);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 68 `i `uc ]
+"66
+[; ;MPU6050.c: 66:             return 0;
+[e ) -> 0 `i ]
+[e $UE 15  ]
+"67
+[; ;MPU6050.c: 67:     }
+}
+[e :U 16 ]
+"70
+[; ;MPU6050.c: 70:     if(fifolen > maxlen)
+[e $ ! > -> _fifolen `ui -> _maxlen `ui 17  ]
+"71
+[; ;MPU6050.c: 71:         traslen = maxlen;
+[e = _traslen -> _maxlen `us ]
+[e $U 18  ]
+"72
+[; ;MPU6050.c: 72:     else
+[e :U 17 ]
+"73
+[; ;MPU6050.c: 73:         traslen = fifolen;
+[e = _traslen _fifolen ]
+[e :U 18 ]
+"75
+[; ;MPU6050.c: 75:     traslen = (traslen/6)*6;
+[e = _traslen -> * / -> _traslen `ui -> -> 6 `i `ui -> -> 6 `i `ui `us ]
+"77
+[; ;MPU6050.c: 77:     if(traslen)
+[e $ ! != -> _traslen `ui -> -> 0 `i `ui 19  ]
+"78
+[; ;MPU6050.c: 78:     {
+{
+"79
+[; ;MPU6050.c: 79:         I2C1_ReadDataBlock(0x68, 0x74, data,traslen);
+[e ( _I2C1_ReadDataBlock (4 , , , -> -> 104 `i `uc -> -> 116 `i `uc _data -> _traslen `ui ]
+"80
+[; ;MPU6050.c: 80:     }
+}
+[e :U 19 ]
+"83
+[; ;MPU6050.c: 83:     for(i=0;i<traslen;i+=2)
+{
+[e = _i -> 0 `i ]
+[e $U 23  ]
+[e :U 20 ]
+"84
+[; ;MPU6050.c: 84:         swapshort((uint16_t *)&data[i]);
+[e ( _swapshort (1 -> &U *U + _data * -> _i `x -> -> # *U _data `i `x `*us ]
+[e =+ _i -> 2 `i ]
+[e :U 23 ]
+[e $ < -> _i `ui -> _traslen `ui 20  ]
+[e :U 21 ]
+}
+"86
+[; ;MPU6050.c: 86:     return(traslen);
+[e ) -> _traslen `i ]
+[e $UE 15  ]
+"87
+[; ;MPU6050.c: 87: }
+[e :UE 15 ]
+}
+"90
+[; ;MPU6050.c: 90: int32_t modulo(int16_t *acel)
+[v _modulo `(l ~T0 @X0 1 ef1`*s ]
+"91
+[; ;MPU6050.c: 91: {
+{
+[e :U _modulo ]
+"90
+[; ;MPU6050.c: 90: int32_t modulo(int16_t *acel)
+[v _acel `*s ~T0 @X0 1 r1 ]
+"91
+[; ;MPU6050.c: 91: {
+[f ]
+"92
+[; ;MPU6050.c: 92:     float tmp;
+[v _tmp `f ~T0 @X0 1 a ]
+"93
+[; ;MPU6050.c: 93:     tmp = acel[0]*acel[0] + acel[1]*acel[1] + acel[2]*acel[2];
+[e = _tmp -> + + * -> *U + _acel * -> -> 0 `i `x -> -> # *U _acel `i `x `i -> *U + _acel * -> -> 0 `i `x -> -> # *U _acel `i `x `i * -> *U + _acel * -> -> 1 `i `x -> -> # *U _acel `i `x `i -> *U + _acel * -> -> 1 `i `x -> -> # *U _acel `i `x `i * -> *U + _acel * -> -> 2 `i `x -> -> # *U _acel `i `x `i -> *U + _acel * -> -> 2 `i `x -> -> # *U _acel `i `x `i `f ]
+"94
+[; ;MPU6050.c: 94:     tmp = sqrtf(tmp);
+[e = _tmp ( _sqrtf (1 _tmp ]
+"95
+[; ;MPU6050.c: 95:     return floorf(tmp);
+[e ) -> ( _floorf (1 _tmp `l ]
+[e $UE 24  ]
+"96
+[; ;MPU6050.c: 96: }
+[e :UE 24 ]
+}
+"99
+[; ;MPU6050.c: 99: int picos(int32_t *hmodulos, int32_t actual)
+[v _picos `(i ~T0 @X0 1 ef2`*l`l ]
+"100
+[; ;MPU6050.c: 100: {
+{
+[e :U _picos ]
+"99
+[; ;MPU6050.c: 99: int picos(int32_t *hmodulos, int32_t actual)
+[v _hmodulos `*l ~T0 @X0 1 r1 ]
+[v _actual `l ~T0 @X0 1 r2 ]
+"100
+[; ;MPU6050.c: 100: {
+[f ]
+"101
+[; ;MPU6050.c: 101:     int picos = 0;
+[v _picos `i ~T0 @X0 1 a ]
+[e = _picos -> 0 `i ]
+"102
+[; ;MPU6050.c: 102:     if(abs(hmodulos[1]-actual) > 500)
+[e $ ! > ( _abs (1 -> - *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual `i -> 500 `i 26  ]
+"103
+[; ;MPU6050.c: 103:     {
+{
+"104
+[; ;MPU6050.c: 104:         if(hmodulos[1]> hmodulos[0] && hmodulos[1]>actual)
+[e $ ! && > *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x *U + _hmodulos * -> -> 0 `i `x -> -> # *U _hmodulos `i `x > *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual 27  ]
+"105
+[; ;MPU6050.c: 105:             picos = 1;
+[e = _picos -> 1 `i ]
+[e :U 27 ]
+"107
+[; ;MPU6050.c: 107:         hmodulos[0] = hmodulos[1];
+[e = *U + _hmodulos * -> -> 0 `i `x -> -> # *U _hmodulos `i `x *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x ]
+"108
+[; ;MPU6050.c: 108:         hmodulos[1] = actual;
+[e = *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual ]
+"109
+[; ;MPU6050.c: 109:     }
+}
+[e :U 26 ]
+"110
+[; ;MPU6050.c: 110:     return picos;
+[e ) _picos ]
+[e $UE 25  ]
+"111
+[; ;MPU6050.c: 111: }
+[e :UE 25 ]
 }

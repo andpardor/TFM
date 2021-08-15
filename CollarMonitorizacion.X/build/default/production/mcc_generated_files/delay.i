@@ -10597,7 +10597,7 @@ extern __bank0 __bit __timeout;
 
 void DELAY_milliseconds(uint16_t milliseconds) {
     while(milliseconds--){
-        _delay((unsigned long)((1)*(8000000/4000.0)));
+        _delay((unsigned long)((1)*(12000000/4000.0)));
     }
 }
 
@@ -10609,12 +10609,12 @@ void DELAY_milliseconds(uint16_t milliseconds) {
 void DELAY_microseconds(uint16_t microseconds) {
     while( microseconds >= 32)
     {
-        _delay((unsigned long)((32)*(8000000/4000000.0)));
+        _delay((unsigned long)((32)*(12000000/4000000.0)));
         microseconds -= 32;
     }
 
     while(microseconds--)
     {
-        _delay((unsigned long)((1)*(8000000/4000000.0)));
+        _delay((unsigned long)((1)*(12000000/4000000.0)));
     }
 }

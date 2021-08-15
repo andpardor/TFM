@@ -10602,20 +10602,20 @@ void PIN_MANAGER_Initialize(void)
 
 
 
-    LATA = 0x00;
+    LATA = 0x10;
     LATC = 0x14;
 
 
 
 
-    TRISA = 0x37;
+    TRISA = 0x27;
     TRISC = 0x2B;
 
 
 
 
     ANSELC = 0x00;
-    ANSELA = 0x23;
+    ANSELA = 0x33;
 
 
 

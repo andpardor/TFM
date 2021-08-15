@@ -1024,8 +1024,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 925 ]
 {
 "40
-[; ;mcc_generated_files/delay.c: 40:         _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;mcc_generated_files/delay.c: 40:         _delay((unsigned long)((1)*(12000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 12000000 `l `d .4000.0 `ul ]
 "41
 [; ;mcc_generated_files/delay.c: 41:     }
 }
@@ -1053,8 +1053,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/delay.c: 51:     {
 {
 "52
-[; ;mcc_generated_files/delay.c: 52:         _delay((unsigned long)((32)*(8000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 32 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;mcc_generated_files/delay.c: 52:         _delay((unsigned long)((32)*(12000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 32 `i `d / -> -> 12000000 `l `d .4000000.0 `ul ]
 "53
 [; ;mcc_generated_files/delay.c: 53:         microseconds -= 32;
 [e =- _microseconds -> -> 32 `i `us ]
@@ -1074,8 +1074,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/delay.c: 57:     {
 {
 "58
-[; ;mcc_generated_files/delay.c: 58:         _delay((unsigned long)((1)*(8000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;mcc_generated_files/delay.c: 58:         _delay((unsigned long)((1)*(12000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 12000000 `l `d .4000000.0 `ul ]
 "59
 [; ;mcc_generated_files/delay.c: 59:     }
 }

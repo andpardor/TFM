@@ -32,6 +32,7 @@
 #define	MPU6050_H
 //#include "i2c1_master_example.h"
 #include "mcc_generated_files/examples/i2c1_master_example.h"
+#include "collarM.h"
  
 // TODO Insert appropriate #include <>
 
@@ -436,8 +437,14 @@ void fifoconfig();  // config activacion fifo para acelerometro.
 void getAcceleration(uint16_t *data);       // get ultimo valor registros accel.
 int getAccelAcu(uint8_t *data,int maxlen);  // get datos accel en fifo.
 void swapshort(uint16_t *data);             // swap de un short.
-int32_t modulo(int16_t *acel);              // modulo de un vector de aceleracion.
-int picos(int32_t *hmodulos, int32_t actual);   // busqueda de maximo relativo en curva accel.
+uint16_t cmodulo(int16_t *acel);              // modulo de un vector de aceleracion.
+int cpicos(uint16_t *hmodulos, uint16_t actual);   // busqueda de maximo relativo en curva accel.
+
+// Interfaz de operacion.
+void iniacel();
+void procAcell();
+void llenaTramaAccel(COLLARM_t *tacel);
+void resetAcell();
     
 #ifdef	__cplusplus
 }
