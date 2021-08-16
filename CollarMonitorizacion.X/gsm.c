@@ -84,17 +84,22 @@ int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term)
 
 
 // Espera recibir un unico caracter de la UART sobre buffer linea, durante un tiempo maximo.
-int recUnoGSM(char *linea,unsigned int tout)
+int recDosGSM(char *linea,unsigned int tout)
 {
     unsigned long tfin = tics() + (unsigned long)tout;
+    int len = 0;
     uart_gsm();
     while(1)
 	{
         if(EUSART_is_rx_ready())    // caracter recibido?
 		{
-             linea[0] = EUSART_Read();  // anotamos.
-             linea[1] = 0;              // terminamos string.
-             return 1;
+             linea[len] = EUSART_Read();  // anotamos.
+             len++;
+             if(len == 2)
+             {
+                linea[len] = 0;              // terminamos string.
+                return 2;
+             }
         }
         else 
 		{
@@ -238,8 +243,8 @@ void gsmon(char *linea,int maxlen)
     
     exeuno(&simpin,linea,maxlen);    // Activamos SIM y conexion a la red
 	exesec(inicio,1,linea,maxlen);   // Modo SMS
-    exesec(sonidoadj,5);             // Ajustes de sonido.
-    exeuno(&dormir);                 // Bajo consumo.
+    exesec(sonidoadj,5,linea,maxlen);             // Ajustes de sonido.
+    exeuno(&dormir,linea,maxlen);                 // Bajo consumo.
     // startudp(linea,maxlen);
 }
 
@@ -284,4 +289,14 @@ void duerme(char *linea,int maxlen)
 void despierta(char *linea,int maxlen)
 {
     waitIni(linea,maxlen);
+}
+
+void cuelgagsm(char *linea,int maxlen)
+{
+   exeuno(&cuelga,linea,maxlen); 
+}
+
+void descuelgagsm(char *linea,int maxlen)
+{
+   exeuno(&descuelga,linea,maxlen); 
 }

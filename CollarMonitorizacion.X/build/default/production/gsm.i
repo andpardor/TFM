@@ -376,6 +376,32 @@ typedef uint32_t uint_fast32_t;
 
 
 
+
+
+
+
+
+typedef struct {
+     int32_t id;
+     uint16_t secuencia;
+     uint16_t latituddec;
+     uint16_t longituddec;
+     uint16_t actividad;
+     uint16_t tmpActividad;
+     uint16_t amedx;
+     uint16_t amedy;
+     uint16_t amedz;
+     uint32_t amodmax;
+     uint16_t bat;
+     int8_t nsat;
+     int8_t latitudint;
+     int8_t longitudint;
+     int8_t stat;
+     int8_t reser;
+     int8_t cksum;
+} COLLARM_t;
+# 34 "./gsm.h" 2
+
 typedef struct {
   char comando[64];
   char resok[32];
@@ -383,23 +409,6 @@ typedef struct {
         char termi;
   unsigned int tout;
  } COMANDAT_t;
-
-typedef struct {
-     int32_t telefono;
-     uint16_t latituddec;
-     uint16_t longituddec;
-     uint16_t actividad;
-     uint16_t tmpActividad;
-     uint16_t bat;
-     uint16_t secuencia;
-     int8_t nsat;
-     int8_t latitudint;
-     int8_t longitudint;
-     int8_t cksum;
-} COLLARM_t;
-# 34 "./gsm.h" 2
-
-
 
 
 
@@ -452,16 +461,18 @@ const COMANDAT_t sonidoadj[5] = {
 
 const char terminador = '\x1A';
 
-
+void uart_gsm();
 void gsmon(char *linea,int maxlen);
 void sendmsg(char *msg,int msglen,char *linea,int maxlen);
 int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);
 int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
+int recDosGSM(char *linea,unsigned int tout);
 void startudp(char *linea,int maxlen);
 void stopudp(char *linea,int maxlen);
 void duerme(char *linea,int maxlen);
 void despierta(char *linea,int maxlen);
 int getbat(char *linea,int maxlen);
+
 void cuelgagsm(char *linea,int maxlen);
 void descuelgagsm(char *linea,int maxlen);
 # 12 "gsm.c" 2
@@ -11236,17 +11247,22 @@ int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term)
 
 
 
-int recUnoGSM(char *linea,unsigned int tout)
+int recDosGSM(char *linea,unsigned int tout)
 {
     unsigned long tfin = tics() + (unsigned long)tout;
+    int len = 0;
     uart_gsm();
     while(1)
  {
         if(EUSART_is_rx_ready())
   {
-             linea[0] = EUSART_Read();
-             linea[1] = 0;
-             return 1;
+             linea[len] = EUSART_Read();
+             len++;
+             if(len == 2)
+             {
+                linea[len] = 0;
+                return 2;
+             }
         }
         else
   {
@@ -11390,8 +11406,8 @@ void gsmon(char *linea,int maxlen)
 
     exeuno(&simpin,linea,maxlen);
  exesec(inicio,1,linea,maxlen);
-    exesec(sonidoadj,5);
-    exeuno(&dormir);
+    exesec(sonidoadj,5,linea,maxlen);
+    exeuno(&dormir,linea,maxlen);
 
 }
 
@@ -11436,4 +11452,14 @@ void duerme(char *linea,int maxlen)
 void despierta(char *linea,int maxlen)
 {
     waitIni(linea,maxlen);
+}
+
+void cuelgagsm(char *linea,int maxlen)
+{
+   exeuno(&cuelga,linea,maxlen);
+}
+
+void descuelgagsm(char *linea,int maxlen)
+{
+   exeuno(&descuelga,linea,maxlen);
 }

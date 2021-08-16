@@ -11063,45 +11063,46 @@ void I2C1_WriteNBytes(i2c1_address_t address, uint8_t *data, size_t len);
 void I2C1_ReadNBytes(i2c1_address_t address, uint8_t *data, size_t len);
 void I2C1_ReadDataBlock(i2c1_address_t address, uint8_t reg, uint8_t *data, size_t len);
 # 35 "./mpu6050.h" 2
-# 433 "./mpu6050.h"
+# 1 "./collarM.h" 1
+# 43 "./collarM.h"
+typedef struct {
+     int32_t id;
+     uint16_t secuencia;
+     uint16_t latituddec;
+     uint16_t longituddec;
+     uint16_t actividad;
+     uint16_t tmpActividad;
+     uint16_t amedx;
+     uint16_t amedy;
+     uint16_t amedz;
+     uint32_t amodmax;
+     uint16_t bat;
+     int8_t nsat;
+     int8_t latitudint;
+     int8_t longitudint;
+     int8_t stat;
+     int8_t reser;
+     int8_t cksum;
+} COLLARM_t;
+# 36 "./mpu6050.h" 2
+# 434 "./mpu6050.h"
 void initialize();
 void fifoconfig();
 
 void getAcceleration(uint16_t *data);
 int getAccelAcu(uint8_t *data,int maxlen);
 void swapshort(uint16_t *data);
-int32_t modulo(int16_t *acel);
-int picos(int32_t *hmodulos, int32_t actual);
+uint32_t cmodulo(int16_t *acel);
+int cpicos(uint32_t *hmodulos, uint32_t actual);
+
+
+void iniacel();
+void procAcell();
+void llenaTramaAccel(COLLARM_t *tacel);
+void resetAcell();
 # 47 "main.c" 2
 # 1 "./gps.h" 1
-# 34 "./gps.h"
-# 1 "./collarM.h" 1
-# 38 "./collarM.h"
-typedef struct {
-  char comando[64];
-  char resok[32];
-  char resko[32];
-        char termi;
-  unsigned int tout;
- } COMANDAT_t;
-
-typedef struct {
-     int32_t telefono;
-     uint16_t latituddec;
-     uint16_t longituddec;
-     uint16_t actividad;
-     uint16_t tmpActividad;
-     uint16_t bat;
-     uint16_t secuencia;
-     int8_t nsat;
-     int8_t latitudint;
-     int8_t longitudint;
-     int8_t cksum;
-} COLLARM_t;
-# 35 "./gps.h" 2
-
-
-
+# 38 "./gps.h"
 const char cabgps[] = "$GPGGA";
 const uint8_t gpssleep[] = { 0xb5, 0x62, 0x02, 0x41, 0x08, 0x00,0x00, 0x00, 0x00, 0x00,
                             0x02, 0x00, 0x00, 0x00 };
@@ -11113,9 +11114,22 @@ void uart_gps();
 void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
 void gpson();
 void gpsoff();
+int getstgps();
 # 48 "main.c" 2
 # 1 "./gsm.h" 1
-# 41 "./gsm.h"
+# 35 "./gsm.h"
+typedef struct {
+  char comando[64];
+  char resok[32];
+  char resko[32];
+        char termi;
+  unsigned int tout;
+ } COMANDAT_t;
+
+
+
+
+
 const COMANDAT_t inicio[1] = {
    {"at+cnmi=1,2,0,0,0\r\n","OK","ERROR",'\n',100}};
 
@@ -11163,16 +11177,18 @@ const COMANDAT_t sonidoadj[5] = {
 
 const char terminador = '\x1A';
 
-
+void uart_gsm();
 void gsmon(char *linea,int maxlen);
 void sendmsg(char *msg,int msglen,char *linea,int maxlen);
 int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);
 int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
+int recDosGSM(char *linea,unsigned int tout);
 void startudp(char *linea,int maxlen);
 void stopudp(char *linea,int maxlen);
 void duerme(char *linea,int maxlen);
 void despierta(char *linea,int maxlen);
 int getbat(char *linea,int maxlen);
+
 void cuelgagsm(char *linea,int maxlen);
 void descuelgagsm(char *linea,int maxlen);
 # 49 "main.c" 2
@@ -11182,11 +11198,74 @@ unsigned long tics();
 void uart_traza();
 # 50 "main.c" 2
 
+# 1 "./aes.h" 1
+
+
+
+
+# 1 "/opt/microchip/xc8/v2.31/pic/include/c99/stddef.h" 1 3
+# 19 "/opt/microchip/xc8/v2.31/pic/include/c99/stddef.h" 3
+# 1 "/opt/microchip/xc8/v2.31/pic/include/c99/bits/alltypes.h" 1 3
+# 132 "/opt/microchip/xc8/v2.31/pic/include/c99/bits/alltypes.h" 3
+typedef long ptrdiff_t;
+# 20 "/opt/microchip/xc8/v2.31/pic/include/c99/stddef.h" 2 3
+# 6 "./aes.h" 2
+# 21 "./aes.h"
+struct AES_ctx
+{
+  uint8_t RoundKey[176];
+};
+
+void AES_init_ctx(struct AES_ctx* ctx, const uint8_t* key);
+
+
+
+
+
+void AES_ECB_encrypt(const struct AES_ctx* ctx, uint8_t* buf);
+void AES_ECB_decrypt(const struct AES_ctx* ctx, uint8_t* buf);
+# 52 "main.c" 2
+# 1 "./base64.h" 1
+# 36 "./base64.h"
+typedef uint8_t BYTE;
+typedef uint16_t WORD;
+
+extern WORD Base64Encode(BYTE* cSourceData, WORD wSourceLen, BYTE* cDestData, WORD wDestLen);
+extern WORD Base64Decode(BYTE* cSourceData, WORD wSourceLen, BYTE* cDestData, WORD wDestLen);
+# 53 "main.c" 2
+# 1 "./eeprom.h" 1
+
+
+
+
+
+
+
+uint32_t getId();
+void getDominio(char *linea);
+uint16_t getPort();
+void getClAes(char *linea);
+uint16_t getPin();
+# 54 "main.c" 2
 
 unsigned long milisegundos = 0;
 char linear[100];
+char mensa[50];
 
 COLLARM_t collar;
+uint32_t collarId;
+
+struct AES_ctx ctx;
+
+int modo;
+int boton;
+int fcall;
+int voz;
+uint16_t secuencia;
+int boton_ant;
+uint8_t baseres[2];
+uint32_t lastsend;
+uint32_t intervalo;
 
 
 void intTim0(void)
@@ -11213,6 +11292,88 @@ void uart_traza()
     RC4PPS = 0;
     RA4PPS = 0;
     DELAY_milliseconds(3);
+}
+
+void pboton()
+{
+    if(boton_ant != PORTCbits.RC3)
+    {
+        boton_ant = PORTCbits.RC3;
+        boton = 1;
+    }
+}
+
+void sendTrama()
+{
+    int i,lencod;
+    uint8_t ack1,ack2;
+
+
+    collar.id = collarId;
+    collar.bat = getbat(linear,sizeof(linear));
+    gpsRead(linear,sizeof(linear),3000,&collar);
+    llenaTramaAccel(&collar);
+    collar.secuencia = secuencia;
+    collar.stat = 0;
+    if(modo)
+        collar.stat |= 0x08;
+    if(fcall)
+        collar.stat |= 0x02;
+    if(boton)
+        collar.stat |= 0x01;
+    if(getstgps())
+        collar.stat |= 0x04;
+    collar.reser = 0;
+
+    for(i=0,collar.cksum=0;i<(sizeof(collar)-1);i++)
+  collar.cksum += ((unsigned char *)&collar)[i];
+
+    memcpy(linear,(unsigned char *)&collar,sizeof(collar));
+    AES_ECB_encrypt(&ctx,linear);
+    AES_ECB_encrypt(&ctx,&linear[16]);
+    lencod = Base64Encode((BYTE*)linear, (WORD)sizeof(collar), (BYTE*)mensa, (WORD)sizeof(mensa));
+    baseres[0] = mensa[0];
+    baseres[1] = mensa[1];
+    startudp(linear,sizeof(linear));
+    sendmsg(mensa,lencod,linear,sizeof(linear));
+    linear[0] = 0;
+ lencod = recDosGSM(linear,2000);
+
+    if(lencod == 2)
+    {
+        ack1 = (linear[0] ^ baseres[0]) & 0x3e;
+        ack2 = (linear[1] ^ baseres[1]) & 0x3e;
+        if((ack1 ^ ack2) == 0x3e)
+        {
+            ack1 >>= 1;
+            if(ack1 & 0x01)
+                boton = 0;
+            if(ack1 & 0x08)
+            {
+                modo = 1;
+                intervalo = 30000L;
+                gpson();
+            }
+            else
+            {
+                intervalo = 900000L;
+                modo = 0;
+            }
+            if(ack1 & 0x02)
+                fcall = 1;
+            else
+                fcall = 0;
+            if(ack1 & 0x04)
+                gpson();
+            else
+                gpsoff();
+        }
+        resetAcell();
+    }
+    secuencia++;
+    stopudp(linear,sizeof(linear));
+    duerme(linear,sizeof(linear));
+    lastsend = tics();
 }
 
 
@@ -11243,53 +11404,69 @@ void main(void)
 
     uart_traza();
     printf("Hola\r\n");
+    modo = 0;
+    boton = 0;
+    fcall = 0;
+    voz = 0;
+    collarId = getId();
+    secuencia = 0;
+    boton_ant = PORTCbits.RC3;
 
 
-
-    initialize();
-    fifoconfig();
-
-
-
+    iniacel();
+    DELAY_milliseconds(2000);
 
     gsmon(linear,sizeof(linear));
-    valtmp = getbat(linear,sizeof(linear));
-    uart_traza();
-    printf("BAT=>%d\r\n",valtmp);
+    gpsoff();
+    getClAes(linear);
+    linear[16] = 0;
+    AES_init_ctx(&ctx,linear);
+    intervalo = 900000L;
+    sendTrama();
     duerme(linear,sizeof(linear));
 
     while (1)
     {
-
-
-
-
-
-
-        getAcceleration(acel);
-        actual = modulo(acel);
-        pasos += picos(vector,actual);
-        uart_traza();
-        printf("Pasos: %d /r/n",pasos);
-        DELAY_milliseconds(1000);
-
-
-
-
-
-        gpsRead(linear,sizeof(linear),10000,&collar);
-        DELAY_milliseconds(1000);
-# 161 "main.c"
-        despierta(linear,sizeof(linear));
-        valtmp = getbat(linear,sizeof(linear));
-        uart_traza();
-        printf("BAT=>%d\r\n",valtmp);
-        sendmsg("hola",4,linear,sizeof(linear));
-        recLineaGSM(linear,sizeof(linear),10000,'\n');
-        stopudp(linear,sizeof(linear));
-        duerme(linear,sizeof(linear));
-        DELAY_milliseconds(10000);
-        startudp(linear,sizeof(linear));
-
+        if(voz == 0)
+        {
+            uart_gsm();
+            linear[0] = 0;
+            len = recLineaGSM(linear,sizeof(linear),5000,'\n');
+            if((len > 0) && (strstr(linear,"RI") != ((void*)0)))
+            {
+                uart_gsm();
+                exeuno(&noeco,linear,sizeof(linear));
+                if(fcall)
+                {
+                    descuelgagsm(linear,sizeof(linear));
+                    voz = 1;
+                }
+                else
+                {
+                    cuelgagsm(linear,sizeof(linear));
+                    DELAY_milliseconds(2000);
+                    sendTrama();
+                }
+            }
+            if(voz == 0)
+            {
+                if((tics() - lastsend) > intervalo)
+                   sendTrama();
+            }
+        }
+        else
+        {
+            uart_gsm();
+            linear[0] = 0;
+            len = recLineaGSM(linear,sizeof(linear),5000,'\n');
+            if(len > 0)
+            {
+                cuelgagsm(linear,sizeof(linear));
+                voz = 0;
+                DELAY_milliseconds(2000);
+                sendTrama();
+            }
+        }
+        procAcell();
     }
 }

@@ -11064,26 +11064,24 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 1 "./gps.h" 1
 # 34 "./gps.h"
 # 1 "./collarM.h" 1
-# 38 "./collarM.h"
+# 43 "./collarM.h"
 typedef struct {
-  char comando[64];
-  char resok[32];
-  char resko[32];
-        char termi;
-  unsigned int tout;
- } COMANDAT_t;
-
-typedef struct {
-     int32_t telefono;
+     int32_t id;
+     uint16_t secuencia;
      uint16_t latituddec;
      uint16_t longituddec;
      uint16_t actividad;
      uint16_t tmpActividad;
+     uint16_t amedx;
+     uint16_t amedy;
+     uint16_t amedz;
+     uint32_t amodmax;
      uint16_t bat;
-     uint16_t secuencia;
      int8_t nsat;
      int8_t latitudint;
      int8_t longitudint;
+     int8_t stat;
+     int8_t reser;
      int8_t cksum;
 } COLLARM_t;
 # 35 "./gps.h" 2
@@ -11101,6 +11099,7 @@ void uart_gps();
 void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
 void gpson();
 void gpsoff();
+int getstgps();
 # 11 "gps.c" 2
 # 1 "./funaux.h" 1
 # 15 "./funaux.h"
@@ -11108,9 +11107,7 @@ unsigned long tics();
 void uart_traza();
 # 12 "gps.c" 2
 
-extern unsigned long tics();
-extern void uart_traza();
-
+int stgps = 0;
 
 
 
@@ -11174,7 +11171,7 @@ int recLineaGPS(char *linea,int maxlen,unsigned int tout)
         DELAY_microseconds(100);
     }
 }
-# 87 "gps.c"
+# 85 "gps.c"
 uint16_t min2grado(char *valor)
 {
     uint32_t tmp,entero;
@@ -11271,6 +11268,11 @@ void gpscero(COLLARM_t *collar)
 
 void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
 {
+    if(stgps == 0)
+    {
+       gpscero(gps);
+       return;
+    }
     maxtime = tics() + tout;
     while(tics() < maxtime)
     {
@@ -11331,6 +11333,7 @@ void gpson()
 
     uart_gps();
     writegps(&wake,1);
+    stgps = 1;
 }
 
 
@@ -11344,4 +11347,10 @@ void gpsoff()
     writegps(gpssleep,sizeof(gpssleep));
     writegps(&cka,1);
     writegps(&ckb,1);
+    stgps = 0;
+}
+
+int getstgps()
+{
+    return stgps;
 }

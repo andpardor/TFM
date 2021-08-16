@@ -48,11 +48,28 @@
 #include "gsm.h"
 #include "funaux.h"
 #include "collarM.h"
+#include "aes.h"
+#include "base64.h"
+#include "eeprom.h"
 
 unsigned long milisegundos = 0;         // Milisegundos desde inicio.
 char linear[100];                       // Buffer de lectura de linea
+char mensa[50];
 
 COLLARM_t collar;                       // Variable de tipo estructura COLLARM_t
+uint32_t collarId;
+
+struct AES_ctx ctx; // Estructura AES. para cifrado.
+
+int modo;
+int boton;
+int fcall;
+int voz;
+uint16_t    secuencia;
+int boton_ant;
+uint8_t baseres[2];
+uint32_t lastsend;
+uint32_t intervalo;
 
 // Timer con tic de milisegundos para control de operacion, no se actualiza en SLEEP
 void intTim0(void)
@@ -79,6 +96,88 @@ void uart_traza()
     RC4PPS = 0;
     RA4PPS = 0;
     DELAY_milliseconds(3);
+}
+
+void pboton()
+{
+    if(boton_ant != BOTON_GetValue())
+    {
+        boton_ant = BOTON_GetValue();
+        boton = 1;
+    }
+}
+
+void sendTrama()
+{
+    int i,lencod;
+    uint8_t ack1,ack2;
+    
+    // rellena estructura de trama
+    collar.id = collarId;                        // Id
+    collar.bat = getbat(linear,sizeof(linear)); // Bat.
+    gpsRead(linear,sizeof(linear),3000,&collar);// GPS
+    llenaTramaAccel(&collar);                   // Acelerometro.
+    collar.secuencia = secuencia;               // secuencia.
+    collar.stat = 0;                            // estado.
+    if(modo)
+        collar.stat |= SMODO;
+    if(fcall)
+        collar.stat |= SFCALL;
+    if(boton)
+        collar.stat |= SBOTON;
+    if(getstgps())
+        collar.stat |= SGPS;
+    collar.reser = 0;
+    // calculo CKSUM.
+    for(i=0,collar.cksum=0;i<(sizeof(collar)-1);i++)
+		collar.cksum += ((unsigned char *)&collar)[i];
+        
+    memcpy(linear,(unsigned char *)&collar,sizeof(collar));
+    AES_ECB_encrypt(&ctx,linear);
+    AES_ECB_encrypt(&ctx,&linear[16]);
+    lencod = Base64Encode((BYTE*)linear, (WORD)sizeof(collar), (BYTE*)mensa, (WORD)sizeof(mensa));
+    baseres[0] = mensa[0];
+    baseres[1] = mensa[1];
+    startudp(linear,sizeof(linear));
+    sendmsg(mensa,lencod,linear,sizeof(linear));
+    linear[0] = 0;
+	lencod = recDosGSM(linear,2000);   // espera respuesta.
+    // comprobamos y procesamos ACK
+    if(lencod == 2)
+    {
+        ack1 = (linear[0] ^ baseres[0]) & 0x3e;
+        ack2 = (linear[1] ^ baseres[1]) & 0x3e;
+        if((ack1 ^ ack2) == 0x3e)
+        {
+            ack1 >>= 1;
+            if(ack1 & MBOTON)
+                boton = 0;
+            if(ack1 & MMODO)
+            {
+                modo = 1;
+                intervalo = TSIGUE;
+                gpson();
+            }
+            else
+            {
+                intervalo = TOPER;
+                modo = 0;
+            }
+            if(ack1 & MFCALL)
+                fcall = 1;
+            else 
+                fcall = 0;
+            if(ack1 & MGPS)
+                gpson();
+            else
+                gpsoff();
+        }
+        resetAcell();
+    }
+    secuencia++;
+    stopudp(linear,sizeof(linear));
+    duerme(linear,sizeof(linear));
+    lastsend = tics();
 }
 
 /*
@@ -109,66 +208,70 @@ void main(void)
  
     uart_traza();
     printf("Hola\r\n");
-    
+    modo = 0;
+    boton = 0;
+    fcall = 0;
+    voz = 0;
+    collarId = getId();
+    secuencia = 0;
+    boton_ant = BOTON_GetValue();
     // Inicialización del acelerometro
     // Configuración baja energia acelerometro
-    initialize(); 
-    fifoconfig(); 
-
+    iniacel();
+    DELAY_milliseconds(2000);
     // Inicialización del GSM
-    // Obtención estado bateria
-    // Modo sleep GSM
-    gsmon(linear,sizeof(linear)); 
-    valtmp = getbat(linear,sizeof(linear));
-    uart_traza();
-    printf("BAT=>%d\r\n",valtmp);
+    gsmon(linear,sizeof(linear));
+    gpsoff();
+    getClAes(linear);
+    linear[16] = 0;
+    AES_init_ctx(&ctx,linear);
+    intervalo = TOPER;
+    sendTrama();
     duerme(linear,sizeof(linear));
     
     while (1)
     {
-        // ACELEROMETRO
-        // Obtiene las coordenadas x,y,z del acelerometro cada segundo.
-        // Obtiene modulo del vector coordenadas.
-        // Obtine numero pasos realizados
-        // RC0 -> SDA acelerometro.
-        // RA2 -> SCL acelerometro.
-        getAcceleration(acel);
-        actual = modulo(acel);
-        pasos += picos(vector,actual);
-        uart_traza();
-        printf("Pasos: %d /r/n",pasos);
-        DELAY_milliseconds(1000);
-        
-        
-        // FUNCIONALIDAD GPS
-        // Activar GPS al recibir comando
-        // Apagar GPS al recibir comando
-        gpsRead(linear,sizeof(linear),10000,&collar);
-        DELAY_milliseconds(1000);
-        
-        
-        // FUNCIONALIDAD GSM
-        // Cada x tiempo...
-        // Abrir socket.
-            // Codificación mensaje en AES.
-            // Base 64 de la codificación AES.
-            // Enviar trama de datos.
-            // Respuesta del mensaje enviado.
-        // Cerrar socket.
-        // Si se recibe llamada, apertura socket.
-        // Cuando finalice la llamada, cierre socket.
-
-        despierta(linear,sizeof(linear));
-        valtmp = getbat(linear,sizeof(linear));
-        uart_traza();
-        printf("BAT=>%d\r\n",valtmp);
-        sendmsg("hola",4,linear,sizeof(linear));
-        recLineaGSM(linear,sizeof(linear),10000,'\n');
-        stopudp(linear,sizeof(linear));
-        duerme(linear,sizeof(linear));
-        DELAY_milliseconds(10000);
-        startudp(linear,sizeof(linear));
-        
+        if(voz == 0) // espera por llamada
+        {
+            uart_gsm();
+            linear[0] = 0;
+            len = recLineaGSM(linear,sizeof(linear),5000,'\n');
+            if((len > 0) && (strstr(linear,"RI") != NULL))
+            {
+                uart_gsm();
+                exeuno(&noeco,linear,sizeof(linear));
+                if(fcall)
+                {
+                    descuelgagsm(linear,sizeof(linear));
+                    voz = 1;
+                }
+                else
+                {
+                    cuelgagsm(linear,sizeof(linear));
+                    DELAY_milliseconds(2000);
+                    sendTrama();
+                }
+            }
+            if(voz == 0)
+            {
+                if((tics() - lastsend) > intervalo)
+                   sendTrama(); 
+            }
+        }
+        else    // llamada en curso espera final
+        {
+            uart_gsm();
+            linear[0] = 0;
+            len = recLineaGSM(linear,sizeof(linear),5000,'\n');
+            if(len > 0)
+            {
+                cuelgagsm(linear,sizeof(linear));
+                voz = 0;
+                DELAY_milliseconds(2000);
+                sendTrama();
+            }
+        }
+        procAcell();
     }
 }
 /**

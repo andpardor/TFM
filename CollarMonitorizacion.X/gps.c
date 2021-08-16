@@ -10,9 +10,7 @@
 #include "gps.h"
 #include "funaux.h"
 
-extern unsigned long tics();
-extern void uart_traza();
-
+int stgps = 0;
 
 //==============================================================================
 
@@ -180,6 +178,11 @@ void gpscero(COLLARM_t *collar)
 // Lee los datos del GPS
 void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
 {
+    if(stgps == 0)      // si no esta activo ponemos a cero la estructura.
+    {
+       gpscero(gps);
+       return;
+    }
     maxtime = tics() + tout; // 10 segundos
     while(tics() < maxtime)
     {
@@ -240,6 +243,7 @@ void gpson()
     
     uart_gps();
     writegps(&wake,1);
+    stgps = 1;
 }
 
 // Pone al GPS en modo SLEEP.
@@ -253,5 +257,10 @@ void gpsoff()
     writegps(gpssleep,sizeof(gpssleep));
     writegps(&cka,1);
     writegps(&ckb,1);
+    stgps = 0;
 }
 
+int getstgps()
+{
+    return stgps;
+}

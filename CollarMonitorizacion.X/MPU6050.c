@@ -14,9 +14,9 @@
 
 uint16_t bufaccel[255];
 uint32_t tinicial;
-uint16_t hmodulos[2];
+uint32_t hmodulos[2];
 uint16_t picos;
-uint16_t maxmod;
+uint32_t maxmod;
 int32_t acux;
 int32_t acuy;
 int32_t acuz;
@@ -100,16 +100,16 @@ int getAccelAcu(uint8_t *data,int maxlen)
 }
 
 // calcula el modulo del vector
-uint16_t cmodulo(int16_t *acel)
+uint32_t cmodulo(int16_t *acel)
 {
-    float tmp;
+    uint32_t tmp;
     tmp = acel[0]*acel[0] + acel[1]*acel[1] + acel[2]*acel[2];
-    tmp = sqrt(tmp);
-    return floor(tmp);
+ //   tmp = sqrt(tmp);
+    return (tmp);
 }
 
 // Calcula picos de aceleracion (maximos).
-int cpicos(uint16_t *hmodulos, uint16_t actual)
+int cpicos(uint32_t *hmodulos, uint32_t actual)
 {
     int picos = 0;
     if(abs(hmodulos[1]-actual) > UMBRALG)
@@ -137,7 +137,7 @@ void procAcell()
 {
     int i,len;
     int16_t *pacel;
-    uint16_t modtmp;
+    uint32_t modtmp;
     
     if((tics() - tanterior) > 15000)
     {
@@ -152,7 +152,9 @@ void procAcell()
                 acuz += *(pacel+2);
                 nmues++;
                 modtmp = cmodulo(pacel);
-                picos += picos(hmodulos,modtmp);
+                if(modtmp > maxmod)
+                    maxmod = modtmp;
+                picos += cpicos(hmodulos,modtmp);
             }
         }
         else if(len < 0)
@@ -182,7 +184,7 @@ void resetAcell()
     hmodulos[0] = 0;
     hmodulos[1] = 0;
     picos = 0;
-    maxmod = 0xffff;
+    maxmod = 0;
     acux = 0;
     acuy = 0;
     acuz = 0;

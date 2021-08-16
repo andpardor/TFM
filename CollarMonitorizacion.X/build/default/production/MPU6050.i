@@ -350,16 +350,49 @@ void I2C1_WriteNBytes(i2c1_address_t address, uint8_t *data, size_t len);
 void I2C1_ReadNBytes(i2c1_address_t address, uint8_t *data, size_t len);
 void I2C1_ReadDataBlock(i2c1_address_t address, uint8_t reg, uint8_t *data, size_t len);
 # 35 "./mpu6050.h" 2
-# 433 "./mpu6050.h"
+# 1 "./collarM.h" 1
+# 43 "./collarM.h"
+typedef struct {
+     int32_t id;
+     uint16_t secuencia;
+     uint16_t latituddec;
+     uint16_t longituddec;
+     uint16_t actividad;
+     uint16_t tmpActividad;
+     uint16_t amedx;
+     uint16_t amedy;
+     uint16_t amedz;
+     uint32_t amodmax;
+     uint16_t bat;
+     int8_t nsat;
+     int8_t latitudint;
+     int8_t longitudint;
+     int8_t stat;
+     int8_t reser;
+     int8_t cksum;
+} COLLARM_t;
+# 36 "./mpu6050.h" 2
+# 434 "./mpu6050.h"
 void initialize();
 void fifoconfig();
 
 void getAcceleration(uint16_t *data);
 int getAccelAcu(uint8_t *data,int maxlen);
 void swapshort(uint16_t *data);
-int32_t modulo(int16_t *acel);
-int picos(int32_t *hmodulos, int32_t actual);
+uint32_t cmodulo(int16_t *acel);
+int cpicos(uint32_t *hmodulos, uint32_t actual);
+
+
+void iniacel();
+void procAcell();
+void llenaTramaAccel(COLLARM_t *tacel);
+void resetAcell();
 # 10 "MPU6050.c" 2
+# 1 "./funaux.h" 1
+# 15 "./funaux.h"
+unsigned long tics();
+void uart_traza();
+# 11 "MPU6050.c" 2
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/math.h" 1 3
 # 15 "/opt/microchip/xc8/v2.31/pic/include/c99/math.h" 3
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/bits/alltypes.h" 1 3
@@ -732,7 +765,7 @@ double jn(int, double);
 double y0(double);
 double y1(double);
 double yn(int, double);
-# 11 "MPU6050.c" 2
+# 12 "MPU6050.c" 2
 
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/stdlib.h" 1 3
 # 21 "/opt/microchip/xc8/v2.31/pic/include/c99/stdlib.h" 3
@@ -791,7 +824,19 @@ uldiv_t uldiv (unsigned long, unsigned long);
 
 
 size_t __ctype_get_mb_cur_max(void);
-# 13 "MPU6050.c" 2
+# 14 "MPU6050.c" 2
+
+uint16_t bufaccel[255];
+uint32_t tinicial;
+uint32_t hmodulos[2];
+uint16_t picos;
+uint32_t maxmod;
+int32_t acux;
+int32_t acuy;
+int32_t acuz;
+uint16_t nmues;
+uint32_t tanterior;
+
 
 
 void swapshort(uint16_t *data)
@@ -845,7 +890,7 @@ int getAccelAcu(uint8_t *data,int maxlen)
     if((tmp & 0x10) || (fifolen == 1024))
     {
             I2C1_Write1ByteRegister(0x68,0x6A, 0b01000100);
-            return 0;
+            return -1;
     }
 
 
@@ -869,19 +914,19 @@ int getAccelAcu(uint8_t *data,int maxlen)
 }
 
 
-int32_t modulo(int16_t *acel)
+uint32_t cmodulo(int16_t *acel)
 {
-    float tmp;
+    uint32_t tmp;
     tmp = acel[0]*acel[0] + acel[1]*acel[1] + acel[2]*acel[2];
-    tmp = sqrtf(tmp);
-    return floorf(tmp);
+
+    return (tmp);
 }
 
 
-int picos(int32_t *hmodulos, int32_t actual)
+int cpicos(uint32_t *hmodulos, uint32_t actual)
 {
     int picos = 0;
-    if(abs(hmodulos[1]-actual) > 500)
+    if(abs(hmodulos[1]-actual) > (500L*500L))
     {
         if(hmodulos[1]> hmodulos[0] && hmodulos[1]>actual)
             picos = 1;
@@ -890,4 +935,72 @@ int picos(int32_t *hmodulos, int32_t actual)
         hmodulos[1] = actual;
     }
     return picos;
+}
+
+
+void iniacel()
+{
+    initialize();
+    fifoconfig();
+    resetAcell();
+    tanterior = tics();
+}
+
+
+void procAcell()
+{
+    int i,len;
+    int16_t *pacel;
+    uint32_t modtmp;
+
+    if((tics() - tanterior) > 15000)
+    {
+        len = getAccelAcu(bufaccel,sizeof(bufaccel));
+        if(len > 0)
+        {
+            pacel = bufaccel;
+            for(i=0;i<len/2;i+=3,pacel+=3)
+            {
+                acux += *pacel;
+                acuy += *(pacel+1);
+                acuz += *(pacel+2);
+                nmues++;
+                modtmp = cmodulo(pacel);
+                if(modtmp > maxmod)
+                    maxmod = modtmp;
+                picos += cpicos(hmodulos,modtmp);
+            }
+        }
+        else if(len < 0)
+        {
+            uart_traza();
+            printf("OVER_ACCEL\r\n");
+        }
+        tanterior = tics();
+    }
+}
+
+
+void llenaTramaAccel(COLLARM_t *tacel)
+{
+    tacel->actividad = picos;
+    tacel->amodmax = maxmod;
+    tacel->tmpActividad = (tics() - tinicial)/1000;
+    tacel->amedx = acux/nmues;
+    tacel->amedy = acuy/nmues;
+    tacel->amedz = acuz/nmues;
+}
+
+
+void resetAcell()
+{
+    tinicial = tics();
+    hmodulos[0] = 0;
+    hmodulos[1] = 0;
+    picos = 0;
+    maxmod = 0;
+    acux = 0;
+    acuy = 0;
+    acuz = 0;
+    nmues = 0;
 }

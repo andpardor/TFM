@@ -429,7 +429,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-#define UMBRALG     500     // Umbral minimo aceleracion.
+#define UMBRALG     (500L*500L)     // Umbral minimo aceleracion.
     
 void initialize();  // config inicial acelerometro
 void fifoconfig();  // config activacion fifo para acelerometro.
@@ -437,8 +437,8 @@ void fifoconfig();  // config activacion fifo para acelerometro.
 void getAcceleration(uint16_t *data);       // get ultimo valor registros accel.
 int getAccelAcu(uint8_t *data,int maxlen);  // get datos accel en fifo.
 void swapshort(uint16_t *data);             // swap de un short.
-uint16_t cmodulo(int16_t *acel);              // modulo de un vector de aceleracion.
-int cpicos(uint16_t *hmodulos, uint16_t actual);   // busqueda de maximo relativo en curva accel.
+uint32_t cmodulo(int16_t *acel);              // modulo de un vector de aceleracion.
+int cpicos(uint32_t *hmodulos, uint32_t actual);   // busqueda de maximo relativo en curva accel.
 
 // Interfaz de operacion.
 void iniacel();

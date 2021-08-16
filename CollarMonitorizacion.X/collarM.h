@@ -33,18 +33,16 @@
 
 #include <stdint.h>
 
-// Comment a function and leverage automatic documentation with slash star star
-
-typedef struct {
-		char	comando[64];	// comando AT
-		char	resok[32];      // Respuesta si OK
-		char	resko[32];      // respuesta si KO.
-        char    termi;          // terminador de recepcion.
-		unsigned int tout;	// tiempo maximo respuesta en milisegundos.
-	} COMANDAT_t;
+// tiempo entre comunicaciones.
+#define  TOPER  900000L     // 15 minutos.
+#define TSIGUE  30000L      // 30 segundos.
+// Modos funcionamiento
+#define MOPER   1       // Modo operacion
+#define MVOZ    2       // Modo llamada voz
 
 typedef struct {
      int32_t 	id;             // Id dispositivo
+     uint16_t 	secuencia;      // secuencia de trama.
      uint16_t 	latituddec;     // parte decimal latitud (posicion)
      uint16_t 	longituddec;    // parte decimal longitud (posicion)
      uint16_t   actividad;      // medida actividad acelerometro (picos aceleracion).
@@ -52,16 +50,13 @@ typedef struct {
      uint16_t   amedx;          // coordenada x vector medio de aceleracion
      uint16_t   amedy;          // coordenada y vector medio de aceleracion
      uint16_t   amedz;          // coordenada z vector medio de aceleracion
-     uint16_t   amodmax;        // modulo maximo aceleracion en intervalo
+     uint32_t   amodmax;        // modulo maximo aceleracion en intervalo
      uint16_t 	bat;            // Tension bateria en milivoltios.
-     uint16_t 	secuencia;      // secuencia de trama.
      int8_t		nsat;           // N de satelites.
      int8_t 	latitudint;     // parte entera latitud en grados (posicion).
      int8_t 	longitudint;    // parte entera longitud en grados (posicion).
      int8_t     stat;           // Estado.
      int8_t     reser;          // Byte reservado.
-     int8_t     reser1;
-     int8_t     reser2;
      int8_t 	cksum;          // CKSUM de trama.
 } COLLARM_t; 
 
@@ -88,7 +83,7 @@ typedef struct {
 //  en recepcion:
 //      ACK = ((ACK1 xor 0xbb) and b'00111110) >> 1
 //      NACK = ((ACK2 xor 0xcc) and b'00111110) >> 1
-//      la trama es buena si ACK xor NACK = 0
+//      la trama es buena si ACK xor NACK = 0x1f
 #define MBOTON      0x01
 #define MFCALL      0x02
 #define MGPS        0x04

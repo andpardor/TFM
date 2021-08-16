@@ -1,12 +1,16 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"38 ./collarM.h
-[; ;./collarM.h: 38: typedef struct {
-[s S929 `uc -> 64 `i `uc -> 32 `i `uc -> 32 `i `uc 1 `ui 1 ]
-[n S929 . comando resok resko termi tout ]
-"46
-[; ;./collarM.h: 46: typedef struct {
-[s S930 `l 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `c 1 `c 1 `c 1 `c 1 ]
-[n S930 . telefono latituddec longituddec actividad tmpActividad bat secuencia nsat latitudint longitudint cksum ]
+"35 ./gsm.h
+[; ;./gsm.h: 35: typedef struct {
+[s S930 `uc -> 64 `i `uc -> 32 `i `uc -> 32 `i `uc 1 `ui 1 ]
+[n S930 . comando resok resko termi tout ]
+"43 ./collarM.h
+[; ;./collarM.h: 43: typedef struct {
+[s S929 `l 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `us 1 `c 1 `c 1 `c 1 `c 1 `c 1 `c 1 ]
+[n S929 . id secuencia latituddec longituddec actividad tmpActividad amedx amedy amedz amodmax bat nsat latitudint longitudint stat reser cksum ]
+"22 ./aes.h
+[; ;./aes.h: 22: {
+[s S931 `uc -> 176 `i ]
+[n S931 AES_ctx RoundKey ]
 "358 /home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 358:     struct {
 [s S34 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -30,6 +34,62 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13871
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 13871: extern volatile unsigned char RA4PPS __attribute__((address(0xE94)));
 [v _RA4PPS `Vuc ~T0 @X0 0 e@3732 ]
+"441
+[; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 441:     struct {
+[s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S38 . RC0 RC1 RC2 RC3 RC4 RC5 ]
+"440
+[; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 440: typedef union {
+[u S37 `S38 1 ]
+[n S37 . . ]
+"450
+[; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 450: extern volatile PORTCbits_t PORTCbits __attribute__((address(0x00E)));
+[v _PORTCbits `VS37 ~T0 @X0 0 e@14 ]
+"104 ./gsm.h
+[; ;./gsm.h: 104: int getbat(char *linea,int maxlen);
+[v _getbat `(i ~T0 @X0 0 ef2`*uc`i ]
+"46 ./gps.h
+[; ;./gps.h: 46: void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
+[v _gpsRead `(v ~T0 @X0 0 ef4`*uc`i`ui`*S929 ]
+"446 ./mpu6050.h
+[; ;./mpu6050.h: 446: void llenaTramaAccel(COLLARM_t *tacel);
+[v _llenaTramaAccel `(v ~T0 @X0 0 ef1`*S929 ]
+"49 ./gps.h
+[; ;./gps.h: 49: int getstgps();
+[v _getstgps `(i ~T0 @X0 0 e? ]
+"27 /opt/microchip/xc8/v2.31/pic/include/c99/string.h
+[; ;/opt/microchip/xc8/v2.31/pic/include/c99/string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
+[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+"32 ./aes.h
+[; ;./aes.h: 32: void AES_ECB_encrypt(const struct AES_ctx* ctx, uint8_t* buf);
+[v _AES_ECB_encrypt `(v ~T0 @X0 0 ef2`*CS931`*uc ]
+"39 ./base64.h
+[; ;./base64.h: 39: extern WORD Base64Encode(BYTE* cSourceData, WORD wSourceLen, BYTE* cDestData, WORD wDestLen);
+[v _Base64Encode `(us ~T0 @X0 0 ef4`*uc`us`*uc`us ]
+"100 ./gsm.h
+[; ;./gsm.h: 100: void startudp(char *linea,int maxlen);
+[v _startudp `(v ~T0 @X0 0 ef2`*uc`i ]
+"96
+[; ;./gsm.h: 96: void sendmsg(char *msg,int msglen,char *linea,int maxlen);
+[v _sendmsg `(v ~T0 @X0 0 ef4`*uc`i`*uc`i ]
+"99
+[; ;./gsm.h: 99: int recDosGSM(char *linea,unsigned int tout);
+[v _recDosGSM `(i ~T0 @X0 0 ef2`*uc`ui ]
+"47 ./gps.h
+[; ;./gps.h: 47: void gpson();
+[v _gpson `(v ~T0 @X0 0 e? ]
+"48
+[; ;./gps.h: 48: void gpsoff();
+[v _gpsoff `(v ~T0 @X0 0 e? ]
+"447 ./mpu6050.h
+[; ;./mpu6050.h: 447: void resetAcell();
+[v _resetAcell `(v ~T0 @X0 0 e? ]
+"101 ./gsm.h
+[; ;./gsm.h: 101: void stopudp(char *linea,int maxlen);
+[v _stopudp `(v ~T0 @X0 0 ef2`*uc`i ]
+"102
+[; ;./gsm.h: 102: void duerme(char *linea,int maxlen);
+[v _duerme `(v ~T0 @X0 0 ef2`*uc`i ]
 [p mainexit ]
 "78 ./mcc_generated_files/mcc.h
 [; ;./mcc_generated_files/mcc.h: 78: void SYSTEM_Initialize(void);
@@ -43,48 +103,42 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _TMR0_StartTimer `(v ~T0 @X0 0 ef ]
 "111 /opt/microchip/xc8/v2.31/pic/include/c99/stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"433 ./mpu6050.h
-[; ;./mpu6050.h: 433: void initialize();
-[v _initialize `(v ~T0 @X0 0 e? ]
-"434
-[; ;./mpu6050.h: 434: void fifoconfig();
-[v _fifoconfig `(v ~T0 @X0 0 e? ]
-"89 ./gsm.h
-[; ;./gsm.h: 89: void gsmon(char *linea,int maxlen);
+"8 ./eeprom.h
+[; ;./eeprom.h: 8: uint32_t getId();
+[v _getId `(ul ~T0 @X0 0 e? ]
+"444 ./mpu6050.h
+[; ;./mpu6050.h: 444: void iniacel();
+[v _iniacel `(v ~T0 @X0 0 e? ]
+"95 ./gsm.h
+[; ;./gsm.h: 95: void gsmon(char *linea,int maxlen);
 [v _gsmon `(v ~T0 @X0 0 ef2`*uc`i ]
-"97
-[; ;./gsm.h: 97: int getbat(char *linea,int maxlen);
-[v _getbat `(i ~T0 @X0 0 ef2`*uc`i ]
-"95
-[; ;./gsm.h: 95: void duerme(char *linea,int maxlen);
-[v _duerme `(v ~T0 @X0 0 ef2`*uc`i ]
-"436 ./mpu6050.h
-[; ;./mpu6050.h: 436: void getAcceleration(uint16_t *data);
-[v _getAcceleration `(v ~T0 @X0 0 ef1`*us ]
-"439
-[; ;./mpu6050.h: 439: int32_t modulo(int16_t *acel);
-[v _modulo `(l ~T0 @X0 0 ef1`*s ]
-"440
-[; ;./mpu6050.h: 440: int picos(int32_t *hmodulos, int32_t actual);
-[v _picos `(i ~T0 @X0 0 ef2`*l`l ]
-"46 ./gps.h
-[; ;./gps.h: 46: void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
-[v _gpsRead `(v ~T0 @X0 0 ef4`*uc`i`ui`*S930 ]
-"96 ./gsm.h
-[; ;./gsm.h: 96: void despierta(char *linea,int maxlen);
-[v _despierta `(v ~T0 @X0 0 ef2`*uc`i ]
-"90
-[; ;./gsm.h: 90: void sendmsg(char *msg,int msglen,char *linea,int maxlen);
-[v _sendmsg `(v ~T0 @X0 0 ef4`*uc`i`*uc`i ]
-"92
-[; ;./gsm.h: 92: int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
+"11 ./eeprom.h
+[; ;./eeprom.h: 11: void getClAes(char *linea);
+[v _getClAes `(v ~T0 @X0 0 ef1`*uc ]
+"26 ./aes.h
+[; ;./aes.h: 26: void AES_init_ctx(struct AES_ctx* ctx, const uint8_t* key);
+[v _AES_init_ctx `(v ~T0 @X0 0 ef2`*S931`*Cuc ]
+"94 ./gsm.h
+[; ;./gsm.h: 94: void uart_gsm();
+[v _uart_gsm `(v ~T0 @X0 0 e? ]
+"98
+[; ;./gsm.h: 98: int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
 [v _recLineaGSM `(i ~T0 @X0 0 ef4`*uc`i`ui`uc ]
-"94
-[; ;./gsm.h: 94: void stopudp(char *linea,int maxlen);
-[v _stopudp `(v ~T0 @X0 0 ef2`*uc`i ]
-"93
-[; ;./gsm.h: 93: void startudp(char *linea,int maxlen);
-[v _startudp `(v ~T0 @X0 0 ef2`*uc`i ]
+"51 /opt/microchip/xc8/v2.31/pic/include/c99/string.h
+[; ;/opt/microchip/xc8/v2.31/pic/include/c99/string.h: 51: char *strstr (const char *, const char *);
+[v _strstr `(*uc ~T0 @X0 0 ef2`*Cuc`*Cuc ]
+"97 ./gsm.h
+[; ;./gsm.h: 97: int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);
+[v _exeuno `(i ~T0 @X0 0 ef3`*S930`*uc`i ]
+"107
+[; ;./gsm.h: 107: void descuelgagsm(char *linea,int maxlen);
+[v _descuelgagsm `(v ~T0 @X0 0 ef2`*uc`i ]
+"106
+[; ;./gsm.h: 106: void cuelgagsm(char *linea,int maxlen);
+[v _cuelgagsm `(v ~T0 @X0 0 ef2`*uc`i ]
+"445 ./mpu6050.h
+[; ;./mpu6050.h: 445: void procAcell();
+[v _procAcell `(v ~T0 @X0 0 e? ]
 "55 /home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1134,9 +1188,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _gpswake
 -> -> 181 `i `uc
 ]
-"41 ./gsm.h
-[; ;./gsm.h: 41: const COMANDAT_t inicio[1] = {
-[v _inicio `CS929 ~T0 @X0 -> -> 1 `i `ux e ]
+"47 ./gsm.h
+[; ;./gsm.h: 47: const COMANDAT_t inicio[1] = {
+[v _inicio `CS930 ~T0 @X0 -> -> 1 `i `ux e ]
 [i _inicio
 :U ..
 :U ..
@@ -1180,9 +1234,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"45
-[; ;./gsm.h: 45: const COMANDAT_t initudp[3] = {
-[v _initudp `CS929 ~T0 @X0 -> 3 `i e ]
+"51
+[; ;./gsm.h: 51: const COMANDAT_t initudp[3] = {
+[v _initudp `CS930 ~T0 @X0 -> 3 `i e ]
 [i _initudp
 :U ..
 :U ..
@@ -1289,9 +1343,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"52
-[; ;./gsm.h: 52: const COMANDAT_t closeudp = {"at+cipshut\r\n","OK","ERROR",'\n',5000};
-[v _closeudp `CS929 ~T0 @X0 1 e ]
+"58
+[; ;./gsm.h: 58: const COMANDAT_t closeudp = {"at+cipshut\r\n","OK","ERROR",'\n',5000};
+[v _closeudp `CS930 ~T0 @X0 1 e ]
 [i _closeudp
 :U ..
 :U ..
@@ -1328,9 +1382,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"55
-[; ;./gsm.h: 55: const COMANDAT_t envimensa = {"at+cipsend\r\n",">","ERROR",'>',1000};
-[v _envimensa `CS929 ~T0 @X0 1 e ]
+"61
+[; ;./gsm.h: 61: const COMANDAT_t envimensa = {"at+cipsend\r\n",">","ERROR",'>',1000};
+[v _envimensa `CS930 ~T0 @X0 1 e ]
 [i _envimensa
 :U ..
 :U ..
@@ -1366,9 +1420,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"58
-[; ;./gsm.h: 58: const COMANDAT_t dormir = {"at+csclk=2\r\n","OK","ERROR",'\n',100};
-[v _dormir `CS929 ~T0 @X0 1 e ]
+"64
+[; ;./gsm.h: 64: const COMANDAT_t dormir = {"at+csclk=2\r\n","OK","ERROR",'\n',100};
+[v _dormir `CS930 ~T0 @X0 1 e ]
 [i _dormir
 :U ..
 :U ..
@@ -1405,9 +1459,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"61
-[; ;./gsm.h: 61: const COMANDAT_t noeco = {"ate0\r\n","OK","ERROR",'\n',1000};
-[v _noeco `CS929 ~T0 @X0 1 e ]
+"67
+[; ;./gsm.h: 67: const COMANDAT_t noeco = {"ate0\r\n","OK","ERROR",'\n',1000};
+[v _noeco `CS930 ~T0 @X0 1 e ]
 [i _noeco
 :U ..
 :U ..
@@ -1438,9 +1492,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"64
-[; ;./gsm.h: 64: const COMANDAT_t rssi = {"at+csq\r\n",":","ERROR",'\n',5000};
-[v _rssi `CS929 ~T0 @X0 1 e ]
+"70
+[; ;./gsm.h: 70: const COMANDAT_t rssi = {"at+csq\r\n",":","ERROR",'\n',5000};
+[v _rssi `CS930 ~T0 @X0 1 e ]
 [i _rssi
 :U ..
 :U ..
@@ -1472,9 +1526,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"67
-[; ;./gsm.h: 67: const COMANDAT_t midebat = {"at+cbc\r\n",":","ERROR",'\n',1000};
-[v _midebat `CS929 ~T0 @X0 1 e ]
+"73
+[; ;./gsm.h: 73: const COMANDAT_t midebat = {"at+cbc\r\n",":","ERROR",'\n',1000};
+[v _midebat `CS930 ~T0 @X0 1 e ]
 [i _midebat
 :U ..
 :U ..
@@ -1506,9 +1560,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"70
-[; ;./gsm.h: 70: const COMANDAT_t udpshut[2] = {{"at+cipclose=1\r\n","OK","ERROR",'\n',3000},
-[v _udpshut `CS929 ~T0 @X0 -> 2 `i e ]
+"76
+[; ;./gsm.h: 76: const COMANDAT_t udpshut[2] = {{"at+cipclose=1\r\n","OK","ERROR",'\n',3000},
+[v _udpshut `CS930 ~T0 @X0 -> 2 `i e ]
 [i _udpshut
 :U ..
 :U ..
@@ -1580,9 +1634,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"73
-[; ;./gsm.h: 73: const COMANDAT_t descuelga = {"ata\r\n","OK","CARRIER",'\n',5000};
-[v _descuelga `CS929 ~T0 @X0 1 e ]
+"79
+[; ;./gsm.h: 79: const COMANDAT_t descuelga = {"ata\r\n","OK","CARRIER",'\n',5000};
+[v _descuelga `CS930 ~T0 @X0 1 e ]
 [i _descuelga
 :U ..
 :U ..
@@ -1614,9 +1668,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"74
-[; ;./gsm.h: 74: const COMANDAT_t cuelga = {"AT+HVOIC\r\n","OK","ERROR",'\n',5000};
-[v _cuelga `CS929 ~T0 @X0 1 e ]
+"80
+[; ;./gsm.h: 80: const COMANDAT_t cuelga = {"AT+HVOIC\r\n","OK","ERROR",'\n',5000};
+[v _cuelga `CS930 ~T0 @X0 1 e ]
 [i _cuelga
 :U ..
 :U ..
@@ -1651,9 +1705,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"77
-[; ;./gsm.h: 77: const COMANDAT_t sonidoadj[5] = {
-[v _sonidoadj `CS929 ~T0 @X0 -> 5 `i e ]
+"83
+[; ;./gsm.h: 83: const COMANDAT_t sonidoadj[5] = {
+[v _sonidoadj `CS930 ~T0 @X0 -> 5 `i e ]
 [i _sonidoadj
 :U ..
 :U ..
@@ -1821,244 +1875,639 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"86
-[; ;./gsm.h: 86: const char terminador = '\x1A';
+"92
+[; ;./gsm.h: 92: const char terminador = '\x1A';
 [v _terminador `Cuc ~T0 @X0 1 e ]
 [i _terminador
 -> -> 26 `ui `uc
 ]
-"52 main.c
-[; ;main.c: 52: unsigned long milisegundos = 0;
+"55 main.c
+[; ;main.c: 55: unsigned long milisegundos = 0;
 [v _milisegundos `ul ~T0 @X0 1 e ]
 [i _milisegundos
 -> -> -> 0 `i `l `ul
 ]
-"53
-[; ;main.c: 53: char linear[100];
+"56
+[; ;main.c: 56: char linear[100];
 [v _linear `uc ~T0 @X0 -> 100 `i e ]
-"55
-[; ;main.c: 55: COLLARM_t collar;
-[v _collar `S930 ~T0 @X0 1 e ]
-"58
-[; ;main.c: 58: void intTim0(void)
-[v _intTim0 `(v ~T0 @X0 1 ef ]
+"57
+[; ;main.c: 57: char mensa[50];
+[v _mensa `uc ~T0 @X0 -> 50 `i e ]
 "59
-[; ;main.c: 59: {
-{
-[e :U _intTim0 ]
-[f ]
+[; ;main.c: 59: COLLARM_t collar;
+[v _collar `S929 ~T0 @X0 1 e ]
 "60
-[; ;main.c: 60:     milisegundos++;
-[e ++ _milisegundos -> -> -> 1 `i `l `ul ]
-"61
-[; ;main.c: 61: }
-[e :UE 931 ]
-}
-"63
-[; ;main.c: 63: unsigned long tics()
-[v _tics `(ul ~T0 @X0 1 ef ]
+[; ;main.c: 60: uint32_t collarId;
+[v _collarId `ul ~T0 @X0 1 e ]
+"62
+[; ;main.c: 62: struct AES_ctx ctx;
+[v _ctx `S931 ~T0 @X0 1 e ]
 "64
-[; ;main.c: 64: {
-{
-[e :U _tics ]
-[f ]
+[; ;main.c: 64: int modo;
+[v _modo `i ~T0 @X0 1 e ]
 "65
-[; ;main.c: 65:     unsigned long tmp;
-[v _tmp `ul ~T0 @X0 1 a ]
+[; ;main.c: 65: int boton;
+[v _boton `i ~T0 @X0 1 e ]
+"66
+[; ;main.c: 66: int fcall;
+[v _fcall `i ~T0 @X0 1 e ]
 "67
-[; ;main.c: 67:     (INTCONbits.GIE = 0);
-[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 67: int voz;
+[v _voz `i ~T0 @X0 1 e ]
 "68
-[; ;main.c: 68:     tmp = milisegundos;
-[e = _tmp _milisegundos ]
+[; ;main.c: 68: uint16_t secuencia;
+[v _secuencia `us ~T0 @X0 1 e ]
 "69
-[; ;main.c: 69:     (INTCONbits.GIE = 1);
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 69: int boton_ant;
+[v _boton_ant `i ~T0 @X0 1 e ]
 "70
-[; ;main.c: 70:     return tmp;
-[e ) _tmp ]
-[e $UE 932  ]
+[; ;main.c: 70: uint8_t baseres[2];
+[v _baseres `uc ~T0 @X0 -> 2 `i e ]
 "71
-[; ;main.c: 71: }
-[e :UE 932 ]
-}
+[; ;main.c: 71: uint32_t lastsend;
+[v _lastsend `ul ~T0 @X0 1 e ]
+"72
+[; ;main.c: 72: uint32_t intervalo;
+[v _intervalo `ul ~T0 @X0 1 e ]
 "75
-[; ;main.c: 75: void uart_traza()
-[v _uart_traza `(v ~T0 @X0 1 ef ]
+[; ;main.c: 75: void intTim0(void)
+[v _intTim0 `(v ~T0 @X0 1 ef ]
 "76
 [; ;main.c: 76: {
 {
-[e :U _uart_traza ]
+[e :U _intTim0 ]
 [f ]
 "77
-[; ;main.c: 77:     DELAY_milliseconds(3);
-[e ( _DELAY_milliseconds (1 -> -> 3 `i `us ]
+[; ;main.c: 77:     milisegundos++;
+[e ++ _milisegundos -> -> -> 1 `i `l `ul ]
 "78
-[; ;main.c: 78:     RC2PPS = 0x14;
-[e = _RC2PPS -> -> 20 `i `uc ]
-"79
-[; ;main.c: 79:     RC4PPS = 0;
-[e = _RC4PPS -> -> 0 `i `uc ]
+[; ;main.c: 78: }
+[e :UE 932 ]
+}
 "80
-[; ;main.c: 80:     RA4PPS = 0;
-[e = _RA4PPS -> -> 0 `i `uc ]
+[; ;main.c: 80: unsigned long tics()
+[v _tics `(ul ~T0 @X0 1 ef ]
 "81
-[; ;main.c: 81:     DELAY_milliseconds(3);
-[e ( _DELAY_milliseconds (1 -> -> 3 `i `us ]
+[; ;main.c: 81: {
+{
+[e :U _tics ]
+[f ]
 "82
-[; ;main.c: 82: }
+[; ;main.c: 82:     unsigned long tmp;
+[v _tmp `ul ~T0 @X0 1 a ]
+"84
+[; ;main.c: 84:     (INTCONbits.GIE = 0);
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+"85
+[; ;main.c: 85:     tmp = milisegundos;
+[e = _tmp _milisegundos ]
+"86
+[; ;main.c: 86:     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"87
+[; ;main.c: 87:     return tmp;
+[e ) _tmp ]
+[e $UE 933  ]
+"88
+[; ;main.c: 88: }
 [e :UE 933 ]
 }
+"92
+[; ;main.c: 92: void uart_traza()
+[v _uart_traza `(v ~T0 @X0 1 ef ]
+"93
+[; ;main.c: 93: {
+{
+[e :U _uart_traza ]
+[f ]
+"94
+[; ;main.c: 94:     DELAY_milliseconds(3);
+[e ( _DELAY_milliseconds (1 -> -> 3 `i `us ]
+"95
+[; ;main.c: 95:     RC2PPS = 0x14;
+[e = _RC2PPS -> -> 20 `i `uc ]
+"96
+[; ;main.c: 96:     RC4PPS = 0;
+[e = _RC4PPS -> -> 0 `i `uc ]
+"97
+[; ;main.c: 97:     RA4PPS = 0;
+[e = _RA4PPS -> -> 0 `i `uc ]
+"98
+[; ;main.c: 98:     DELAY_milliseconds(3);
+[e ( _DELAY_milliseconds (1 -> -> 3 `i `us ]
+"99
+[; ;main.c: 99: }
+[e :UE 934 ]
+}
+"101
+[; ;main.c: 101: void pboton()
+[v _pboton `(v ~T0 @X0 1 ef ]
+"102
+[; ;main.c: 102: {
+{
+[e :U _pboton ]
+[f ]
+"103
+[; ;main.c: 103:     if(boton_ant != PORTCbits.RC3)
+[e $ ! != _boton_ant -> . . _PORTCbits 0 3 `i 936  ]
+"104
+[; ;main.c: 104:     {
+{
+"105
+[; ;main.c: 105:         boton_ant = PORTCbits.RC3;
+[e = _boton_ant -> . . _PORTCbits 0 3 `i ]
+"106
+[; ;main.c: 106:         boton = 1;
+[e = _boton -> 1 `i ]
+"107
+[; ;main.c: 107:     }
+}
+[e :U 936 ]
+"108
+[; ;main.c: 108: }
+[e :UE 935 ]
+}
+"110
+[; ;main.c: 110: void sendTrama()
+[v _sendTrama `(v ~T0 @X0 1 ef ]
+"111
+[; ;main.c: 111: {
+{
+[e :U _sendTrama ]
+[f ]
+"112
+[; ;main.c: 112:     int i,lencod;
+[v _i `i ~T0 @X0 1 a ]
+[v _lencod `i ~T0 @X0 1 a ]
+"113
+[; ;main.c: 113:     uint8_t ack1,ack2;
+[v _ack1 `uc ~T0 @X0 1 a ]
+[v _ack2 `uc ~T0 @X0 1 a ]
+"116
+[; ;main.c: 116:     collar.id = collarId;
+[e = . _collar 0 -> _collarId `l ]
+"117
+[; ;main.c: 117:     collar.bat = getbat(linear,sizeof(linear));
+[e = . _collar 10 -> ( _getbat (2 , &U _linear -> -> # _linear `ui `i `us ]
+"118
+[; ;main.c: 118:     gpsRead(linear,sizeof(linear),3000,&collar);
+[e ( _gpsRead (4 , , , &U _linear -> -> # _linear `ui `i -> -> 3000 `i `ui &U _collar ]
+"119
+[; ;main.c: 119:     llenaTramaAccel(&collar);
+[e ( _llenaTramaAccel (1 &U _collar ]
+"120
+[; ;main.c: 120:     collar.secuencia = secuencia;
+[e = . _collar 1 _secuencia ]
+"121
+[; ;main.c: 121:     collar.stat = 0;
+[e = . _collar 14 -> -> 0 `i `c ]
+"122
+[; ;main.c: 122:     if(modo)
+[e $ ! != _modo -> 0 `i 938  ]
+"123
+[; ;main.c: 123:         collar.stat |= 0x08;
+[e =| . _collar 14 -> -> 8 `i `c ]
+[e :U 938 ]
+"124
+[; ;main.c: 124:     if(fcall)
+[e $ ! != _fcall -> 0 `i 939  ]
+"125
+[; ;main.c: 125:         collar.stat |= 0x02;
+[e =| . _collar 14 -> -> 2 `i `c ]
+[e :U 939 ]
+"126
+[; ;main.c: 126:     if(boton)
+[e $ ! != _boton -> 0 `i 940  ]
+"127
+[; ;main.c: 127:         collar.stat |= 0x01;
+[e =| . _collar 14 -> -> 1 `i `c ]
+[e :U 940 ]
+"128
+[; ;main.c: 128:     if(getstgps())
+[e $ ! != ( _getstgps ..  -> 0 `i 941  ]
+"129
+[; ;main.c: 129:         collar.stat |= 0x04;
+[e =| . _collar 14 -> -> 4 `i `c ]
+[e :U 941 ]
+"130
+[; ;main.c: 130:     collar.reser = 0;
+[e = . _collar 15 -> -> 0 `i `c ]
+"132
+[; ;main.c: 132:     for(i=0,collar.cksum=0;i<(sizeof(collar)-1);i++)
+{
+[e ; = _i -> 0 `i = . _collar 16 -> -> 0 `i `c ]
+[e $ < -> _i `ui - -> # _collar `ui -> -> 1 `i `ui 942  ]
+[e $U 943  ]
+[e :U 942 ]
+"133
+[; ;main.c: 133:   collar.cksum += ((unsigned char *)&collar)[i];
+[e =+ . _collar 16 -> *U + -> &U _collar `*uc * -> _i `x -> -> # *U -> &U _collar `*uc `i `x `c ]
+[e ++ _i -> 1 `i ]
+[e $ < -> _i `ui - -> # _collar `ui -> -> 1 `i `ui 942  ]
+[e :U 943 ]
+}
+"135
+[; ;main.c: 135:     memcpy(linear,(unsigned char *)&collar,sizeof(collar));
+[e ( _memcpy (3 , , -> &U _linear `*v -> -> &U _collar `*uc `*Cv -> # _collar `ui ]
+"136
+[; ;main.c: 136:     AES_ECB_encrypt(&ctx,linear);
+[e ( _AES_ECB_encrypt (2 , -> &U _ctx `*CS931 -> &U _linear `*uc ]
+"137
+[; ;main.c: 137:     AES_ECB_encrypt(&ctx,&linear[16]);
+[e ( _AES_ECB_encrypt (2 , -> &U _ctx `*CS931 -> &U *U + &U _linear * -> -> -> 16 `i `ui `ux -> -> # *U &U _linear `ui `ux `*uc ]
+"138
+[; ;main.c: 138:     lencod = Base64Encode((BYTE*)linear, (WORD)sizeof(collar), (BYTE*)mensa, (WORD)sizeof(mensa));
+[e = _lencod -> ( _Base64Encode (4 , , , -> &U _linear `*uc -> -> # _collar `ui `us -> &U _mensa `*uc -> -> # _mensa `ui `us `i ]
+"139
+[; ;main.c: 139:     baseres[0] = mensa[0];
+[e = *U + &U _baseres * -> -> -> 0 `i `ui `ux -> -> # *U &U _baseres `ui `ux -> *U + &U _mensa * -> -> -> 0 `i `ui `ux -> -> # *U &U _mensa `ui `ux `uc ]
+"140
+[; ;main.c: 140:     baseres[1] = mensa[1];
+[e = *U + &U _baseres * -> -> -> 1 `i `ui `ux -> -> # *U &U _baseres `ui `ux -> *U + &U _mensa * -> -> -> 1 `i `ui `ux -> -> # *U &U _mensa `ui `ux `uc ]
+"141
+[; ;main.c: 141:     startudp(linear,sizeof(linear));
+[e ( _startudp (2 , &U _linear -> -> # _linear `ui `i ]
+"142
+[; ;main.c: 142:     sendmsg(mensa,lencod,linear,sizeof(linear));
+[e ( _sendmsg (4 , , , &U _mensa _lencod &U _linear -> -> # _linear `ui `i ]
+"143
+[; ;main.c: 143:     linear[0] = 0;
+[e = *U + &U _linear * -> -> -> 0 `i `ui `ux -> -> # *U &U _linear `ui `ux -> -> 0 `i `uc ]
+"144
+[; ;main.c: 144:  lencod = recDosGSM(linear,2000);
+[e = _lencod ( _recDosGSM (2 , &U _linear -> -> 2000 `i `ui ]
+"146
+[; ;main.c: 146:     if(lencod == 2)
+[e $ ! == _lencod -> 2 `i 945  ]
+"147
+[; ;main.c: 147:     {
+{
+"148
+[; ;main.c: 148:         ack1 = (linear[0] ^ baseres[0]) & 0x3e;
+[e = _ack1 -> & ^ -> *U + &U _linear * -> -> -> 0 `i `ui `ux -> -> # *U &U _linear `ui `ux `i -> *U + &U _baseres * -> -> -> 0 `i `ui `ux -> -> # *U &U _baseres `ui `ux `i -> 62 `i `uc ]
+"149
+[; ;main.c: 149:         ack2 = (linear[1] ^ baseres[1]) & 0x3e;
+[e = _ack2 -> & ^ -> *U + &U _linear * -> -> -> 1 `i `ui `ux -> -> # *U &U _linear `ui `ux `i -> *U + &U _baseres * -> -> -> 1 `i `ui `ux -> -> # *U &U _baseres `ui `ux `i -> 62 `i `uc ]
+"150
+[; ;main.c: 150:         if((ack1 ^ ack2) == 0x3e)
+[e $ ! == ^ -> _ack1 `i -> _ack2 `i -> 62 `i 946  ]
+"151
+[; ;main.c: 151:         {
+{
+"152
+[; ;main.c: 152:             ack1 >>= 1;
+[e =>> _ack1 -> -> 1 `i `uc ]
+"153
+[; ;main.c: 153:             if(ack1 & 0x01)
+[e $ ! != & -> _ack1 `i -> 1 `i -> 0 `i 947  ]
+"154
+[; ;main.c: 154:                 boton = 0;
+[e = _boton -> 0 `i ]
+[e :U 947 ]
+"155
+[; ;main.c: 155:             if(ack1 & 0x08)
+[e $ ! != & -> _ack1 `i -> 8 `i -> 0 `i 948  ]
+"156
+[; ;main.c: 156:             {
+{
+"157
+[; ;main.c: 157:                 modo = 1;
+[e = _modo -> 1 `i ]
+"158
+[; ;main.c: 158:                 intervalo = 30000L;
+[e = _intervalo -> -> 30000 `l `ul ]
+"159
+[; ;main.c: 159:                 gpson();
+[e ( _gpson ..  ]
+"160
+[; ;main.c: 160:             }
+}
+[e $U 949  ]
+"161
+[; ;main.c: 161:             else
+[e :U 948 ]
+"162
+[; ;main.c: 162:             {
+{
+"163
+[; ;main.c: 163:                 intervalo = 900000L;
+[e = _intervalo -> -> 900000 `l `ul ]
+"164
+[; ;main.c: 164:                 modo = 0;
+[e = _modo -> 0 `i ]
+"165
+[; ;main.c: 165:             }
+}
+[e :U 949 ]
+"166
+[; ;main.c: 166:             if(ack1 & 0x02)
+[e $ ! != & -> _ack1 `i -> 2 `i -> 0 `i 950  ]
+"167
+[; ;main.c: 167:                 fcall = 1;
+[e = _fcall -> 1 `i ]
+[e $U 951  ]
+"168
+[; ;main.c: 168:             else
+[e :U 950 ]
+"169
+[; ;main.c: 169:                 fcall = 0;
+[e = _fcall -> 0 `i ]
+[e :U 951 ]
+"170
+[; ;main.c: 170:             if(ack1 & 0x04)
+[e $ ! != & -> _ack1 `i -> 4 `i -> 0 `i 952  ]
+"171
+[; ;main.c: 171:                 gpson();
+[e ( _gpson ..  ]
+[e $U 953  ]
+"172
+[; ;main.c: 172:             else
+[e :U 952 ]
+"173
+[; ;main.c: 173:                 gpsoff();
+[e ( _gpsoff ..  ]
+[e :U 953 ]
+"174
+[; ;main.c: 174:         }
+}
+[e :U 946 ]
+"175
+[; ;main.c: 175:         resetAcell();
+[e ( _resetAcell ..  ]
+"176
+[; ;main.c: 176:     }
+}
+[e :U 945 ]
+"177
+[; ;main.c: 177:     secuencia++;
+[e ++ _secuencia -> -> 1 `i `us ]
+"178
+[; ;main.c: 178:     stopudp(linear,sizeof(linear));
+[e ( _stopudp (2 , &U _linear -> -> # _linear `ui `i ]
+"179
+[; ;main.c: 179:     duerme(linear,sizeof(linear));
+[e ( _duerme (2 , &U _linear -> -> # _linear `ui `i ]
+"180
+[; ;main.c: 180:     lastsend = tics();
+[e = _lastsend ( _tics ..  ]
+"181
+[; ;main.c: 181: }
+[e :UE 937 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"87
-[; ;main.c: 87: void main(void)
+"186
+[; ;main.c: 186: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"88
-[; ;main.c: 88: {
+"187
+[; ;main.c: 187: {
 {
 [e :U _main ]
 [f ]
-"89
-[; ;main.c: 89:     int16_t acel[3];
+"188
+[; ;main.c: 188:     int16_t acel[3];
 [v _acel `s ~T0 @X0 -> 3 `i a ]
-"90
-[; ;main.c: 90:     unsigned long maxtime;
+"189
+[; ;main.c: 189:     unsigned long maxtime;
 [v _maxtime `ul ~T0 @X0 1 a ]
-"91
-[; ;main.c: 91:     int len;
+"190
+[; ;main.c: 190:     int len;
 [v _len `i ~T0 @X0 1 a ]
-"92
-[; ;main.c: 92:     int valtmp;
+"191
+[; ;main.c: 191:     int valtmp;
 [v _valtmp `i ~T0 @X0 1 a ]
-"93
-[; ;main.c: 93:     int pasos = 0;
+"192
+[; ;main.c: 192:     int pasos = 0;
 [v _pasos `i ~T0 @X0 1 a ]
 [e = _pasos -> 0 `i ]
-"94
-[; ;main.c: 94:     int primero = 1;
+"193
+[; ;main.c: 193:     int primero = 1;
 [v _primero `i ~T0 @X0 1 a ]
 [e = _primero -> 1 `i ]
-"95
-[; ;main.c: 95:     int32_t vector[2];
+"194
+[; ;main.c: 194:     int32_t vector[2];
 [v _vector `l ~T0 @X0 -> 2 `i a ]
-"96
-[; ;main.c: 96:     int32_t actual;
+"195
+[; ;main.c: 195:     int32_t actual;
 [v _actual `l ~T0 @X0 1 a ]
-"99
-[; ;main.c: 99:     SYSTEM_Initialize();
+"198
+[; ;main.c: 198:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"103
-[; ;main.c: 103:     TMR0_SetInterruptHandler(intTim0);
+"202
+[; ;main.c: 202:     TMR0_SetInterruptHandler(intTim0);
 [e ( _TMR0_SetInterruptHandler (1 &U _intTim0 ]
-"104
-[; ;main.c: 104:     TMR0_StartTimer();
+"203
+[; ;main.c: 203:     TMR0_StartTimer();
 [e ( _TMR0_StartTimer ..  ]
-"107
-[; ;main.c: 107:     (INTCONbits.PEIE = 1);
+"206
+[; ;main.c: 206:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-"108
-[; ;main.c: 108:     (INTCONbits.GIE = 1);
+"207
+[; ;main.c: 207:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"110
-[; ;main.c: 110:     uart_traza();
+"209
+[; ;main.c: 209:     uart_traza();
 [e ( _uart_traza ..  ]
-"111
-[; ;main.c: 111:     printf("Hola\r\n");
+"210
+[; ;main.c: 210:     printf("Hola\r\n");
 [e ( _printf :s 1C ]
-"115
-[; ;main.c: 115:     initialize();
-[e ( _initialize ..  ]
-"116
-[; ;main.c: 116:     fifoconfig();
-[e ( _fifoconfig ..  ]
-"121
-[; ;main.c: 121:     gsmon(linear,sizeof(linear));
+"211
+[; ;main.c: 211:     modo = 0;
+[e = _modo -> 0 `i ]
+"212
+[; ;main.c: 212:     boton = 0;
+[e = _boton -> 0 `i ]
+"213
+[; ;main.c: 213:     fcall = 0;
+[e = _fcall -> 0 `i ]
+"214
+[; ;main.c: 214:     voz = 0;
+[e = _voz -> 0 `i ]
+"215
+[; ;main.c: 215:     collarId = getId();
+[e = _collarId ( _getId ..  ]
+"216
+[; ;main.c: 216:     secuencia = 0;
+[e = _secuencia -> -> 0 `i `us ]
+"217
+[; ;main.c: 217:     boton_ant = PORTCbits.RC3;
+[e = _boton_ant -> . . _PORTCbits 0 3 `i ]
+"220
+[; ;main.c: 220:     iniacel();
+[e ( _iniacel ..  ]
+"221
+[; ;main.c: 221:     DELAY_milliseconds(2000);
+[e ( _DELAY_milliseconds (1 -> -> 2000 `i `us ]
+"223
+[; ;main.c: 223:     gsmon(linear,sizeof(linear));
 [e ( _gsmon (2 , &U _linear -> -> # _linear `ui `i ]
-"122
-[; ;main.c: 122:     valtmp = getbat(linear,sizeof(linear));
-[e = _valtmp ( _getbat (2 , &U _linear -> -> # _linear `ui `i ]
-"123
-[; ;main.c: 123:     uart_traza();
-[e ( _uart_traza ..  ]
-"124
-[; ;main.c: 124:     printf("BAT=>%d\r\n",valtmp);
-[e ( _printf , (. :s 2C _valtmp ]
-"125
-[; ;main.c: 125:     duerme(linear,sizeof(linear));
+"224
+[; ;main.c: 224:     gpsoff();
+[e ( _gpsoff ..  ]
+"225
+[; ;main.c: 225:     getClAes(linear);
+[e ( _getClAes (1 &U _linear ]
+"226
+[; ;main.c: 226:     linear[16] = 0;
+[e = *U + &U _linear * -> -> -> 16 `i `ui `ux -> -> # *U &U _linear `ui `ux -> -> 0 `i `uc ]
+"227
+[; ;main.c: 227:     AES_init_ctx(&ctx,linear);
+[e ( _AES_init_ctx (2 , &U _ctx -> &U _linear `*Cuc ]
+"228
+[; ;main.c: 228:     intervalo = 900000L;
+[e = _intervalo -> -> 900000 `l `ul ]
+"229
+[; ;main.c: 229:     sendTrama();
+[e ( _sendTrama ..  ]
+"230
+[; ;main.c: 230:     duerme(linear,sizeof(linear));
 [e ( _duerme (2 , &U _linear -> -> # _linear `ui `i ]
-"127
-[; ;main.c: 127:     while (1)
-[e :U 936 ]
-"128
-[; ;main.c: 128:     {
+"232
+[; ;main.c: 232:     while (1)
+[e :U 956 ]
+"233
+[; ;main.c: 233:     {
 {
-"135
-[; ;main.c: 135:         getAcceleration(acel);
-[e ( _getAcceleration (1 -> &U _acel `*us ]
-"136
-[; ;main.c: 136:         actual = modulo(acel);
-[e = _actual ( _modulo (1 &U _acel ]
-"137
-[; ;main.c: 137:         pasos += picos(vector,actual);
-[e =+ _pasos ( _picos (2 , &U _vector _actual ]
-"138
-[; ;main.c: 138:         uart_traza();
-[e ( _uart_traza ..  ]
-"139
-[; ;main.c: 139:         printf("Pasos: %d /r/n",pasos);
-[e ( _printf , (. :s 3C _pasos ]
-"140
-[; ;main.c: 140:         DELAY_milliseconds(1000);
-[e ( _DELAY_milliseconds (1 -> -> 1000 `i `us ]
-"146
-[; ;main.c: 146:         gpsRead(linear,sizeof(linear),10000,&collar);
-[e ( _gpsRead (4 , , , &U _linear -> -> # _linear `ui `i -> -> 10000 `i `ui &U _collar ]
-"147
-[; ;main.c: 147:         DELAY_milliseconds(1000);
-[e ( _DELAY_milliseconds (1 -> -> 1000 `i `us ]
-"161
-[; ;main.c: 161:         despierta(linear,sizeof(linear));
-[e ( _despierta (2 , &U _linear -> -> # _linear `ui `i ]
-"162
-[; ;main.c: 162:         valtmp = getbat(linear,sizeof(linear));
-[e = _valtmp ( _getbat (2 , &U _linear -> -> # _linear `ui `i ]
-"163
-[; ;main.c: 163:         uart_traza();
-[e ( _uart_traza ..  ]
-"164
-[; ;main.c: 164:         printf("BAT=>%d\r\n",valtmp);
-[e ( _printf , (. :s 4C _valtmp ]
-"165
-[; ;main.c: 165:         sendmsg("hola",4,linear,sizeof(linear));
-[e ( _sendmsg (4 , , , :s 5C -> 4 `i &U _linear -> -> # _linear `ui `i ]
-"166
-[; ;main.c: 166:         recLineaGSM(linear,sizeof(linear),10000,'\n');
-[e ( _recLineaGSM (4 , , , &U _linear -> -> # _linear `ui `i -> -> 10000 `i `ui -> -> 10 `ui `uc ]
-"167
-[; ;main.c: 167:         stopudp(linear,sizeof(linear));
-[e ( _stopudp (2 , &U _linear -> -> # _linear `ui `i ]
-"168
-[; ;main.c: 168:         duerme(linear,sizeof(linear));
-[e ( _duerme (2 , &U _linear -> -> # _linear `ui `i ]
-"169
-[; ;main.c: 169:         DELAY_milliseconds(10000);
-[e ( _DELAY_milliseconds (1 -> -> 10000 `i `us ]
-"170
-[; ;main.c: 170:         startudp(linear,sizeof(linear));
-[e ( _startudp (2 , &U _linear -> -> # _linear `ui `i ]
-"172
-[; ;main.c: 172:     }
+"234
+[; ;main.c: 234:         if(voz == 0)
+[e $ ! == _voz -> 0 `i 958  ]
+"235
+[; ;main.c: 235:         {
+{
+"236
+[; ;main.c: 236:             uart_gsm();
+[e ( _uart_gsm ..  ]
+"237
+[; ;main.c: 237:             linear[0] = 0;
+[e = *U + &U _linear * -> -> -> 0 `i `ui `ux -> -> # *U &U _linear `ui `ux -> -> 0 `i `uc ]
+"238
+[; ;main.c: 238:             len = recLineaGSM(linear,sizeof(linear),5000,'\n');
+[e = _len ( _recLineaGSM (4 , , , &U _linear -> -> # _linear `ui `i -> -> 5000 `i `ui -> -> 10 `ui `uc ]
+"239
+[; ;main.c: 239:             if((len > 0) && (strstr(linear,"RI") != ((void*)0)))
+[e $ ! && > _len -> 0 `i != ( _strstr (2 , -> &U _linear `*Cuc :s 2C -> -> -> 0 `i `*v `*uc 959  ]
+"240
+[; ;main.c: 240:             {
+{
+"241
+[; ;main.c: 241:                 uart_gsm();
+[e ( _uart_gsm ..  ]
+"242
+[; ;main.c: 242:                 exeuno(&noeco,linear,sizeof(linear));
+[e ( _exeuno (3 , , -> &U _noeco `*S930 &U _linear -> -> # _linear `ui `i ]
+"243
+[; ;main.c: 243:                 if(fcall)
+[e $ ! != _fcall -> 0 `i 960  ]
+"244
+[; ;main.c: 244:                 {
+{
+"245
+[; ;main.c: 245:                     descuelgagsm(linear,sizeof(linear));
+[e ( _descuelgagsm (2 , &U _linear -> -> # _linear `ui `i ]
+"246
+[; ;main.c: 246:                     voz = 1;
+[e = _voz -> 1 `i ]
+"247
+[; ;main.c: 247:                 }
 }
-[e :U 935 ]
-[e $U 936  ]
-[e :U 937 ]
-"173
-[; ;main.c: 173: }
-[e :UE 934 ]
+[e $U 961  ]
+"248
+[; ;main.c: 248:                 else
+[e :U 960 ]
+"249
+[; ;main.c: 249:                 {
+{
+"250
+[; ;main.c: 250:                     cuelgagsm(linear,sizeof(linear));
+[e ( _cuelgagsm (2 , &U _linear -> -> # _linear `ui `i ]
+"251
+[; ;main.c: 251:                     DELAY_milliseconds(2000);
+[e ( _DELAY_milliseconds (1 -> -> 2000 `i `us ]
+"252
+[; ;main.c: 252:                     sendTrama();
+[e ( _sendTrama ..  ]
+"253
+[; ;main.c: 253:                 }
 }
-[p f _printf 8388736 ]
-[a 3C 80 97 115 111 115 58 32 37 100 32 47 114 47 110 0 ]
-[a 5C 104 111 108 97 0 ]
-[a 2C 66 65 84 61 62 37 100 13 10 0 ]
-[a 4C 66 65 84 61 62 37 100 13 10 0 ]
+[e :U 961 ]
+"254
+[; ;main.c: 254:             }
+}
+[e :U 959 ]
+"255
+[; ;main.c: 255:             if(voz == 0)
+[e $ ! == _voz -> 0 `i 962  ]
+"256
+[; ;main.c: 256:             {
+{
+"257
+[; ;main.c: 257:                 if((tics() - lastsend) > intervalo)
+[e $ ! > - ( _tics ..  _lastsend _intervalo 963  ]
+"258
+[; ;main.c: 258:                    sendTrama();
+[e ( _sendTrama ..  ]
+[e :U 963 ]
+"259
+[; ;main.c: 259:             }
+}
+[e :U 962 ]
+"260
+[; ;main.c: 260:         }
+}
+[e $U 964  ]
+"261
+[; ;main.c: 261:         else
+[e :U 958 ]
+"262
+[; ;main.c: 262:         {
+{
+"263
+[; ;main.c: 263:             uart_gsm();
+[e ( _uart_gsm ..  ]
+"264
+[; ;main.c: 264:             linear[0] = 0;
+[e = *U + &U _linear * -> -> -> 0 `i `ui `ux -> -> # *U &U _linear `ui `ux -> -> 0 `i `uc ]
+"265
+[; ;main.c: 265:             len = recLineaGSM(linear,sizeof(linear),5000,'\n');
+[e = _len ( _recLineaGSM (4 , , , &U _linear -> -> # _linear `ui `i -> -> 5000 `i `ui -> -> 10 `ui `uc ]
+"266
+[; ;main.c: 266:             if(len > 0)
+[e $ ! > _len -> 0 `i 965  ]
+"267
+[; ;main.c: 267:             {
+{
+"268
+[; ;main.c: 268:                 cuelgagsm(linear,sizeof(linear));
+[e ( _cuelgagsm (2 , &U _linear -> -> # _linear `ui `i ]
+"269
+[; ;main.c: 269:                 voz = 0;
+[e = _voz -> 0 `i ]
+"270
+[; ;main.c: 270:                 DELAY_milliseconds(2000);
+[e ( _DELAY_milliseconds (1 -> -> 2000 `i `us ]
+"271
+[; ;main.c: 271:                 sendTrama();
+[e ( _sendTrama ..  ]
+"272
+[; ;main.c: 272:             }
+}
+[e :U 965 ]
+"273
+[; ;main.c: 273:         }
+}
+[e :U 964 ]
+"274
+[; ;main.c: 274:         procAcell();
+[e ( _procAcell ..  ]
+"275
+[; ;main.c: 275:     }
+}
+[e :U 955 ]
+[e $U 956  ]
+[e :U 957 ]
+"276
+[; ;main.c: 276: }
+[e :UE 954 ]
+}
+[p f _printf 8388608 ]
+[a 2C 82 73 0 ]
 [a 1C 72 111 108 97 13 10 0 ]

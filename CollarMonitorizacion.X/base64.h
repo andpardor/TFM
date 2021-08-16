@@ -28,39 +28,16 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef GPS_H
-#define	GPS_H
+#ifndef BASE64_H
+#define	BASE64_H
 
-#include "collarM.h"
+#include <xc.h> // include processor files - each processor file is guarded.  
 
-//==============================================================================
-// PROGRAMACION GPS.
-const char cabgps[] = "$GPGGA";                     // Cabecera NMEA GGA
-const uint8_t gpssleep[] = { 0xb5, 0x62, 0x02, 0x41, 0x08, 0x00,0x00, 0x00, 0x00, 0x00,
-                            0x02, 0x00, 0x00, 0x00 };
-const uint8_t gpswake = 0xb5;
+typedef uint8_t BYTE;
+typedef uint16_t WORD;
 
-// Comment a function and leverage automatic documentation with slash star star
+extern WORD Base64Encode(BYTE* cSourceData, WORD wSourceLen, BYTE* cDestData, WORD wDestLen);
+extern WORD Base64Decode(BYTE* cSourceData, WORD wSourceLen, BYTE* cDestData, WORD wDestLen);
 
-void uart_gps();
-void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
-void gpson();
-void gpsoff();
-int getstgps();
-
-// TODO Insert declarations or function prototypes (right here) to leverage 
-// live documentation
-
-#ifdef	__cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
-    // TODO If C++ is being used, regular C code needs function names to have C 
-    // linkage so the functions can be used by the c code. 
-
-#ifdef	__cplusplus
-}
-#endif /* __cplusplus */
-
-#endif	/* GPS_H */
+#endif	/* XC_HEADER_TEMPLATE_H */
 

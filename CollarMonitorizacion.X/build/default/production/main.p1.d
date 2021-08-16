@@ -14,7 +14,10 @@ mcc_generated_files/eusart.h  \
 mcc_generated_files/delay.h  \
 mpu6050.h  \
 mcc_generated_files/examples/i2c1_master_example.h  \
-gps.h  \
 collarM.h  \
+gps.h  \
 gsm.h  \
-funaux.h 
+funaux.h  \
+aes.h  \
+base64.h  \
+eeprom.h 

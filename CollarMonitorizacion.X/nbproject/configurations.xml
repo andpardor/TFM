@@ -64,6 +64,10 @@
       <itemPath>funaux.h</itemPath>
       <itemPath>eeprom.c</itemPath>
       <itemPath>eeprom.h</itemPath>
+      <itemPath>aes.c</itemPath>
+      <itemPath>aes.h</itemPath>
+      <itemPath>base64.c</itemPath>
+      <itemPath>base64.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

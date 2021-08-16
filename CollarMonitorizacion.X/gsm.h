@@ -32,7 +32,13 @@
 #define	GSM_H
 #include "collarM.h" 
 
-// Comment a function and leverage automatic documentation with slash star star
+typedef struct {
+		char	comando[64];	// comando AT
+		char	resok[32];      // Respuesta si OK
+		char	resko[32];      // respuesta si KO.
+        char    termi;          // terminador de recepcion.
+		unsigned int tout;	// tiempo maximo respuesta en milisegundos.
+	} COMANDAT_t;
 
 //==============================================================================
 // PROGRAMACION GSM.
@@ -85,16 +91,18 @@ const COMANDAT_t	sonidoadj[5] = {
 // Terminador mensaje UDP.
 const char terminador = '\x1A';
 
-
+void uart_gsm();
 void gsmon(char *linea,int maxlen);
 void sendmsg(char *msg,int msglen,char *linea,int maxlen);
 int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);
 int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
+int recDosGSM(char *linea,unsigned int tout);
 void startudp(char *linea,int maxlen);
 void stopudp(char *linea,int maxlen);
 void duerme(char *linea,int maxlen);
 void despierta(char *linea,int maxlen);
 int getbat(char *linea,int maxlen);
+
 void cuelgagsm(char *linea,int maxlen);
 void descuelgagsm(char *linea,int maxlen);
 
