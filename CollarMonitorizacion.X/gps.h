@@ -47,6 +47,7 @@ void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
 void gpson();
 void gpsoff();
 int getstgps();
+void ckgps();
 
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation

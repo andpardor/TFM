@@ -11052,7 +11052,7 @@ void WDT_Initialize(void);
 void PMD_Initialize(void);
 # 46 "main.c" 2
 # 1 "./mpu6050.h" 1
-# 34 "./mpu6050.h"
+# 35 "./mpu6050.h"
 # 1 "./mcc_generated_files/examples/i2c1_master_example.h" 1
 # 54 "./mcc_generated_files/examples/i2c1_master_example.h"
 uint8_t I2C1_Read1ByteRegister(i2c1_address_t address, uint8_t reg);
@@ -11062,7 +11062,7 @@ void I2C1_Write2ByteRegister(i2c1_address_t address, uint8_t reg, uint16_t data)
 void I2C1_WriteNBytes(i2c1_address_t address, uint8_t *data, size_t len);
 void I2C1_ReadNBytes(i2c1_address_t address, uint8_t *data, size_t len);
 void I2C1_ReadDataBlock(i2c1_address_t address, uint8_t reg, uint8_t *data, size_t len);
-# 35 "./mpu6050.h" 2
+# 36 "./mpu6050.h" 2
 # 1 "./collarM.h" 1
 # 43 "./collarM.h"
 typedef struct {
@@ -11084,8 +11084,8 @@ typedef struct {
      int8_t reser;
      int8_t cksum;
 } COLLARM_t;
-# 36 "./mpu6050.h" 2
-# 434 "./mpu6050.h"
+# 37 "./mpu6050.h" 2
+# 435 "./mpu6050.h"
 void initialize();
 void fifoconfig();
 
@@ -11096,7 +11096,7 @@ uint32_t cmodulo(int16_t *acel);
 int cpicos(uint32_t *hmodulos, uint32_t actual);
 
 
-void iniacel();
+int iniacel();
 void procAcell();
 void llenaTramaAccel(COLLARM_t *tacel);
 void resetAcell();
@@ -11115,6 +11115,7 @@ void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
 void gpson();
 void gpsoff();
 int getstgps();
+void ckgps();
 # 48 "main.c" 2
 # 1 "./gsm.h" 1
 # 35 "./gsm.h"
@@ -11141,7 +11142,7 @@ const COMANDAT_t initudp[3] = {
 };
 
 
-const COMANDAT_t closeudp = {"at+cipshut\r\n","OK","ERROR",'\n',5000};
+
 
 
 const COMANDAT_t envimensa = {"at+cipsend\r\n",">","ERROR",'>',1000};
@@ -11260,12 +11261,14 @@ struct AES_ctx ctx;
 int modo;
 int boton;
 int fcall;
+int llamada;
 int voz;
 uint16_t secuencia;
 int boton_ant;
 uint8_t baseres[2];
 uint32_t lastsend;
 uint32_t intervalo;
+uint32_t tfcall;
 
 
 void intTim0(void)
@@ -11294,14 +11297,7 @@ void uart_traza()
     DELAY_milliseconds(3);
 }
 
-void pboton()
-{
-    if(boton_ant != PORTCbits.RC3)
-    {
-        boton_ant = PORTCbits.RC3;
-        boton = 1;
-    }
-}
+
 
 void sendTrama()
 {
@@ -11317,7 +11313,7 @@ void sendTrama()
     collar.stat = 0;
     if(modo)
         collar.stat |= 0x08;
-    if(fcall)
+    if(llamada)
         collar.stat |= 0x02;
     if(boton)
         collar.stat |= 0x01;
@@ -11346,6 +11342,9 @@ void sendTrama()
         if((ack1 ^ ack2) == 0x3e)
         {
             ack1 >>= 1;
+            uart_traza();
+            printf("ACKOK=>%02x\r\n",ack1);
+            uart_gsm();
             if(ack1 & 0x01)
                 boton = 0;
             if(ack1 & 0x08)
@@ -11360,20 +11359,49 @@ void sendTrama()
                 modo = 0;
             }
             if(ack1 & 0x02)
+            {
                 fcall = 1;
+                tfcall = tics();
+            }
             else
+            {
                 fcall = 0;
+                llamada = 0;
+            }
             if(ack1 & 0x04)
                 gpson();
             else
                 gpsoff();
         }
+
+
+
+
+
+
         resetAcell();
+    }
+    else
+    {
+        uart_traza();
+        printf("NORECACK=>%d\r\n",lencod);
+        uart_gsm();
     }
     secuencia++;
     stopudp(linear,sizeof(linear));
     duerme(linear,sizeof(linear));
     lastsend = tics();
+}
+
+void pboton()
+{
+    if(boton_ant != PORTCbits.RC3)
+    {
+        boton_ant = PORTCbits.RC3;
+        boton = 1;
+        modo = 1;
+        sendTrama();
+    }
 }
 
 
@@ -11407,16 +11435,20 @@ void main(void)
     modo = 0;
     boton = 0;
     fcall = 0;
+    llamada = 0;
     voz = 0;
     collarId = getId();
     secuencia = 0;
     boton_ant = PORTCbits.RC3;
 
 
-    iniacel();
-    DELAY_milliseconds(2000);
+    DELAY_milliseconds(1000);
+    valtmp = iniacel();
+
+    DELAY_milliseconds(1000);
 
     gsmon(linear,sizeof(linear));
+    DELAY_milliseconds(3000);
     gpsoff();
     getClAes(linear);
     linear[16] = 0;
@@ -11444,12 +11476,15 @@ void main(void)
                 else
                 {
                     cuelgagsm(linear,sizeof(linear));
-                    DELAY_milliseconds(2000);
+                    DELAY_milliseconds(4000);
                     sendTrama();
                 }
             }
+            if(len == 0)
+               ckgps();
             if(voz == 0)
             {
+                pboton();
                 if((tics() - lastsend) > intervalo)
                    sendTrama();
             }
@@ -11463,10 +11498,14 @@ void main(void)
             {
                 cuelgagsm(linear,sizeof(linear));
                 voz = 0;
-                DELAY_milliseconds(2000);
+                DELAY_milliseconds(4000);
+                llamada = 1;
                 sendTrama();
             }
         }
+        if((fcall == 1) && (tics()-tfcall) > 900000L)
+            llamada = 1;
+
         procAcell();
     }
 }

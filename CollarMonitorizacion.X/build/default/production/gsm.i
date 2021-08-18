@@ -425,7 +425,7 @@ const COMANDAT_t initudp[3] = {
 };
 
 
-const COMANDAT_t closeudp = {"at+cipshut\r\n","OK","ERROR",'\n',5000};
+
 
 
 const COMANDAT_t envimensa = {"at+cipsend\r\n",">","ERROR",'>',1000};
@@ -11356,9 +11356,9 @@ int waitIni(char *linea,int maxlen)
         DELAY_milliseconds(1000);
         return 1;
     }
-    uart_traza();
-    printf("Falla INI..\r\n");
-    uart_gsm();
+
+
+
     return 0;
 }
 
@@ -11395,7 +11395,7 @@ void gsmon(char *linea,int maxlen)
 
     getDominio(linea);
     sprintf(udpstart.comando,"at+cipstart=\"UDP\",\"%s\",\"%d\"\r\n",linea,getPort());
-    sprintf(simpin.comando,"at+cpin=%04d\r\n",getPin());
+    sprintf(simpin.comando,"at+cpin=\"%04d\"\r\n",getPin());
 
     uart_gsm();
     for(i=0;i<10;i++)
@@ -11423,7 +11423,7 @@ void startudp(char *linea,int maxlen)
 void stopudp(char *linea,int maxlen)
 {
  waitIni(linea,maxlen);
-    exeuno(&udpshut,linea,maxlen);
+    exeuno(&udpshut[0],linea,maxlen);
 }
 
 

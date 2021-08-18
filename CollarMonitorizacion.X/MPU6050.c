@@ -75,8 +75,8 @@ int getAccelAcu(uint8_t *data,int maxlen)
     fifolen = I2C1_Read2ByteRegister(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_FIFO_COUNTH); // lee longitud fifo.
     if((tmp & 0x10) || (fifolen == 1024))   // overrun de fifo, reseteamos y despreciamos lectura.
     {
-            I2C1_Write1ByteRegister(MPU6050_DEFAULT_ADDRESS,MPU6050_RA_USER_CTRL, 0b01000100);
-            return -1;
+        I2C1_Write1ByteRegister(MPU6050_DEFAULT_ADDRESS,MPU6050_RA_USER_CTRL, 0b01000100);
+        return -1;
     }
  
     // transferimos el minimo entre contenido fifo y tamanho buffer.
@@ -124,12 +124,25 @@ int cpicos(uint32_t *hmodulos, uint32_t actual)
 }
 
 // Inicia y configura acelerometro.
-void iniacel()
+int iniacel()
 {
-    initialize();
-    fifoconfig();
+    int i;
+    uint16_t fifolen;
+    
+    for(i=0;i<3;i++)
+    {
+        initialize();
+        DELAY_milliseconds(500);
+        fifoconfig();
+        DELAY_milliseconds(500);
+        fifolen = I2C1_Read2ByteRegister(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_FIFO_COUNTH);
+        if(fifolen < 1024)
+            break;
+        DELAY_milliseconds(1000);
+    }
     resetAcell();
     tanterior = tics();
+    return i;
 }
 
 // proceso periodico de la info acelerometro.
@@ -139,7 +152,7 @@ void procAcell()
     int16_t *pacel;
     uint32_t modtmp;
     
-    if((tics() - tanterior) > 15000)
+    if((tics() - tanterior) > 5000)
     {
         len = getAccelAcu(bufaccel,sizeof(bufaccel));
         if(len > 0)
@@ -156,6 +169,8 @@ void procAcell()
                     maxmod = modtmp;
                 picos += cpicos(hmodulos,modtmp);
             }
+            uart_traza();
+            printf("ACC=>%d\r\n",len);
         }
         else if(len < 0)
         {

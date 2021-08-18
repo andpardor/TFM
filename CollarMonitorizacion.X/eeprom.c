@@ -3,8 +3,8 @@
 
 // contenido por defecto de la EEPROM.
 // La EEPROM contiene los datos por defecto del dispositivo que hay que personalizar.
-__EEPROM_DATA ( '1', '0', '0', '0', '0', '0', '0', '0');  // Num.(off=>0) ID dispositivo.
-__EEPROM_DATA ( '0',0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF);  // Num 9 cifras. terminado en 0
+__EEPROM_DATA ( '2', '0', '0', '0', '0', '0', '0', '0');  // Num.(off=>0) ID dispositivo.
+__EEPROM_DATA ( '1',0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF);  // Num 9 cifras. terminado en 0
 __EEPROM_DATA ( 'c', 'h', 'u', 'c', 'h', 'o', 'm', 'a');  // Dominio (off=>16) dir gateway
 __EEPROM_DATA ( 'l', 'o', '.', 'e', 's',0x00,0xFF,0xFF);  // Dominio terminado en 0
 __EEPROM_DATA (0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF);  // Dominio
@@ -12,7 +12,7 @@ __EEPROM_DATA (0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF);  // Dominio
 __EEPROM_DATA ( '2', '5', '0', '0', '0',0x00,0xFF,0xFF);  // Port (off=>48) gway terminado en 0
 __EEPROM_DATA ( 'c', 'h', 'u', 'c', 'h', 'o', 'm', 'a');  // Clave (off=>56) AES gway
 __EEPROM_DATA ( 'l', 'o',0x00,0x00,0x00,0x00,0x00,0x00);  // Clave relleno a ceros hasta 16 bytes.
-__EEPROM_DATA ( '5', '9', '0', '1',0x00,0xFF,0xFF,0xFF);  // PIN sim (off=>72) terminado en 0
+__EEPROM_DATA ( '9', '5', '9', '3',0x00,0xFF,0xFF,0xFF);  // PIN sim (off=>72) terminado en 0
 
 
 uint32_t getId()

@@ -42,17 +42,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "52 /opt/microchip/xc8/v2.31/pic/include/c99/string.h
 [; ;/opt/microchip/xc8/v2.31/pic/include/c99/string.h: 52: char *strtok (char *restrict, const char *restrict);
 [v _strtok `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"16 ./funaux.h
-[; ;./funaux.h: 16: void uart_traza();
-[v _uart_traza `(v ~T0 @X0 0 e? ]
-"111 /opt/microchip/xc8/v2.31/pic/include/c99/stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "159 ./mcc_generated_files/eusart.h
 [; ;./mcc_generated_files/eusart.h: 159: _Bool EUSART_is_tx_ready(void);
 [v _EUSART_is_tx_ready `(a ~T0 @X0 0 ef ]
 "342
 [; ;./mcc_generated_files/eusart.h: 342: void EUSART_Write(uint8_t txData);
 [v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
+"16 ./funaux.h
+[; ;./funaux.h: 16: void uart_traza();
+[v _uart_traza `(v ~T0 @X0 0 e? ]
+"111 /opt/microchip/xc8/v2.31/pic/include/c99/stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "55 /home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1617,247 +1617,313 @@ Version 4.0 HI-TECH Software Intermediate Code
 "191
 [; ;gps.c: 191:         {
 {
-"192
-[; ;gps.c: 192:            uart_traza();
-[e ( _uart_traza ..  ]
-"193
-[; ;gps.c: 193:            printf("RGPS=>%s\n",linear);
-[e ( _printf , (. :s 9C _linear ]
-"194
-[; ;gps.c: 194:            uart_gps();
-[e ( _uart_gps ..  ]
 "195
 [; ;gps.c: 195:            anaGPS(linear,gps);
 [e ( _anaGPS (2 , _linear _gps ]
-"197
-[; ;gps.c: 197:         }
+"196
+[; ;gps.c: 196:            return;
+[e $UE 959  ]
+"198
+[; ;gps.c: 198:         }
 }
 [e $U 965  ]
-"198
-[; ;gps.c: 198:         else
-[e :U 964 ]
 "199
-[; ;gps.c: 199:         {
-{
+[; ;gps.c: 199:         else
+[e :U 964 ]
 "200
-[; ;gps.c: 200:             uart_traza();
-[e ( _uart_traza ..  ]
-"201
-[; ;gps.c: 201:             printf("RGPS=>NOREC\n");
-[e ( _printf :s 10C ]
-"202
-[; ;gps.c: 202:             uart_gps();
-[e ( _uart_gps ..  ]
-"203
-[; ;gps.c: 203:             gpscero(gps);
-[e ( _gpscero (1 _gps ]
+[; ;gps.c: 200:         {
+{
 "204
-[; ;gps.c: 204:         }
+[; ;gps.c: 204:             gpscero(gps);
+[e ( _gpscero (1 _gps ]
+"205
+[; ;gps.c: 205:             return;
+[e $UE 959  ]
+"206
+[; ;gps.c: 206:         }
 }
 [e :U 965 ]
-"205
-[; ;gps.c: 205:         if(gps->nsat != 0)
-[e $ ! != -> . *U _gps 11 `i -> 0 `i 966  ]
-"206
-[; ;gps.c: 206:             break;
-[e $U 963  ]
-[e :U 966 ]
-"207
-[; ;gps.c: 207:     }
+"209
+[; ;gps.c: 209:     }
 }
 [e :U 961 ]
 "187
 [; ;gps.c: 187:     while(tics() < maxtime)
 [e $ < ( _tics ..  _maxtime 962  ]
 [e :U 963 ]
-"208
-[; ;gps.c: 208:     uart_traza();
-[e ( _uart_traza ..  ]
-"209
-[; ;gps.c: 209:     printf("LON:%d.%d LAT:%d.%d SAT:%d\r\n",gps->latitudint,gps->latituddec,
-[e ( _printf , , , , , (. :s 11C -> . *U _gps 12 `i -> . *U _gps 2 `ui -> . *U _gps 13 `i -> . *U _gps 3 `ui -> . *U _gps 11 `i ]
-"211
-[; ;gps.c: 211: }
+"213
+[; ;gps.c: 213: }
 [e :UE 959 ]
 }
-"214
-[; ;gps.c: 214: void writegps(uint8_t *msg,uint8_t len)
+"216
+[; ;gps.c: 216: void writegps(uint8_t *msg,uint8_t len)
 [v _writegps `(v ~T0 @X0 1 ef2`*uc`uc ]
-"215
-[; ;gps.c: 215: {
+"217
+[; ;gps.c: 217: {
 {
 [e :U _writegps ]
-"214
-[; ;gps.c: 214: void writegps(uint8_t *msg,uint8_t len)
+"216
+[; ;gps.c: 216: void writegps(uint8_t *msg,uint8_t len)
 [v _msg `*uc ~T0 @X0 1 r1 ]
 [v _len `uc ~T0 @X0 1 r2 ]
-"215
-[; ;gps.c: 215: {
+"217
+[; ;gps.c: 217: {
 [f ]
-"216
-[; ;gps.c: 216:     int i;
-[v _i `i ~T0 @X0 1 a ]
 "218
-[; ;gps.c: 218:     for(i=0;i<len;i++)
+[; ;gps.c: 218:     int i;
+[v _i `i ~T0 @X0 1 a ]
+"220
+[; ;gps.c: 220:     for(i=0;i<len;i++)
 {
 [e = _i -> 0 `i ]
-[e $U 971  ]
-[e :U 968 ]
-"219
-[; ;gps.c: 219:     {
-{
-"220
-[; ;gps.c: 220:         while(!EUSART_is_tx_ready());
-[e $U 972  ]
-[e :U 973 ]
-[e :U 972 ]
-[e $ ! != -> ( _EUSART_is_tx_ready ..  `i -> 0 `i 973  ]
-[e :U 974 ]
+[e $U 970  ]
+[e :U 967 ]
 "221
-[; ;gps.c: 221:         EUSART_Write(msg[i]);
-[e ( _EUSART_Write (1 *U + _msg * -> _i `x -> -> # *U _msg `i `x ]
+[; ;gps.c: 221:     {
+{
 "222
-[; ;gps.c: 222:     }
+[; ;gps.c: 222:         while(!EUSART_is_tx_ready());
+[e $U 971  ]
+[e :U 972 ]
+[e :U 971 ]
+[e $ ! != -> ( _EUSART_is_tx_ready ..  `i -> 0 `i 972  ]
+[e :U 973 ]
+"223
+[; ;gps.c: 223:         EUSART_Write(msg[i]);
+[e ( _EUSART_Write (1 *U + _msg * -> _i `x -> -> # *U _msg `i `x ]
+"224
+[; ;gps.c: 224:     }
 }
 [e ++ _i -> 1 `i ]
-[e :U 971 ]
-[e $ < _i -> _len `i 968  ]
-[e :U 969 ]
+[e :U 970 ]
+[e $ < _i -> _len `i 967  ]
+[e :U 968 ]
 }
-"223
-[; ;gps.c: 223: }
-[e :UE 967 ]
+"225
+[; ;gps.c: 225: }
+[e :UE 966 ]
 }
-"226
-[; ;gps.c: 226: void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
+"228
+[; ;gps.c: 228: void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
 [v _gpscksum `(v ~T0 @X0 1 ef4`*uc`uc`*uc`*uc ]
-"227
-[; ;gps.c: 227: {
+"229
+[; ;gps.c: 229: {
 {
 [e :U _gpscksum ]
-"226
-[; ;gps.c: 226: void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
+"228
+[; ;gps.c: 228: void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
 [v _msg `*uc ~T0 @X0 1 r1 ]
 [v _len `uc ~T0 @X0 1 r2 ]
 [v _cka `*uc ~T0 @X0 1 r3 ]
 [v _ckb `*uc ~T0 @X0 1 r4 ]
-"227
-[; ;gps.c: 227: {
+"229
+[; ;gps.c: 229: {
 [f ]
-"228
-[; ;gps.c: 228:     int i;
-[v _i `i ~T0 @X0 1 a ]
 "230
-[; ;gps.c: 230:     *cka = 0;
-[e = *U _cka -> -> 0 `i `uc ]
-"231
-[; ;gps.c: 231:     *ckb = 0;
-[e = *U _ckb -> -> 0 `i `uc ]
+[; ;gps.c: 230:     int i;
+[v _i `i ~T0 @X0 1 a ]
 "232
-[; ;gps.c: 232:     for(i=2;i<len;i++)
+[; ;gps.c: 232:     *cka = 0;
+[e = *U _cka -> -> 0 `i `uc ]
+"233
+[; ;gps.c: 233:     *ckb = 0;
+[e = *U _ckb -> -> 0 `i `uc ]
+"234
+[; ;gps.c: 234:     for(i=2;i<len;i++)
 {
 [e = _i -> 2 `i ]
-[e $U 979  ]
-[e :U 976 ]
-"233
-[; ;gps.c: 233:     {
-{
-"234
-[; ;gps.c: 234:         *cka += msg[i];
-[e =+ *U _cka -> *U + _msg * -> _i `x -> -> # *U _msg `i `x `uc ]
+[e $U 978  ]
+[e :U 975 ]
 "235
-[; ;gps.c: 235:         *ckb += *cka;
-[e =+ *U _ckb -> *U _cka `uc ]
+[; ;gps.c: 235:     {
+{
 "236
-[; ;gps.c: 236:     }
+[; ;gps.c: 236:         *cka += msg[i];
+[e =+ *U _cka -> *U + _msg * -> _i `x -> -> # *U _msg `i `x `uc ]
+"237
+[; ;gps.c: 237:         *ckb += *cka;
+[e =+ *U _ckb -> *U _cka `uc ]
+"238
+[; ;gps.c: 238:     }
 }
 [e ++ _i -> 1 `i ]
-[e :U 979 ]
-[e $ < _i -> _len `i 976  ]
-[e :U 977 ]
+[e :U 978 ]
+[e $ < _i -> _len `i 975  ]
+[e :U 976 ]
 }
-"237
-[; ;gps.c: 237: }
-[e :UE 975 ]
+"239
+[; ;gps.c: 239: }
+[e :UE 974 ]
 }
-"240
-[; ;gps.c: 240: void gpson()
+"242
+[; ;gps.c: 242: void gpson()
 [v _gpson `(v ~T0 @X0 1 ef ]
-"241
-[; ;gps.c: 241: {
+"243
+[; ;gps.c: 243: {
 {
 [e :U _gpson ]
 [f ]
-"242
-[; ;gps.c: 242:     uint8_t wake = gpswake;
+"244
+[; ;gps.c: 244:     uint8_t wake = gpswake;
 [v _wake `uc ~T0 @X0 1 a ]
 [e = _wake _gpswake ]
-"244
-[; ;gps.c: 244:     uart_gps();
-[e ( _uart_gps ..  ]
-"245
-[; ;gps.c: 245:     writegps(&wake,1);
-[e ( _writegps (2 , &U _wake -> -> 1 `i `uc ]
 "246
-[; ;gps.c: 246:     stgps = 1;
-[e = _stgps -> 1 `i ]
+[; ;gps.c: 246:     uart_gps();
+[e ( _uart_gps ..  ]
 "247
-[; ;gps.c: 247: }
-[e :UE 980 ]
-}
+[; ;gps.c: 247:     writegps(&wake,1);
+[e ( _writegps (2 , &U _wake -> -> 1 `i `uc ]
+"248
+[; ;gps.c: 248:     stgps = 1;
+[e = _stgps -> 1 `i ]
+"249
+[; ;gps.c: 249:     uart_traza();
+[e ( _uart_traza ..  ]
 "250
-[; ;gps.c: 250: void gpsoff()
+[; ;gps.c: 250: }
+[e :UE 979 ]
+}
+"253
+[; ;gps.c: 253: void gpsoff()
 [v _gpsoff `(v ~T0 @X0 1 ef ]
-"251
-[; ;gps.c: 251: {
+"254
+[; ;gps.c: 254: {
 {
 [e :U _gpsoff ]
 [f ]
-"252
-[; ;gps.c: 252:     uint8_t cka;
-[v _cka `uc ~T0 @X0 1 a ]
-"253
-[; ;gps.c: 253:     uint8_t ckb;
-[v _ckb `uc ~T0 @X0 1 a ]
 "255
-[; ;gps.c: 255:     uart_gps();
-[e ( _uart_gps ..  ]
+[; ;gps.c: 255:     uint8_t cka;
+[v _cka `uc ~T0 @X0 1 a ]
 "256
-[; ;gps.c: 256:     gpscksum(gpssleep,sizeof(gpssleep),&cka,&ckb);
-[e ( _gpscksum (4 , , , -> &U _gpssleep `*uc -> -> # _gpssleep `ui `uc &U _cka &U _ckb ]
+[; ;gps.c: 256:     uint8_t ckb;
+[v _ckb `uc ~T0 @X0 1 a ]
 "257
-[; ;gps.c: 257:     writegps(gpssleep,sizeof(gpssleep));
-[e ( _writegps (2 , -> &U _gpssleep `*uc -> -> # _gpssleep `ui `uc ]
-"258
-[; ;gps.c: 258:     writegps(&cka,1);
-[e ( _writegps (2 , &U _cka -> -> 1 `i `uc ]
+[; ;gps.c: 257:     uint8_t wake = gpswake;
+[v _wake `uc ~T0 @X0 1 a ]
+[e = _wake _gpswake ]
 "259
-[; ;gps.c: 259:     writegps(&ckb,1);
-[e ( _writegps (2 , &U _ckb -> -> 1 `i `uc ]
+[; ;gps.c: 259:     uart_gps();
+[e ( _uart_gps ..  ]
 "260
-[; ;gps.c: 260:     stgps = 0;
-[e = _stgps -> 0 `i ]
+[; ;gps.c: 260:     writegps(&wake,1);
+[e ( _writegps (2 , &U _wake -> -> 1 `i `uc ]
 "261
-[; ;gps.c: 261: }
-[e :UE 981 ]
-}
+[; ;gps.c: 261:     gpscksum(gpssleep,sizeof(gpssleep),&cka,&ckb);
+[e ( _gpscksum (4 , , , -> &U _gpssleep `*uc -> -> # _gpssleep `ui `uc &U _cka &U _ckb ]
+"262
+[; ;gps.c: 262:     writegps(gpssleep,sizeof(gpssleep));
+[e ( _writegps (2 , -> &U _gpssleep `*uc -> -> # _gpssleep `ui `uc ]
 "263
-[; ;gps.c: 263: int getstgps()
-[v _getstgps `(i ~T0 @X0 1 ef ]
+[; ;gps.c: 263:     writegps(&cka,1);
+[e ( _writegps (2 , &U _cka -> -> 1 `i `uc ]
 "264
-[; ;gps.c: 264: {
+[; ;gps.c: 264:     writegps(&ckb,1);
+[e ( _writegps (2 , &U _ckb -> -> 1 `i `uc ]
+"265
+[; ;gps.c: 265:     stgps = 0;
+[e = _stgps -> 0 `i ]
+"266
+[; ;gps.c: 266:     uart_traza();
+[e ( _uart_traza ..  ]
+"267
+[; ;gps.c: 267: }
+[e :UE 980 ]
+}
+"269
+[; ;gps.c: 269: int getstgps()
+[v _getstgps `(i ~T0 @X0 1 ef ]
+"270
+[; ;gps.c: 270: {
 {
 [e :U _getstgps ]
 [f ]
-"265
-[; ;gps.c: 265:     return stgps;
+"271
+[; ;gps.c: 271:     return stgps;
 [e ) _stgps ]
+[e $UE 981  ]
+"272
+[; ;gps.c: 272: }
+[e :UE 981 ]
+}
+"274
+[; ;gps.c: 274: void ckgps()
+[v _ckgps `(v ~T0 @X0 1 ef ]
+"275
+[; ;gps.c: 275: {
+{
+[e :U _ckgps ]
+[f ]
+"276
+[; ;gps.c: 276:     int i,n;
+[v _i `i ~T0 @X0 1 a ]
+[v _n `i ~T0 @X0 1 a ]
+"277
+[; ;gps.c: 277:     char c;
+[v _c `uc ~T0 @X0 1 a ]
+"279
+[; ;gps.c: 279:     if(stgps == 1)
+[e $ ! == _stgps -> 1 `i 983  ]
+"280
+[; ;gps.c: 280:         return;
 [e $UE 982  ]
-"266
-[; ;gps.c: 266: }
+[e :U 983 ]
+"281
+[; ;gps.c: 281:     uart_gps();
+[e ( _uart_gps ..  ]
+"282
+[; ;gps.c: 282:     for(i=0,n=0;i<10;i++)
+{
+[e ; = _i -> 0 `i = _n -> 0 `i ]
+[e $ < _i -> 10 `i 984  ]
+[e $U 985  ]
+[e :U 984 ]
+"283
+[; ;gps.c: 283:     {
+{
+"284
+[; ;gps.c: 284:         if(EUSART_is_rx_ready())
+[e $ ! != -> ( _EUSART_is_rx_ready ..  `i -> 0 `i 987  ]
+"285
+[; ;gps.c: 285:         {
+{
+"286
+[; ;gps.c: 286:             c = EUSART_Read();
+[e = _c -> ( _EUSART_Read ..  `uc ]
+"287
+[; ;gps.c: 287:             n++;
+[e ++ _n -> 1 `i ]
+"288
+[; ;gps.c: 288:         }
+}
+[e :U 987 ]
+"289
+[; ;gps.c: 289:         DELAY_milliseconds(2);
+[e ( _DELAY_milliseconds (1 -> -> 2 `i `us ]
+"290
+[; ;gps.c: 290:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 984  ]
+[e :U 985 ]
+}
+"291
+[; ;gps.c: 291:     uart_traza();
+[e ( _uart_traza ..  ]
+"292
+[; ;gps.c: 292:     printf("RGPS=>%d\r\n",n);
+[e ( _printf , (. :s 9C _n ]
+"293
+[; ;gps.c: 293:     if(n > 1)
+[e $ ! > _n -> 1 `i 988  ]
+"294
+[; ;gps.c: 294:         gpsoff();
+[e ( _gpsoff ..  ]
+[e :U 988 ]
+"296
+[; ;gps.c: 296: }
 [e :UE 982 ]
 }
-[p f _printf 8650880 ]
+[p f _printf 8388736 ]
 [a 1C 44 0 ]
 [a 2C 44 0 ]
 [a 3C 44 0 ]
@@ -1866,6 +1932,4 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 6C 44 0 ]
 [a 7C 44 0 ]
 [a 8C 44 0 ]
-[a 9C 82 71 80 83 61 62 37 115 10 0 ]
-[a 10C 82 71 80 83 61 62 78 79 82 69 67 10 0 ]
-[a 11C 76 79 78 58 37 100 46 37 100 32 76 65 84 58 37 100 46 37 100 32 83 65 84 58 37 100 13 10 0 ]
+[a 9C 82 71 80 83 61 62 37 100 13 10 0 ]

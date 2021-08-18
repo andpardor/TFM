@@ -64,12 +64,14 @@ struct AES_ctx ctx; // Estructura AES. para cifrado.
 int modo;
 int boton;
 int fcall;
+int llamada;
 int voz;
 uint16_t    secuencia;
 int boton_ant;
 uint8_t baseres[2];
 uint32_t lastsend;
 uint32_t intervalo;
+uint32_t tfcall;
 
 // Timer con tic de milisegundos para control de operacion, no se actualiza en SLEEP
 void intTim0(void)
@@ -98,14 +100,7 @@ void uart_traza()
     DELAY_milliseconds(3);
 }
 
-void pboton()
-{
-    if(boton_ant != BOTON_GetValue())
-    {
-        boton_ant = BOTON_GetValue();
-        boton = 1;
-    }
-}
+
 
 void sendTrama()
 {
@@ -121,7 +116,7 @@ void sendTrama()
     collar.stat = 0;                            // estado.
     if(modo)
         collar.stat |= SMODO;
-    if(fcall)
+    if(llamada)
         collar.stat |= SFCALL;
     if(boton)
         collar.stat |= SBOTON;
@@ -150,6 +145,9 @@ void sendTrama()
         if((ack1 ^ ack2) == 0x3e)
         {
             ack1 >>= 1;
+            uart_traza();
+            printf("ACKOK=>%02x\r\n",ack1);
+            uart_gsm();
             if(ack1 & MBOTON)
                 boton = 0;
             if(ack1 & MMODO)
@@ -164,20 +162,49 @@ void sendTrama()
                 modo = 0;
             }
             if(ack1 & MFCALL)
+            {
                 fcall = 1;
+                tfcall = tics();
+            }
             else 
+            {
                 fcall = 0;
+                llamada = 0;
+            }
             if(ack1 & MGPS)
                 gpson();
             else
                 gpsoff();
         }
+ //       else
+ //       {
+ //           uart_traza();
+ //           printf("ACKKKOO=>%02x,%02x\r\n",ack1,ack2);
+ //           uart_gsm();
+ //       }
         resetAcell();
+    }
+    else
+    {
+        uart_traza();
+        printf("NORECACK=>%d\r\n",lencod);
+        uart_gsm();
     }
     secuencia++;
     stopudp(linear,sizeof(linear));
     duerme(linear,sizeof(linear));
     lastsend = tics();
+}
+
+void pboton()
+{
+    if(boton_ant != BOTON_GetValue())
+    {
+        boton_ant = BOTON_GetValue();
+        boton = 1;
+        modo = 1;
+        sendTrama();
+    }
 }
 
 /*
@@ -211,16 +238,20 @@ void main(void)
     modo = 0;
     boton = 0;
     fcall = 0;
+    llamada = 0;
     voz = 0;
     collarId = getId();
     secuencia = 0;
     boton_ant = BOTON_GetValue();
     // Inicialización del acelerometro
     // Configuración baja energia acelerometro
-    iniacel();
-    DELAY_milliseconds(2000);
+    DELAY_milliseconds(1000);
+    valtmp = iniacel();
+ //   printf("IAC=>%d\r\n",valtmp);
+    DELAY_milliseconds(1000);
     // Inicialización del GSM
     gsmon(linear,sizeof(linear));
+    DELAY_milliseconds(3000);
     gpsoff();
     getClAes(linear);
     linear[16] = 0;
@@ -248,12 +279,15 @@ void main(void)
                 else
                 {
                     cuelgagsm(linear,sizeof(linear));
-                    DELAY_milliseconds(2000);
+                    DELAY_milliseconds(4000);
                     sendTrama();
                 }
             }
+            if(len == 0)
+               ckgps(); 
             if(voz == 0)
             {
+                pboton();
                 if((tics() - lastsend) > intervalo)
                    sendTrama(); 
             }
@@ -267,10 +301,14 @@ void main(void)
             {
                 cuelgagsm(linear,sizeof(linear));
                 voz = 0;
-                DELAY_milliseconds(2000);
+                DELAY_milliseconds(4000);
+                llamada = 1;
                 sendTrama();
             }
         }
+        if((fcall == 1) && (tics()-tfcall) > 900000L)
+            llamada = 1;
+ 
         procAcell();
     }
 }

@@ -189,25 +189,27 @@ void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
         len = recLineaGPS(linear,maxlen,tout);
         if(len)
         {
-           uart_traza();
-           printf("RGPS=>%s\n",linear);
-           uart_gps();
+      //     uart_traza();
+      //     printf("RGPS=>%s\n",linear);
+      //     uart_gps();
            anaGPS(linear,gps);
+           return;
 
         }
         else
         {
-            uart_traza();
-            printf("RGPS=>NOREC\n");
-            uart_gps();
+        //    uart_traza();
+        //    printf("RGPS=>NOREC\n");
+        //    uart_gps();
             gpscero(gps);
+            return;
         }
-        if(gps->nsat != 0)
-            break;
+ //       if(gps->nsat != 0)
+ //           break;
     }
-    uart_traza();
-    printf("LON:%d.%d LAT:%d.%d SAT:%d\r\n",gps->latitudint,gps->latituddec,
-            gps->longitudint,gps->longituddec,gps->nsat);
+ //   uart_traza();
+ //   printf("LON:%d.%d LAT:%d.%d SAT:%d\r\n",gps->latitudint,gps->latituddec,
+ //           gps->longitudint,gps->longituddec,gps->nsat);
 }
 
 // Escribe mensaje a GPS (Configuracion).
@@ -244,6 +246,7 @@ void gpson()
     uart_gps();
     writegps(&wake,1);
     stgps = 1;
+    uart_traza();
 }
 
 // Pone al GPS en modo SLEEP.
@@ -251,16 +254,43 @@ void gpsoff()
 {
     uint8_t cka;
     uint8_t ckb;
+    uint8_t wake = gpswake;
     
     uart_gps();
+    writegps(&wake,1);  // por si estaba dormido, si no la orden de dormir no funciona y despierta.
     gpscksum(gpssleep,sizeof(gpssleep),&cka,&ckb);
     writegps(gpssleep,sizeof(gpssleep));
     writegps(&cka,1);
     writegps(&ckb,1);
     stgps = 0;
+    uart_traza();
 }
 
 int getstgps()
 {
     return stgps;
+}
+
+void ckgps()
+{
+    int i,n;
+    char c;
+    
+    if(stgps == 1)
+        return;
+    uart_gps();
+    for(i=0,n=0;i<10;i++)
+    {
+        if(EUSART_is_rx_ready())    // hay caracter recibido
+        {
+            c = EUSART_Read();      // lectura caracter.
+            n++;
+        }
+        DELAY_milliseconds(2);
+    }
+    uart_traza();
+    printf("RGPS=>%d\r\n",n);
+    if(n > 1)
+        gpsoff();
+    
 }

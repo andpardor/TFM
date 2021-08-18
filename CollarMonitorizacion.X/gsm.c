@@ -193,9 +193,9 @@ int waitIni(char *linea,int maxlen)
         DELAY_milliseconds(1000);
         return 1;
     }
-    uart_traza();
-    printf("Falla INI..\r\n");
-    uart_gsm();
+//    uart_traza();
+//    printf("Falla INI..\r\n");
+//    uart_gsm();
     return 0;
 }
 
@@ -232,7 +232,7 @@ void gsmon(char *linea,int maxlen)
     
     getDominio(linea);    
     sprintf(udpstart.comando,"at+cipstart=\"UDP\",\"%s\",\"%d\"\r\n",linea,getPort());
-    sprintf(simpin.comando,"at+cpin=%04d\r\n",getPin());
+    sprintf(simpin.comando,"at+cpin=\"%04d\"\r\n",getPin());
     
     uart_gsm();         // conectamos UART a GSM.
     for(i=0;i<10;i++)   // Esperamos arranque GSM.
@@ -260,7 +260,7 @@ void startudp(char *linea,int maxlen)
 void stopudp(char *linea,int maxlen)
 {
 	waitIni(linea,maxlen);
-    exeuno(&udpshut,linea,maxlen);
+    exeuno(&udpshut[0],linea,maxlen);
 }
 
 // Obtención del estado de la bateria

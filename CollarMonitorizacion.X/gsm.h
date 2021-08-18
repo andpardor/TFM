@@ -55,7 +55,7 @@ const COMANDAT_t	initudp[3] = {
 };
 
 // Secuencia cierre conexion datos.
-const COMANDAT_t	closeudp = {"at+cipshut\r\n","OK","ERROR",'\n',5000};
+// const COMANDAT_t	closeudp = {"at+cipshut\r\n","OK","ERROR",'\n',5000};
 
 // Secuencia envio mensaje UDP.
 const COMANDAT_t	envimensa = {"at+cipsend\r\n",">","ERROR",'>',1000};

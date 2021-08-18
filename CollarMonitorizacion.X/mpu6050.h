@@ -31,6 +31,7 @@
 #ifndef MPU6050_H
 #define	MPU6050_H
 //#include "i2c1_master_example.h"
+#include "mcc_generated_files/mcc.h"
 #include "mcc_generated_files/examples/i2c1_master_example.h"
 #include "collarM.h"
  
@@ -441,7 +442,7 @@ uint32_t cmodulo(int16_t *acel);              // modulo de un vector de acelerac
 int cpicos(uint32_t *hmodulos, uint32_t actual);   // busqueda de maximo relativo en curva accel.
 
 // Interfaz de operacion.
-void iniacel();
+int iniacel();
 void procAcell();
 void llenaTramaAccel(COLLARM_t *tacel);
 void resetAcell();

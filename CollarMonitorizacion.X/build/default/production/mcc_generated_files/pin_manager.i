@@ -10615,7 +10615,7 @@ void PIN_MANAGER_Initialize(void)
 
 
     ANSELC = 0x00;
-    ANSELA = 0x33;
+    ANSELA = 0x23;
 
 
 
