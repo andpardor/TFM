@@ -11,9 +11,7 @@
           <itemPath>mcc_generated_files/examples/i2c1_master_example.h</itemPath>
         </logicalFolder>
         <itemPath>mcc_generated_files/device_config.h</itemPath>
-        <itemPath>mcc_generated_files/adc.h</itemPath>
         <itemPath>mcc_generated_files/pin_manager.h</itemPath>
-        <itemPath>mcc_generated_files/fvr.h</itemPath>
         <itemPath>mcc_generated_files/delay.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
         <itemPath>mcc_generated_files/tmr1.h</itemPath>
@@ -41,13 +39,11 @@
           <itemPath>mcc_generated_files/examples/i2c1_master_example.c</itemPath>
         </logicalFolder>
         <itemPath>mcc_generated_files/eusart.c</itemPath>
-        <itemPath>mcc_generated_files/adc.c</itemPath>
         <itemPath>mcc_generated_files/device_config.c</itemPath>
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
         <itemPath>mcc_generated_files/mcc.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
         <itemPath>mcc_generated_files/delay.c</itemPath>
-        <itemPath>mcc_generated_files/fvr.c</itemPath>
         <itemPath>mcc_generated_files/tmr1.c</itemPath>
         <itemPath>mcc_generated_files/tmr0.c</itemPath>
         <itemPath>mcc_generated_files/i2c1_master.c</itemPath>

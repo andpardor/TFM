@@ -1,49 +1,24 @@
-/* Microchip Technology Inc. and its subsidiaries.  You may use this software 
- * and any derivatives exclusively with Microchip products. 
- * 
- * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS".  NO WARRANTIES, WHETHER 
- * EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED 
- * WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A 
- * PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION 
- * WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION. 
- *
- * IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
- * INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
- * WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS 
- * BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE 
- * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS 
- * IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF 
- * ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *
- * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
- * TERMS. 
- */
-
 /* 
- * File:   
- * Author: 
- * Comments:
+ * File:   mpu6050.h
+ * Author: Andres Pardo Redondo
+ * 
+ * Comments:    Funciones de acceso y definiciones del modulo acelerometro de 6 ejes MPU6050.
+ * 
  * Revision history: 
+ *      Primera version : 20/08/2021.
  */
 
-// This is a guard condition so that contents of this file are not included
-// more than once.  
 #ifndef MPU6050_H
 #define	MPU6050_H
+
 //#include "i2c1_master_example.h"
 #include "mcc_generated_files/mcc.h"
 #include "mcc_generated_files/examples/i2c1_master_example.h"
 #include "collarM.h"
- 
-// TODO Insert appropriate #include <>
-
-// TODO Insert C++ class definitions if appropriate
-
-// TODO Insert declarations
-
-// Comment a function and leverage automatic documentation with slash star star
 
 // Registros de MPU6050.
+// =====================
+
 #define MPU6050_ADDRESS_AD0_LOW     0x68 // address pin low (GND), default for InvenSense evaluation board
 #define MPU6050_ADDRESS_AD0_HIGH    0x69 // address pin high (VCC)
 #define MPU6050_DEFAULT_ADDRESS     MPU6050_ADDRESS_AD0_LOW
@@ -423,17 +398,15 @@
 #define MPU6050_DMP_MEMORY_BANK_SIZE    256
 #define MPU6050_DMP_MEMORY_CHUNK_SIZE   16
 
-// TODO Insert declarations or function prototypes (right here) to leverage 
-// live documentation
 
-#ifdef	__cplusplus
-extern "C" {
-#endif /* __cplusplus */
 
-#define UMBRALG     (500L*500L)     // Umbral minimo aceleracion.
-    
-void initialize();  // config inicial acelerometro
-void fifoconfig();  // config activacion fifo para acelerometro.
+#define UMBRALG     (7500000L)     // Umbral minimo aceleracion.(de los modulos al cuadrado)
+
+// Funciones de acceso.
+// ====================
+
+void initialize(void);  // config inicial acelerometro
+void fifoconfig(void);  // config activacion fifo para acelerometro.
 
 void getAcceleration(uint16_t *data);       // get ultimo valor registros accel.
 int getAccelAcu(uint8_t *data,int maxlen);  // get datos accel en fifo.
@@ -442,14 +415,10 @@ uint32_t cmodulo(int16_t *acel);              // modulo de un vector de acelerac
 int cpicos(uint32_t *hmodulos, uint32_t actual);   // busqueda de maximo relativo en curva accel.
 
 // Interfaz de operacion.
-int iniacel();
-void procAcell();
+int iniacel(void);
+void procAcell(void);
 void llenaTramaAccel(COLLARM_t *tacel);
-void resetAcell();
+void resetAcell(void);
     
-#ifdef	__cplusplus
-}
-#endif /* __cplusplus */
-
 #endif	/* MPU6050_H */
 

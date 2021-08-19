@@ -97,26 +97,6 @@
 #define TX_GPS_SetAnalogMode()      do { ANSELAbits.ANSA4 = 1; } while(0)
 #define TX_GPS_SetDigitalMode()     do { ANSELAbits.ANSA4 = 0; } while(0)
 
-// get/set BAT aliases
-#define BAT_TRIS                 TRISAbits.TRISA5
-#define BAT_LAT                  LATAbits.LATA5
-#define BAT_PORT                 PORTAbits.RA5
-#define BAT_WPU                  WPUAbits.WPUA5
-#define BAT_OD                   ODCONAbits.ODCA5
-#define BAT_ANS                  ANSELAbits.ANSA5
-#define BAT_SetHigh()            do { LATAbits.LATA5 = 1; } while(0)
-#define BAT_SetLow()             do { LATAbits.LATA5 = 0; } while(0)
-#define BAT_Toggle()             do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0)
-#define BAT_GetValue()           PORTAbits.RA5
-#define BAT_SetDigitalInput()    do { TRISAbits.TRISA5 = 1; } while(0)
-#define BAT_SetDigitalOutput()   do { TRISAbits.TRISA5 = 0; } while(0)
-#define BAT_SetPullup()          do { WPUAbits.WPUA5 = 1; } while(0)
-#define BAT_ResetPullup()        do { WPUAbits.WPUA5 = 0; } while(0)
-#define BAT_SetPushPull()        do { ODCONAbits.ODCA5 = 0; } while(0)
-#define BAT_SetOpenDrain()       do { ODCONAbits.ODCA5 = 1; } while(0)
-#define BAT_SetAnalogMode()      do { ANSELAbits.ANSA5 = 1; } while(0)
-#define BAT_SetDigitalMode()     do { ANSELAbits.ANSA5 = 0; } while(0)
-
 // get/set SCL aliases
 #define SCL_TRIS                 TRISCbits.TRISC0
 #define SCL_LAT                  LATCbits.LATC0

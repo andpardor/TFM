@@ -7,16 +7,9 @@
 # 1 "/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "MPU6050.c" 2
-
-
-
-
-
-
-
-
+# 11 "MPU6050.c"
 # 1 "./mpu6050.h" 1
-# 34 "./mpu6050.h"
+# 15 "./mpu6050.h"
 # 1 "./mcc_generated_files/mcc.h" 1
 # 49 "./mcc_generated_files/mcc.h"
 # 1 "/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/xc.h" 1 3
@@ -10600,9 +10593,9 @@ extern __bank0 __bit __timeout;
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 234 "./mcc_generated_files/pin_manager.h"
+# 214 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 246 "./mcc_generated_files/pin_manager.h"
+# 226 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -10880,6 +10873,21 @@ extern void (*TMR1_InterruptHandler)(void);
 void TMR1_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/memory.h" 1
+# 99 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "./mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 58 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -10901,66 +10909,7 @@ void TMR0_ISR(void);
 extern void (*TMR0_InterruptHandler)(void);
 # 346 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/fvr.h" 1
-# 93 "./mcc_generated_files/fvr.h"
- void FVR_Initialize(void);
-# 127 "./mcc_generated_files/fvr.h"
-_Bool FVR_IsOutputReady(void);
 # 59 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/memory.h" 1
-# 99 "./mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint16_t flashAddr);
-# 128 "./mcc_generated_files/memory.h"
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-# 164 "./mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-# 189 "./mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint16_t startAddr);
-# 222 "./mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-# 248 "./mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint16_t bAdd);
-# 60 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/adc.h" 1
-# 72 "./mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
-
-
-
-
-typedef struct
-{
-    adc_result_t adcResult1;
-    adc_result_t adcResult2;
-} adc_sync_double_result_t;
-# 95 "./mcc_generated_files/adc.h"
-typedef enum
-{
-    BAT = 0x5,
-    channel_AVSS = 0x3C,
-    channel_Temp = 0x3D,
-    channel_DAC1 = 0x3E,
-    channel_FVR = 0x3F
-} adc_channel_t;
-# 137 "./mcc_generated_files/adc.h"
-void ADC_Initialize(void);
-# 167 "./mcc_generated_files/adc.h"
-void ADC_SelectChannel(adc_channel_t channel);
-# 194 "./mcc_generated_files/adc.h"
-void ADC_StartConversion(void);
-# 226 "./mcc_generated_files/adc.h"
-_Bool ADC_IsConversionDone(void);
-# 259 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversionResult(void);
-# 289 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversion(adc_channel_t channel);
-# 317 "./mcc_generated_files/adc.h"
-void ADC_TemperatureAcquisitionDelay(void);
-# 61 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/eusart.h" 1
 # 76 "./mcc_generated_files/eusart.h"
@@ -10993,22 +10942,22 @@ void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 398 "./mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 62 "./mcc_generated_files/mcc.h" 2
+# 60 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/delay.h" 1
 # 34 "./mcc_generated_files/delay.h"
 void DELAY_milliseconds(uint16_t milliseconds);
 void DELAY_microseconds(uint16_t microseconds);
-# 63 "./mcc_generated_files/mcc.h" 2
-# 78 "./mcc_generated_files/mcc.h"
+# 61 "./mcc_generated_files/mcc.h" 2
+# 76 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 91 "./mcc_generated_files/mcc.h"
+# 89 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 103 "./mcc_generated_files/mcc.h"
+# 101 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 115 "./mcc_generated_files/mcc.h"
+# 113 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 35 "./mpu6050.h" 2
+# 16 "./mpu6050.h" 2
 # 1 "./mcc_generated_files/examples/i2c1_master_example.h" 1
 # 54 "./mcc_generated_files/examples/i2c1_master_example.h"
 uint8_t I2C1_Read1ByteRegister(i2c1_address_t address, uint8_t reg);
@@ -11018,9 +10967,9 @@ void I2C1_Write2ByteRegister(i2c1_address_t address, uint8_t reg, uint16_t data)
 void I2C1_WriteNBytes(i2c1_address_t address, uint8_t *data, size_t len);
 void I2C1_ReadNBytes(i2c1_address_t address, uint8_t *data, size_t len);
 void I2C1_ReadDataBlock(i2c1_address_t address, uint8_t reg, uint8_t *data, size_t len);
-# 36 "./mpu6050.h" 2
+# 17 "./mpu6050.h" 2
 # 1 "./collarM.h" 1
-# 43 "./collarM.h"
+# 23 "./collarM.h"
 typedef struct {
      int32_t id;
      uint16_t secuencia;
@@ -11040,10 +10989,10 @@ typedef struct {
      int8_t reser;
      int8_t cksum;
 } COLLARM_t;
-# 37 "./mpu6050.h" 2
-# 435 "./mpu6050.h"
-void initialize();
-void fifoconfig();
+# 18 "./mpu6050.h" 2
+# 408 "./mpu6050.h"
+void initialize(void);
+void fifoconfig(void);
 
 void getAcceleration(uint16_t *data);
 int getAccelAcu(uint8_t *data,int maxlen);
@@ -11052,16 +11001,17 @@ uint32_t cmodulo(int16_t *acel);
 int cpicos(uint32_t *hmodulos, uint32_t actual);
 
 
-int iniacel();
-void procAcell();
+int iniacel(void);
+void procAcell(void);
 void llenaTramaAccel(COLLARM_t *tacel);
-void resetAcell();
-# 10 "MPU6050.c" 2
+void resetAcell(void);
+# 12 "MPU6050.c" 2
 # 1 "./funaux.h" 1
-# 15 "./funaux.h"
-unsigned long tics();
-void uart_traza();
-# 11 "MPU6050.c" 2
+# 14 "./funaux.h"
+unsigned long tics(void);
+void uart_traza(void);
+void write_traza(char *msg);
+# 13 "MPU6050.c" 2
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/math.h" 1 3
 # 15 "/opt/microchip/xc8/v2.31/pic/include/c99/math.h" 3
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/bits/alltypes.h" 1 3
@@ -11434,7 +11384,7 @@ double jn(int, double);
 double y0(double);
 double y1(double);
 double yn(int, double);
-# 12 "MPU6050.c" 2
+# 14 "MPU6050.c" 2
 
 
 
@@ -11443,9 +11393,13 @@ uint32_t tinicial;
 uint32_t hmodulos[2];
 uint16_t picos;
 uint32_t maxmod;
+
+
+
 int32_t acux;
 int32_t acuy;
 int32_t acuz;
+
 uint16_t nmues;
 uint32_t tanterior;
 
@@ -11457,7 +11411,7 @@ void swapshort(uint16_t *data)
 }
 
 
-void initialize()
+void initialize(void)
 {
     I2C1_Write1ByteRegister(0x68,0x19, 255);
     I2C1_Write1ByteRegister(0x68,0x6B, 1);
@@ -11468,7 +11422,7 @@ void initialize()
 }
 
 
-void fifoconfig()
+void fifoconfig(void)
 {
     I2C1_Write1ByteRegister(0x68,0x6A, 0b00000100);
     I2C1_Write1ByteRegister(0x68,0x6A, 0b01000000);
@@ -11526,19 +11480,39 @@ int getAccelAcu(uint8_t *data,int maxlen)
 }
 
 
+
+
 uint32_t cmodulo(int16_t *acel)
 {
     uint32_t tmp;
-    tmp = acel[0]*acel[0] + acel[1]*acel[1] + acel[2]*acel[2];
+    int32_t x,y,z;
+
+    x = acel[0];
+    y = acel[1];
+    z = acel[2];
+    tmp = x*x + y*y + z*z;
 
     return (tmp);
 }
 
 
+uint32_t miabsdif(uint32_t data,uint32_t data1)
+{
+    if(data > data1)
+        return(data - data1);
+    else
+        return(data1 - data);
+}
+
+
+
+
+
 int cpicos(uint32_t *hmodulos, uint32_t actual)
 {
     int picos = 0;
-    if(abs(hmodulos[1]-actual) > (500L*500L))
+
+    if(miabsdif(hmodulos[1],actual) > (7500000L))
     {
         if(hmodulos[1]> hmodulos[0] && hmodulos[1]>actual)
             picos = 1;
@@ -11550,10 +11524,13 @@ int cpicos(uint32_t *hmodulos, uint32_t actual)
 }
 
 
-int iniacel()
+
+int iniacel(void)
 {
     int i;
     uint16_t fifolen;
+
+
 
     for(i=0;i<3;i++)
     {
@@ -11561,6 +11538,7 @@ int iniacel()
         DELAY_milliseconds(500);
         fifoconfig();
         DELAY_milliseconds(500);
+
         fifolen = I2C1_Read2ByteRegister(0x68, 0x72);
         if(fifolen < 1024)
             break;
@@ -11572,7 +11550,7 @@ int iniacel()
 }
 
 
-void procAcell()
+void procAcell(void)
 {
     int i,len;
     int16_t *pacel;
@@ -11586,6 +11564,7 @@ void procAcell()
             pacel = bufaccel;
             for(i=0;i<len/2;i+=3,pacel+=3)
             {
+
                 acux += *pacel;
                 acuy += *(pacel+1);
                 acuz += *(pacel+2);
@@ -11610,6 +11589,8 @@ void procAcell()
 
 void llenaTramaAccel(COLLARM_t *tacel)
 {
+    if(picos > 0)
+        picos--;
     tacel->actividad = picos;
     tacel->amodmax = maxmod;
     tacel->tmpActividad = (tics() - tinicial)/1000;
@@ -11619,7 +11600,7 @@ void llenaTramaAccel(COLLARM_t *tacel)
 }
 
 
-void resetAcell()
+void resetAcell(void)
 {
     tinicial = tics();
     hmodulos[0] = 0;

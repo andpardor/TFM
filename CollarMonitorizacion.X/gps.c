@@ -1,8 +1,10 @@
 /* 
  * File:   gps.c
- * Author: domi
- *
- * Created on August 9, 2021, 7:12 PM
+ * Author: Andres Pardo Redondo
+ * 
+ * Comments:    Funciones de acceso al modulo GPS de UBLOCK.
+ * Revision history: 
+ *      Primera version : 09/08/2021.
  */
 
 #include "mcc_generated_files/mcc.h"
@@ -10,14 +12,15 @@
 #include "gps.h"
 #include "funaux.h"
 
-int stgps = 0;
+int stgps = 0;  // estado de actividad GPS.
 
 //==============================================================================
 
 unsigned long maxtime;
 int len;
 
-void uart_gps()
+// Funcion para conectar la UART al modulo GPS
+void uart_gps(void)
 {
     DELAY_milliseconds(3);
     RC2PPS = 0; 
@@ -26,8 +29,6 @@ void uart_gps()
     RXPPS = 0x11;
     DELAY_milliseconds(3);
 }
-
-//============= GPS ====================================================//
 
 // Recibe una linea GPS de tipo indicado por cab, de la maxima longitud especificada
 // en un tiempo maximo especificado, retorna longitud o 0 si TOUT.
@@ -75,6 +76,7 @@ int recLineaGPS(char *linea,int maxlen,unsigned int tout)
     }
 }
 
+
 // extrae la parte de minutos de una coordenada GPS y la transforma en grados*65536.
 // la operacion equivale a: (minutos*65536)/60, lo aproximamos por: (minutos*17895697)/2^14
 // que nos proporciona un error inferior a (4e-7)% evitando una division penosa para el micro.
@@ -89,9 +91,11 @@ uint16_t min2grado(char *valor)
     
     entero = atoi(valor)%100;   // extrae los minutos de la parte entera 
     punte = strchr(valor,'.');
-    tmp = atoi(punte+1);        // extrae la parte decimal.
+    tmp = atol(punte+1);        // extrae la parte decimal.
     // transforma en grados * 65536
-    entero = entero*17895697 + tmp*1790;
+    tmp = tmp * 179;    // ATT!! el factor depende del numero de decimales del gps (4=>1790,5=>179)
+    entero = entero * 17895697;
+    entero += tmp;
     entero = entero >> 14;
     if(entero > 65535)          // saturacion.
         entero = 65535;
@@ -159,13 +163,13 @@ void anaGPS(char *linea,COLLARM_t *gps)
     if(punte != NULL)
     {
         gps->nsat =  atoi(punte) & 0xff;
-        if(gps->nsat > 15) // Como mucho consideramos 15 satelites.
-            gps->nsat = 15;
+    //    if(gps->nsat > 15) // Como mucho consideramos 15 satelites.
+    //        gps->nsat = 15;
     }
     // Ignoramos resto de campos.
 }
 
-// rellena a cero las coordenadas GPS de la estructura perro.
+// rellena a cero las coordenadas GPS de la estructura collar.
 void gpscero(COLLARM_t *collar)
 {
     collar->latituddec = 0;
@@ -189,9 +193,9 @@ void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
         len = recLineaGPS(linear,maxlen,tout);
         if(len)
         {
-      //     uart_traza();
-      //     printf("RGPS=>%s\n",linear);
-      //     uart_gps();
+           uart_traza();
+           printf("RGPS=>%s\n",linear);
+           uart_gps();
            anaGPS(linear,gps);
            return;
 
@@ -224,7 +228,7 @@ void writegps(uint8_t *msg,uint8_t len)
     }
 }
 
-// Calcula CKSUM para protocolo UBX
+// Calcula CKSUM (a y b)para protocolo UBX
 void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
 {
     int i;
@@ -239,7 +243,7 @@ void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
 }
 
 // saca al GPS del modo SLEEP.
-void gpson()
+void gpson(void)
 {
     uint8_t wake = gpswake;
     
@@ -250,7 +254,7 @@ void gpson()
 }
 
 // Pone al GPS en modo SLEEP.
-void gpsoff()
+void gpsoff(void)
 {
     uint8_t cka;
     uint8_t ckb;
@@ -266,11 +270,14 @@ void gpsoff()
     uart_traza();
 }
 
-int getstgps()
+// funcion que retorna el estado de actividad del GPS.
+int getstgps(void)
 {
     return stgps;
 }
 
+// Funcion de supervision que se asegura de que si el GPS esta en estado SLEEP
+// no esta emitiendo mensajes, de lo contrario lo pone en modo SLEEP.
 void ckgps()
 {
     int i,n;
@@ -279,18 +286,19 @@ void ckgps()
     if(stgps == 1)
         return;
     uart_gps();
-    for(i=0,n=0;i<10;i++)
+    for(i=0,n=0;i<500;i++)
     {
         if(EUSART_is_rx_ready())    // hay caracter recibido
         {
             c = EUSART_Read();      // lectura caracter.
             n++;
+            if(n > 1)
+                break;
         }
         DELAY_milliseconds(2);
     }
     uart_traza();
     printf("RGPS=>%d\r\n",n);
-    if(n > 1)
+    if(n > 1)       // GPS emitiendo mensajes.
         gpsoff();
-    
 }

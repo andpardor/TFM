@@ -1,29 +1,44 @@
-/* Microchip Technology Inc. and its subsidiaries.  You may use this software 
- * and any derivatives exclusively with Microchip products. 
- * 
- * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS".  NO WARRANTIES, WHETHER 
- * EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED 
- * WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A 
- * PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION 
- * WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION. 
+/*********************************************************************
+ 
+ Helper Functions for Microchip TCPIP Stack
+ 
+ FileName:      Helpers.c
+ Dependencies:  See INCLUDES section
+ Processor:     PIC18, PIC24, dsPIC, PIC32
+ Compiler:      Microchip C18, C30, C32
+ Company:       Microchip Technology, Inc.
+ Software License Agreement
+ Copyright (C) 2002-2011 Microchip Technology Inc.  All rights
+ reserved.
+ Microchip licenses to you the right to use, modify, copy, and
+ distribute:
+ (i)  the Software when embedded on a Microchip microcontroller or
+      digital signal controller product ("Device") which is
+      integrated into Licensee's product; or
+ (ii) ONLY the Software driver source files ENC28J60.c, ENC28J60.h,
+		ENCX24J600.c and ENCX24J600.h ported to a non-Microchip device
+		used in conjunction with a Microchip ethernet controller for
+		the sole purpose of interfacing with the ethernet controller.
+ You should refer to the license agreement accompanying this
+ Software for additional information regarding your rights and
+ obligations.
+ THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
+ WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
+ LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+ MICROCHIP BE LIABLE FOR ANY INCIDENTAL, SPECIAL, INDIRECT OR
+ CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
+ PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
+ BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
+ THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
+ SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
+ (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE.
+ ********************************************************************
+* 
+ * File:   base64.h
+ * Adaptacion: Andres Pardo Redondo
  *
- * IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
- * INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
- * WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS 
- * BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE 
- * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS 
- * IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF 
- * ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *
- * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
- * TERMS. 
- */
-
-/* 
- * File:   
- * Author: 
- * Comments:
- * Revision history: 
+ * Created on December 7, 2020, 1:47 PM
  */
 
 // This is a guard condition so that contents of this file are not included

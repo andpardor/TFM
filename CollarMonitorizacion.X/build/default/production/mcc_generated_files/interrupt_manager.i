@@ -10594,9 +10594,9 @@ extern __bank0 __bit __timeout;
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 234 "mcc_generated_files/pin_manager.h"
+# 214 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 246 "mcc_generated_files/pin_manager.h"
+# 226 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -10872,6 +10872,21 @@ extern void (*TMR1_InterruptHandler)(void);
 void TMR1_DefaultInterruptHandler(void);
 # 57 "mcc_generated_files/mcc.h" 2
 
+# 1 "mcc_generated_files/memory.h" 1
+# 99 "mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 58 "mcc_generated_files/mcc.h" 2
+
 # 1 "mcc_generated_files/tmr0.h" 1
 # 100 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -10893,66 +10908,7 @@ void TMR0_ISR(void);
 extern void (*TMR0_InterruptHandler)(void);
 # 346 "mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 58 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/fvr.h" 1
-# 93 "mcc_generated_files/fvr.h"
- void FVR_Initialize(void);
-# 127 "mcc_generated_files/fvr.h"
-_Bool FVR_IsOutputReady(void);
 # 59 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/memory.h" 1
-# 99 "mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint16_t flashAddr);
-# 128 "mcc_generated_files/memory.h"
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-# 164 "mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-# 189 "mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint16_t startAddr);
-# 222 "mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-# 248 "mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint16_t bAdd);
-# 60 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/adc.h" 1
-# 72 "mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
-
-
-
-
-typedef struct
-{
-    adc_result_t adcResult1;
-    adc_result_t adcResult2;
-} adc_sync_double_result_t;
-# 95 "mcc_generated_files/adc.h"
-typedef enum
-{
-    BAT = 0x5,
-    channel_AVSS = 0x3C,
-    channel_Temp = 0x3D,
-    channel_DAC1 = 0x3E,
-    channel_FVR = 0x3F
-} adc_channel_t;
-# 137 "mcc_generated_files/adc.h"
-void ADC_Initialize(void);
-# 167 "mcc_generated_files/adc.h"
-void ADC_SelectChannel(adc_channel_t channel);
-# 194 "mcc_generated_files/adc.h"
-void ADC_StartConversion(void);
-# 226 "mcc_generated_files/adc.h"
-_Bool ADC_IsConversionDone(void);
-# 259 "mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversionResult(void);
-# 289 "mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversion(adc_channel_t channel);
-# 317 "mcc_generated_files/adc.h"
-void ADC_TemperatureAcquisitionDelay(void);
-# 61 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/eusart.h" 1
 # 76 "mcc_generated_files/eusart.h"
@@ -10985,20 +10941,20 @@ void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 398 "mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 62 "mcc_generated_files/mcc.h" 2
+# 60 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/delay.h" 1
 # 34 "mcc_generated_files/delay.h"
 void DELAY_milliseconds(uint16_t milliseconds);
 void DELAY_microseconds(uint16_t microseconds);
-# 63 "mcc_generated_files/mcc.h" 2
-# 78 "mcc_generated_files/mcc.h"
+# 61 "mcc_generated_files/mcc.h" 2
+# 76 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 91 "mcc_generated_files/mcc.h"
+# 89 "mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 103 "mcc_generated_files/mcc.h"
+# 101 "mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 115 "mcc_generated_files/mcc.h"
+# 113 "mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
 # 50 "mcc_generated_files/interrupt_manager.c" 2
 

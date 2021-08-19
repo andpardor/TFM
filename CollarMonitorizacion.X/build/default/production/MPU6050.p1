@@ -11,27 +11,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "55
 [; ;./mcc_generated_files/examples/i2c1_master_example.h: 55: uint16_t I2C1_Read2ByteRegister(i2c1_address_t address, uint8_t reg);
 [v _I2C1_Read2ByteRegister `(us ~T0 @X0 0 ef2`uc`uc ]
-"51 /opt/microchip/xc8/v2.31/pic/include/c99/stdlib.h
-[; ;/opt/microchip/xc8/v2.31/pic/include/c99/stdlib.h: 51: int abs (int);
-[v _abs `(i ~T0 @X0 0 ef1`i ]
 "34 ./mcc_generated_files/delay.h
 [; ;./mcc_generated_files/delay.h: 34: void DELAY_milliseconds(uint16_t milliseconds);
 [v _DELAY_milliseconds `(v ~T0 @X0 0 ef1`us ]
-"448 ./mpu6050.h
-[; ;./mpu6050.h: 448: void resetAcell();
-[v _resetAcell `(v ~T0 @X0 0 e? ]
-"15 ./funaux.h
-[; ;./funaux.h: 15: unsigned long tics();
-[v _tics `(ul ~T0 @X0 0 e? ]
-"16
-[; ;./funaux.h: 16: void uart_traza();
-[v _uart_traza `(v ~T0 @X0 0 e? ]
+"421 ./mpu6050.h
+[; ;./mpu6050.h: 421: void resetAcell(void);
+[v _resetAcell `(v ~T0 @X0 0 ef ]
+"14 ./funaux.h
+[; ;./funaux.h: 14: unsigned long tics(void);
+[v _tics `(ul ~T0 @X0 0 ef ]
+"15
+[; ;./funaux.h: 15: void uart_traza(void);
+[v _uart_traza `(v ~T0 @X0 0 ef ]
 "111 /opt/microchip/xc8/v2.31/pic/include/c99/stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"43 ./collarM.h
-[; ;./collarM.h: 43: typedef struct {
-[s S928 `l 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `us 1 `c 1 `c 1 `c 1 `c 1 `c 1 `c 1 ]
-[n S928 . id secuencia latituddec longituddec actividad tmpActividad amedx amedy amedz amodmax bat nsat latitudint longitudint stat reser cksum ]
+"23 ./collarM.h
+[; ;./collarM.h: 23: typedef struct {
+[s S927 `l 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `us 1 `c 1 `c 1 `c 1 `c 1 `c 1 `c 1 ]
+[n S927 . id secuencia latituddec longituddec actividad tmpActividad amedx amedy amedz amodmax bat nsat latitudint longitudint stat reser cksum ]
 "55 /home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1040,587 +1037,642 @@ Version 4.0 HI-TECH Software Intermediate Code
 "18779
 [; ;/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/proc/pic16f18326.h: 18779: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"15 MPU6050.c
-[; ;MPU6050.c: 15: uint16_t bufaccel[255];
+"17 MPU6050.c
+[; ;MPU6050.c: 17: uint16_t bufaccel[255];
 [v _bufaccel `us ~T0 @X0 -> 255 `i e ]
-"16
-[; ;MPU6050.c: 16: uint32_t tinicial;
-[v _tinicial `ul ~T0 @X0 1 e ]
-"17
-[; ;MPU6050.c: 17: uint32_t hmodulos[2];
-[v _hmodulos `ul ~T0 @X0 -> 2 `i e ]
 "18
-[; ;MPU6050.c: 18: uint16_t picos;
-[v _picos `us ~T0 @X0 1 e ]
+[; ;MPU6050.c: 18: uint32_t tinicial;
+[v _tinicial `ul ~T0 @X0 1 e ]
 "19
-[; ;MPU6050.c: 19: uint32_t maxmod;
-[v _maxmod `ul ~T0 @X0 1 e ]
+[; ;MPU6050.c: 19: uint32_t hmodulos[2];
+[v _hmodulos `ul ~T0 @X0 -> 2 `i e ]
 "20
-[; ;MPU6050.c: 20: int32_t acux;
-[v _acux `l ~T0 @X0 1 e ]
+[; ;MPU6050.c: 20: uint16_t picos;
+[v _picos `us ~T0 @X0 1 e ]
 "21
-[; ;MPU6050.c: 21: int32_t acuy;
+[; ;MPU6050.c: 21: uint32_t maxmod;
+[v _maxmod `ul ~T0 @X0 1 e ]
+"25
+[; ;MPU6050.c: 25: int32_t acux;
+[v _acux `l ~T0 @X0 1 e ]
+"26
+[; ;MPU6050.c: 26: int32_t acuy;
 [v _acuy `l ~T0 @X0 1 e ]
-"22
-[; ;MPU6050.c: 22: int32_t acuz;
+"27
+[; ;MPU6050.c: 27: int32_t acuz;
 [v _acuz `l ~T0 @X0 1 e ]
-"23
-[; ;MPU6050.c: 23: uint16_t nmues;
+"29
+[; ;MPU6050.c: 29: uint16_t nmues;
 [v _nmues `us ~T0 @X0 1 e ]
-"24
-[; ;MPU6050.c: 24: uint32_t tanterior;
-[v _tanterior `ul ~T0 @X0 1 e ]
-"28
-[; ;MPU6050.c: 28: void swapshort(uint16_t *data)
-[v _swapshort `(v ~T0 @X0 1 ef1`*us ]
-"29
-[; ;MPU6050.c: 29: {
-{
-[e :U _swapshort ]
-"28
-[; ;MPU6050.c: 28: void swapshort(uint16_t *data)
-[v _data `*us ~T0 @X0 1 r1 ]
-"29
-[; ;MPU6050.c: 29: {
-[f ]
 "30
-[; ;MPU6050.c: 30:     *data = (*data << 8) | (*data >> 8);
-[e = *U _data -> | << -> *U _data `ui -> 8 `i >> -> *U _data `ui -> 8 `i `us ]
-"31
-[; ;MPU6050.c: 31: }
-[e :UE 929 ]
-}
+[; ;MPU6050.c: 30: uint32_t tanterior;
+[v _tanterior `ul ~T0 @X0 1 e ]
 "34
-[; ;MPU6050.c: 34: void initialize()
-[v _initialize `(v ~T0 @X0 1 ef ]
+[; ;MPU6050.c: 34: void swapshort(uint16_t *data)
+[v _swapshort `(v ~T0 @X0 1 ef1`*us ]
 "35
 [; ;MPU6050.c: 35: {
 {
-[e :U _initialize ]
+[e :U _swapshort ]
+"34
+[; ;MPU6050.c: 34: void swapshort(uint16_t *data)
+[v _data `*us ~T0 @X0 1 r1 ]
+"35
+[; ;MPU6050.c: 35: {
 [f ]
 "36
-[; ;MPU6050.c: 36:     I2C1_Write1ByteRegister(0x68,0x19, 255);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 25 `i `uc -> -> 255 `i `uc ]
+[; ;MPU6050.c: 36:     *data = (*data << 8) | (*data >> 8);
+[e = *U _data -> | << -> *U _data `ui -> 8 `i >> -> *U _data `ui -> 8 `i `us ]
 "37
-[; ;MPU6050.c: 37:     I2C1_Write1ByteRegister(0x68,0x6B, 1);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 107 `i `uc -> -> 1 `i `uc ]
-"38
-[; ;MPU6050.c: 38:     I2C1_Write1ByteRegister(0x68,0x1A, 1);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 26 `i `uc -> -> 1 `i `uc ]
-"39
-[; ;MPU6050.c: 39:     I2C1_Write1ByteRegister(0x68,0x1C, 0);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 28 `i `uc -> -> 0 `i `uc ]
-"40
-[; ;MPU6050.c: 40:     I2C1_Write1ByteRegister(0x68,0x1B, 0x18);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 27 `i `uc -> -> 24 `i `uc ]
-"41
-[; ;MPU6050.c: 41:     I2C1_Write1ByteRegister(0x68,0x38, 0b00000001);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 56 `i `uc -> -> 1 `i `uc ]
-"42
-[; ;MPU6050.c: 42: }
-[e :UE 930 ]
+[; ;MPU6050.c: 37: }
+[e :UE 928 ]
 }
+"40
+[; ;MPU6050.c: 40: void initialize(void)
+[v _initialize `(v ~T0 @X0 1 ef ]
+"41
+[; ;MPU6050.c: 41: {
+{
+[e :U _initialize ]
+[f ]
+"42
+[; ;MPU6050.c: 42:     I2C1_Write1ByteRegister(0x68,0x19, 255);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 25 `i `uc -> -> 255 `i `uc ]
+"43
+[; ;MPU6050.c: 43:     I2C1_Write1ByteRegister(0x68,0x6B, 1);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 107 `i `uc -> -> 1 `i `uc ]
+"44
+[; ;MPU6050.c: 44:     I2C1_Write1ByteRegister(0x68,0x1A, 1);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 26 `i `uc -> -> 1 `i `uc ]
 "45
-[; ;MPU6050.c: 45: void fifoconfig()
-[v _fifoconfig `(v ~T0 @X0 1 ef ]
+[; ;MPU6050.c: 45:     I2C1_Write1ByteRegister(0x68,0x1C, 0);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 28 `i `uc -> -> 0 `i `uc ]
 "46
-[; ;MPU6050.c: 46: {
+[; ;MPU6050.c: 46:     I2C1_Write1ByteRegister(0x68,0x1B, 0x18);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 27 `i `uc -> -> 24 `i `uc ]
+"47
+[; ;MPU6050.c: 47:     I2C1_Write1ByteRegister(0x68,0x38, 0b00000001);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 56 `i `uc -> -> 1 `i `uc ]
+"48
+[; ;MPU6050.c: 48: }
+[e :UE 929 ]
+}
+"51
+[; ;MPU6050.c: 51: void fifoconfig(void)
+[v _fifoconfig `(v ~T0 @X0 1 ef ]
+"52
+[; ;MPU6050.c: 52: {
 {
 [e :U _fifoconfig ]
 [f ]
-"47
-[; ;MPU6050.c: 47:     I2C1_Write1ByteRegister(0x68,0x6A, 0b00000100);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 4 `i `uc ]
-"48
-[; ;MPU6050.c: 48:     I2C1_Write1ByteRegister(0x68,0x6A, 0b01000000);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 64 `i `uc ]
-"49
-[; ;MPU6050.c: 49:     I2C1_Write1ByteRegister(0x68,0x23, 0b00001000);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 35 `i `uc -> -> 8 `i `uc ]
-"50
-[; ;MPU6050.c: 50: }
-[e :UE 931 ]
-}
 "53
-[; ;MPU6050.c: 53: void getAcceleration(uint16_t *data)
-[v _getAcceleration `(v ~T0 @X0 1 ef1`*us ]
+[; ;MPU6050.c: 53:     I2C1_Write1ByteRegister(0x68,0x6A, 0b00000100);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 4 `i `uc ]
 "54
-[; ;MPU6050.c: 54: {
+[; ;MPU6050.c: 54:     I2C1_Write1ByteRegister(0x68,0x6A, 0b01000000);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 64 `i `uc ]
+"55
+[; ;MPU6050.c: 55:     I2C1_Write1ByteRegister(0x68,0x23, 0b00001000);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 35 `i `uc -> -> 8 `i `uc ]
+"56
+[; ;MPU6050.c: 56: }
+[e :UE 930 ]
+}
+"59
+[; ;MPU6050.c: 59: void getAcceleration(uint16_t *data)
+[v _getAcceleration `(v ~T0 @X0 1 ef1`*us ]
+"60
+[; ;MPU6050.c: 60: {
 {
 [e :U _getAcceleration ]
-"53
-[; ;MPU6050.c: 53: void getAcceleration(uint16_t *data)
+"59
+[; ;MPU6050.c: 59: void getAcceleration(uint16_t *data)
 [v _data `*us ~T0 @X0 1 r1 ]
-"54
-[; ;MPU6050.c: 54: {
+"60
+[; ;MPU6050.c: 60: {
 [f ]
-"55
-[; ;MPU6050.c: 55:     int i;
+"61
+[; ;MPU6050.c: 61:     int i;
 [v _i `i ~T0 @X0 1 a ]
-"57
-[; ;MPU6050.c: 57:     I2C1_ReadDataBlock(0x68, 0x3B, (uint8_t *)data,6);
+"63
+[; ;MPU6050.c: 63:     I2C1_ReadDataBlock(0x68, 0x3B, (uint8_t *)data,6);
 [e ( _I2C1_ReadDataBlock (4 , , , -> -> 104 `i `uc -> -> 59 `i `uc -> _data `*uc -> -> 6 `i `ui ]
-"58
-[; ;MPU6050.c: 58:     for(i=0;i<3;i++)
+"64
+[; ;MPU6050.c: 64:     for(i=0;i<3;i++)
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 3 `i 933  ]
-[e $U 934  ]
-[e :U 933 ]
-"59
-[; ;MPU6050.c: 59:         swapshort(data+i);
+[e $ < _i -> 3 `i 932  ]
+[e $U 933  ]
+[e :U 932 ]
+"65
+[; ;MPU6050.c: 65:         swapshort(data+i);
 [e ( _swapshort (1 + _data * -> _i `x -> -> # *U _data `i `x ]
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 3 `i 933  ]
-[e :U 934 ]
+[e $ < _i -> 3 `i 932  ]
+[e :U 933 ]
 }
-"60
-[; ;MPU6050.c: 60: }
-[e :UE 932 ]
-}
-"65
-[; ;MPU6050.c: 65: int getAccelAcu(uint8_t *data,int maxlen)
-[v _getAccelAcu `(i ~T0 @X0 1 ef2`*uc`i ]
 "66
-[; ;MPU6050.c: 66: {
+[; ;MPU6050.c: 66: }
+[e :UE 931 ]
+}
+"71
+[; ;MPU6050.c: 71: int getAccelAcu(uint8_t *data,int maxlen)
+[v _getAccelAcu `(i ~T0 @X0 1 ef2`*uc`i ]
+"72
+[; ;MPU6050.c: 72: {
 {
 [e :U _getAccelAcu ]
-"65
-[; ;MPU6050.c: 65: int getAccelAcu(uint8_t *data,int maxlen)
+"71
+[; ;MPU6050.c: 71: int getAccelAcu(uint8_t *data,int maxlen)
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _maxlen `i ~T0 @X0 1 r2 ]
-"66
-[; ;MPU6050.c: 66: {
+"72
+[; ;MPU6050.c: 72: {
 [f ]
-"67
-[; ;MPU6050.c: 67:     uint16_t fifolen = 0;
+"73
+[; ;MPU6050.c: 73:     uint16_t fifolen = 0;
 [v _fifolen `us ~T0 @X0 1 a ]
 [e = _fifolen -> -> 0 `i `us ]
-"68
-[; ;MPU6050.c: 68:     uint16_t traslen = 0;
+"74
+[; ;MPU6050.c: 74:     uint16_t traslen = 0;
 [v _traslen `us ~T0 @X0 1 a ]
 [e = _traslen -> -> 0 `i `us ]
-"69
-[; ;MPU6050.c: 69:     uint8_t *ptmp = data;
+"75
+[; ;MPU6050.c: 75:     uint8_t *ptmp = data;
 [v _ptmp `*uc ~T0 @X0 1 a ]
 [e = _ptmp _data ]
-"70
-[; ;MPU6050.c: 70:     int i;
-[v _i `i ~T0 @X0 1 a ]
-"71
-[; ;MPU6050.c: 71:     uint8_t tmp;
-[v _tmp `uc ~T0 @X0 1 a ]
-"73
-[; ;MPU6050.c: 73:     tmp = I2C1_Read1ByteRegister(0x68, 0x3A);
-[e = _tmp ( _I2C1_Read1ByteRegister (2 , -> -> 104 `i `uc -> -> 58 `i `uc ]
-"75
-[; ;MPU6050.c: 75:     fifolen = I2C1_Read2ByteRegister(0x68, 0x72);
-[e = _fifolen ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 114 `i `uc ]
 "76
-[; ;MPU6050.c: 76:     if((tmp & 0x10) || (fifolen == 1024))
-[e $ ! || != & -> _tmp `i -> 16 `i -> 0 `i == -> _fifolen `ui -> -> 1024 `i `ui 937  ]
+[; ;MPU6050.c: 76:     int i;
+[v _i `i ~T0 @X0 1 a ]
 "77
-[; ;MPU6050.c: 77:     {
-{
-"78
-[; ;MPU6050.c: 78:         I2C1_Write1ByteRegister(0x68,0x6A, 0b01000100);
-[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 68 `i `uc ]
+[; ;MPU6050.c: 77:     uint8_t tmp;
+[v _tmp `uc ~T0 @X0 1 a ]
 "79
-[; ;MPU6050.c: 79:         return -1;
-[e ) -U -> 1 `i ]
-[e $UE 936  ]
-"80
-[; ;MPU6050.c: 80:     }
-}
-[e :U 937 ]
+[; ;MPU6050.c: 79:     tmp = I2C1_Read1ByteRegister(0x68, 0x3A);
+[e = _tmp ( _I2C1_Read1ByteRegister (2 , -> -> 104 `i `uc -> -> 58 `i `uc ]
+"81
+[; ;MPU6050.c: 81:     fifolen = I2C1_Read2ByteRegister(0x68, 0x72);
+[e = _fifolen ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 114 `i `uc ]
+"82
+[; ;MPU6050.c: 82:     if((tmp & 0x10) || (fifolen == 1024))
+[e $ ! || != & -> _tmp `i -> 16 `i -> 0 `i == -> _fifolen `ui -> -> 1024 `i `ui 936  ]
 "83
-[; ;MPU6050.c: 83:     if(fifolen > maxlen)
-[e $ ! > -> _fifolen `ui -> _maxlen `ui 938  ]
-"84
-[; ;MPU6050.c: 84:         traslen = maxlen;
-[e = _traslen -> _maxlen `us ]
-[e $U 939  ]
-"85
-[; ;MPU6050.c: 85:     else
-[e :U 938 ]
-"86
-[; ;MPU6050.c: 86:         traslen = fifolen;
-[e = _traslen _fifolen ]
-[e :U 939 ]
-"88
-[; ;MPU6050.c: 88:     traslen = (traslen/6)*6;
-[e = _traslen -> * / -> _traslen `ui -> -> 6 `i `ui -> -> 6 `i `ui `us ]
-"90
-[; ;MPU6050.c: 90:     if(traslen)
-[e $ ! != -> _traslen `ui -> -> 0 `i `ui 940  ]
-"91
-[; ;MPU6050.c: 91:     {
+[; ;MPU6050.c: 83:     {
 {
-"92
-[; ;MPU6050.c: 92:         I2C1_ReadDataBlock(0x68, 0x74, data,traslen);
-[e ( _I2C1_ReadDataBlock (4 , , , -> -> 104 `i `uc -> -> 116 `i `uc _data -> _traslen `ui ]
-"93
-[; ;MPU6050.c: 93:     }
+"84
+[; ;MPU6050.c: 84:         I2C1_Write1ByteRegister(0x68,0x6A, 0b01000100);
+[e ( _I2C1_Write1ByteRegister (3 , , -> -> 104 `i `uc -> -> 106 `i `uc -> -> 68 `i `uc ]
+"85
+[; ;MPU6050.c: 85:         return -1;
+[e ) -U -> 1 `i ]
+[e $UE 935  ]
+"86
+[; ;MPU6050.c: 86:     }
 }
-[e :U 940 ]
+[e :U 936 ]
+"89
+[; ;MPU6050.c: 89:     if(fifolen > maxlen)
+[e $ ! > -> _fifolen `ui -> _maxlen `ui 937  ]
+"90
+[; ;MPU6050.c: 90:         traslen = maxlen;
+[e = _traslen -> _maxlen `us ]
+[e $U 938  ]
+"91
+[; ;MPU6050.c: 91:     else
+[e :U 937 ]
+"92
+[; ;MPU6050.c: 92:         traslen = fifolen;
+[e = _traslen _fifolen ]
+[e :U 938 ]
+"94
+[; ;MPU6050.c: 94:     traslen = (traslen/6)*6;
+[e = _traslen -> * / -> _traslen `ui -> -> 6 `i `ui -> -> 6 `i `ui `us ]
 "96
-[; ;MPU6050.c: 96:     for(i=0;i<traslen;i+=2)
+[; ;MPU6050.c: 96:     if(traslen)
+[e $ ! != -> _traslen `ui -> -> 0 `i `ui 939  ]
+"97
+[; ;MPU6050.c: 97:     {
+{
+"98
+[; ;MPU6050.c: 98:         I2C1_ReadDataBlock(0x68, 0x74, data,traslen);
+[e ( _I2C1_ReadDataBlock (4 , , , -> -> 104 `i `uc -> -> 116 `i `uc _data -> _traslen `ui ]
+"99
+[; ;MPU6050.c: 99:     }
+}
+[e :U 939 ]
+"102
+[; ;MPU6050.c: 102:     for(i=0;i<traslen;i+=2)
 {
 [e = _i -> 0 `i ]
-[e $U 944  ]
-[e :U 941 ]
-"97
-[; ;MPU6050.c: 97:         swapshort((uint16_t *)&data[i]);
+[e $U 943  ]
+[e :U 940 ]
+"103
+[; ;MPU6050.c: 103:         swapshort((uint16_t *)&data[i]);
 [e ( _swapshort (1 -> &U *U + _data * -> _i `x -> -> # *U _data `i `x `*us ]
 [e =+ _i -> 2 `i ]
-[e :U 944 ]
-[e $ < -> _i `ui -> _traslen `ui 941  ]
-[e :U 942 ]
+[e :U 943 ]
+[e $ < -> _i `ui -> _traslen `ui 940  ]
+[e :U 941 ]
 }
-"99
-[; ;MPU6050.c: 99:     return(traslen);
+"105
+[; ;MPU6050.c: 105:     return(traslen);
 [e ) -> _traslen `i ]
-[e $UE 936  ]
-"100
-[; ;MPU6050.c: 100: }
-[e :UE 936 ]
+[e $UE 935  ]
+"106
+[; ;MPU6050.c: 106: }
+[e :UE 935 ]
 }
-"103
-[; ;MPU6050.c: 103: uint32_t cmodulo(int16_t *acel)
+"111
+[; ;MPU6050.c: 111: uint32_t cmodulo(int16_t *acel)
 [v _cmodulo `(ul ~T0 @X0 1 ef1`*s ]
-"104
-[; ;MPU6050.c: 104: {
+"112
+[; ;MPU6050.c: 112: {
 {
 [e :U _cmodulo ]
-"103
-[; ;MPU6050.c: 103: uint32_t cmodulo(int16_t *acel)
+"111
+[; ;MPU6050.c: 111: uint32_t cmodulo(int16_t *acel)
 [v _acel `*s ~T0 @X0 1 r1 ]
-"104
-[; ;MPU6050.c: 104: {
+"112
+[; ;MPU6050.c: 112: {
 [f ]
-"105
-[; ;MPU6050.c: 105:     uint32_t tmp;
+"113
+[; ;MPU6050.c: 113:     uint32_t tmp;
 [v _tmp `ul ~T0 @X0 1 a ]
-"106
-[; ;MPU6050.c: 106:     tmp = acel[0]*acel[0] + acel[1]*acel[1] + acel[2]*acel[2];
-[e = _tmp -> -> + + * -> *U + _acel * -> -> 0 `i `x -> -> # *U _acel `i `x `i -> *U + _acel * -> -> 0 `i `x -> -> # *U _acel `i `x `i * -> *U + _acel * -> -> 1 `i `x -> -> # *U _acel `i `x `i -> *U + _acel * -> -> 1 `i `x -> -> # *U _acel `i `x `i * -> *U + _acel * -> -> 2 `i `x -> -> # *U _acel `i `x `i -> *U + _acel * -> -> 2 `i `x -> -> # *U _acel `i `x `i `l `ul ]
-"108
-[; ;MPU6050.c: 108:     return (tmp);
+"114
+[; ;MPU6050.c: 114:     int32_t x,y,z;
+[v _x `l ~T0 @X0 1 a ]
+[v _y `l ~T0 @X0 1 a ]
+[v _z `l ~T0 @X0 1 a ]
+"116
+[; ;MPU6050.c: 116:     x = acel[0];
+[e = _x -> *U + _acel * -> -> 0 `i `x -> -> # *U _acel `i `x `l ]
+"117
+[; ;MPU6050.c: 117:     y = acel[1];
+[e = _y -> *U + _acel * -> -> 1 `i `x -> -> # *U _acel `i `x `l ]
+"118
+[; ;MPU6050.c: 118:     z = acel[2];
+[e = _z -> *U + _acel * -> -> 2 `i `x -> -> # *U _acel `i `x `l ]
+"119
+[; ;MPU6050.c: 119:     tmp = x*x + y*y + z*z;
+[e = _tmp -> + + * _x _x * _y _y * _z _z `ul ]
+"121
+[; ;MPU6050.c: 121:     return (tmp);
 [e ) _tmp ]
+[e $UE 944  ]
+"122
+[; ;MPU6050.c: 122: }
+[e :UE 944 ]
+}
+"125
+[; ;MPU6050.c: 125: uint32_t miabsdif(uint32_t data,uint32_t data1)
+[v _miabsdif `(ul ~T0 @X0 1 ef2`ul`ul ]
+"126
+[; ;MPU6050.c: 126: {
+{
+[e :U _miabsdif ]
+"125
+[; ;MPU6050.c: 125: uint32_t miabsdif(uint32_t data,uint32_t data1)
+[v _data `ul ~T0 @X0 1 r1 ]
+[v _data1 `ul ~T0 @X0 1 r2 ]
+"126
+[; ;MPU6050.c: 126: {
+[f ]
+"127
+[; ;MPU6050.c: 127:     if(data > data1)
+[e $ ! > _data _data1 946  ]
+"128
+[; ;MPU6050.c: 128:         return(data - data1);
+[e ) - _data _data1 ]
 [e $UE 945  ]
-"109
-[; ;MPU6050.c: 109: }
+[e $U 947  ]
+"129
+[; ;MPU6050.c: 129:     else
+[e :U 946 ]
+"130
+[; ;MPU6050.c: 130:         return(data1 - data);
+[e ) - _data1 _data ]
+[e $UE 945  ]
+[e :U 947 ]
+"131
+[; ;MPU6050.c: 131: }
 [e :UE 945 ]
 }
-"112
-[; ;MPU6050.c: 112: int cpicos(uint32_t *hmodulos, uint32_t actual)
+"137
+[; ;MPU6050.c: 137: int cpicos(uint32_t *hmodulos, uint32_t actual)
 [v _cpicos `(i ~T0 @X0 1 ef2`*ul`ul ]
-"113
-[; ;MPU6050.c: 113: {
+"138
+[; ;MPU6050.c: 138: {
 {
 [e :U _cpicos ]
-"112
-[; ;MPU6050.c: 112: int cpicos(uint32_t *hmodulos, uint32_t actual)
+"137
+[; ;MPU6050.c: 137: int cpicos(uint32_t *hmodulos, uint32_t actual)
 [v _hmodulos `*ul ~T0 @X0 1 r1 ]
 [v _actual `ul ~T0 @X0 1 r2 ]
-"113
-[; ;MPU6050.c: 113: {
+"138
+[; ;MPU6050.c: 138: {
 [f ]
-"114
-[; ;MPU6050.c: 114:     int picos = 0;
+"139
+[; ;MPU6050.c: 139:     int picos = 0;
 [v _picos `i ~T0 @X0 1 a ]
 [e = _picos -> 0 `i ]
-"115
-[; ;MPU6050.c: 115:     if(abs(hmodulos[1]-actual) > (500L*500L))
-[e $ ! > -> ( _abs (1 -> - *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual `i `l * -> 500 `l -> 500 `l 947  ]
-"116
-[; ;MPU6050.c: 116:     {
+"141
+[; ;MPU6050.c: 141:     if(miabsdif(hmodulos[1],actual) > (7500000L))
+[e $ ! > ( _miabsdif (2 , *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual -> -> 7500000 `l `ul 949  ]
+"142
+[; ;MPU6050.c: 142:     {
 {
-"117
-[; ;MPU6050.c: 117:         if(hmodulos[1]> hmodulos[0] && hmodulos[1]>actual)
-[e $ ! && > *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x *U + _hmodulos * -> -> 0 `i `x -> -> # *U _hmodulos `i `x > *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual 948  ]
-"118
-[; ;MPU6050.c: 118:             picos = 1;
+"143
+[; ;MPU6050.c: 143:         if(hmodulos[1]> hmodulos[0] && hmodulos[1]>actual)
+[e $ ! && > *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x *U + _hmodulos * -> -> 0 `i `x -> -> # *U _hmodulos `i `x > *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual 950  ]
+"144
+[; ;MPU6050.c: 144:             picos = 1;
 [e = _picos -> 1 `i ]
-[e :U 948 ]
-"120
-[; ;MPU6050.c: 120:         hmodulos[0] = hmodulos[1];
+[e :U 950 ]
+"146
+[; ;MPU6050.c: 146:         hmodulos[0] = hmodulos[1];
 [e = *U + _hmodulos * -> -> 0 `i `x -> -> # *U _hmodulos `i `x *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x ]
-"121
-[; ;MPU6050.c: 121:         hmodulos[1] = actual;
+"147
+[; ;MPU6050.c: 147:         hmodulos[1] = actual;
 [e = *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual ]
-"122
-[; ;MPU6050.c: 122:     }
+"148
+[; ;MPU6050.c: 148:     }
 }
-[e :U 947 ]
-"123
-[; ;MPU6050.c: 123:     return picos;
+[e :U 949 ]
+"149
+[; ;MPU6050.c: 149:     return picos;
 [e ) _picos ]
-[e $UE 946  ]
-"124
-[; ;MPU6050.c: 124: }
-[e :UE 946 ]
+[e $UE 948  ]
+"150
+[; ;MPU6050.c: 150: }
+[e :UE 948 ]
 }
-"127
-[; ;MPU6050.c: 127: int iniacel()
+"154
+[; ;MPU6050.c: 154: int iniacel(void)
 [v _iniacel `(i ~T0 @X0 1 ef ]
-"128
-[; ;MPU6050.c: 128: {
+"155
+[; ;MPU6050.c: 155: {
 {
 [e :U _iniacel ]
 [f ]
-"129
-[; ;MPU6050.c: 129:     int i;
+"156
+[; ;MPU6050.c: 156:     int i;
 [v _i `i ~T0 @X0 1 a ]
-"130
-[; ;MPU6050.c: 130:     uint16_t fifolen;
+"157
+[; ;MPU6050.c: 157:     uint16_t fifolen;
 [v _fifolen `us ~T0 @X0 1 a ]
-"132
-[; ;MPU6050.c: 132:     for(i=0;i<3;i++)
+"161
+[; ;MPU6050.c: 161:     for(i=0;i<3;i++)
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 3 `i 950  ]
-[e $U 951  ]
-[e :U 950 ]
-"133
-[; ;MPU6050.c: 133:     {
+[e $ < _i -> 3 `i 952  ]
+[e $U 953  ]
+[e :U 952 ]
+"162
+[; ;MPU6050.c: 162:     {
 {
-"134
-[; ;MPU6050.c: 134:         initialize();
+"163
+[; ;MPU6050.c: 163:         initialize();
 [e ( _initialize ..  ]
-"135
-[; ;MPU6050.c: 135:         DELAY_milliseconds(500);
+"164
+[; ;MPU6050.c: 164:         DELAY_milliseconds(500);
 [e ( _DELAY_milliseconds (1 -> -> 500 `i `us ]
-"136
-[; ;MPU6050.c: 136:         fifoconfig();
+"165
+[; ;MPU6050.c: 165:         fifoconfig();
 [e ( _fifoconfig ..  ]
-"137
-[; ;MPU6050.c: 137:         DELAY_milliseconds(500);
+"166
+[; ;MPU6050.c: 166:         DELAY_milliseconds(500);
 [e ( _DELAY_milliseconds (1 -> -> 500 `i `us ]
-"138
-[; ;MPU6050.c: 138:         fifolen = I2C1_Read2ByteRegister(0x68, 0x72);
+"168
+[; ;MPU6050.c: 168:         fifolen = I2C1_Read2ByteRegister(0x68, 0x72);
 [e = _fifolen ( _I2C1_Read2ByteRegister (2 , -> -> 104 `i `uc -> -> 114 `i `uc ]
-"139
-[; ;MPU6050.c: 139:         if(fifolen < 1024)
-[e $ ! < -> _fifolen `ui -> -> 1024 `i `ui 953  ]
-"140
-[; ;MPU6050.c: 140:             break;
-[e $U 951  ]
-[e :U 953 ]
-"141
-[; ;MPU6050.c: 141:         DELAY_milliseconds(1000);
+"169
+[; ;MPU6050.c: 169:         if(fifolen < 1024)
+[e $ ! < -> _fifolen `ui -> -> 1024 `i `ui 955  ]
+"170
+[; ;MPU6050.c: 170:             break;
+[e $U 953  ]
+[e :U 955 ]
+"171
+[; ;MPU6050.c: 171:         DELAY_milliseconds(1000);
 [e ( _DELAY_milliseconds (1 -> -> 1000 `i `us ]
-"142
-[; ;MPU6050.c: 142:     }
+"172
+[; ;MPU6050.c: 172:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 3 `i 950  ]
-[e :U 951 ]
+[e $ < _i -> 3 `i 952  ]
+[e :U 953 ]
 }
-"143
-[; ;MPU6050.c: 143:     resetAcell();
+"173
+[; ;MPU6050.c: 173:     resetAcell();
 [e ( _resetAcell ..  ]
-"144
-[; ;MPU6050.c: 144:     tanterior = tics();
+"174
+[; ;MPU6050.c: 174:     tanterior = tics();
 [e = _tanterior ( _tics ..  ]
-"145
-[; ;MPU6050.c: 145:     return i;
+"175
+[; ;MPU6050.c: 175:     return i;
 [e ) _i ]
-[e $UE 949  ]
-"146
-[; ;MPU6050.c: 146: }
-[e :UE 949 ]
+[e $UE 951  ]
+"176
+[; ;MPU6050.c: 176: }
+[e :UE 951 ]
 }
-"149
-[; ;MPU6050.c: 149: void procAcell()
+"179
+[; ;MPU6050.c: 179: void procAcell(void)
 [v _procAcell `(v ~T0 @X0 1 ef ]
-"150
-[; ;MPU6050.c: 150: {
+"180
+[; ;MPU6050.c: 180: {
 {
 [e :U _procAcell ]
 [f ]
-"151
-[; ;MPU6050.c: 151:     int i,len;
+"181
+[; ;MPU6050.c: 181:     int i,len;
 [v _i `i ~T0 @X0 1 a ]
 [v _len `i ~T0 @X0 1 a ]
-"152
-[; ;MPU6050.c: 152:     int16_t *pacel;
+"182
+[; ;MPU6050.c: 182:     int16_t *pacel;
 [v _pacel `*s ~T0 @X0 1 a ]
-"153
-[; ;MPU6050.c: 153:     uint32_t modtmp;
+"183
+[; ;MPU6050.c: 183:     uint32_t modtmp;
 [v _modtmp `ul ~T0 @X0 1 a ]
-"155
-[; ;MPU6050.c: 155:     if((tics() - tanterior) > 5000)
-[e $ ! > - ( _tics ..  _tanterior -> -> -> 5000 `i `l `ul 955  ]
-"156
-[; ;MPU6050.c: 156:     {
+"185
+[; ;MPU6050.c: 185:     if((tics() - tanterior) > 5000)
+[e $ ! > - ( _tics ..  _tanterior -> -> -> 5000 `i `l `ul 957  ]
+"186
+[; ;MPU6050.c: 186:     {
 {
-"157
-[; ;MPU6050.c: 157:         len = getAccelAcu(bufaccel,sizeof(bufaccel));
+"187
+[; ;MPU6050.c: 187:         len = getAccelAcu(bufaccel,sizeof(bufaccel));
 [e = _len ( _getAccelAcu (2 , -> &U _bufaccel `*uc -> -> # _bufaccel `ui `i ]
-"158
-[; ;MPU6050.c: 158:         if(len > 0)
-[e $ ! > _len -> 0 `i 956  ]
-"159
-[; ;MPU6050.c: 159:         {
+"188
+[; ;MPU6050.c: 188:         if(len > 0)
+[e $ ! > _len -> 0 `i 958  ]
+"189
+[; ;MPU6050.c: 189:         {
 {
-"160
-[; ;MPU6050.c: 160:             pacel = bufaccel;
+"190
+[; ;MPU6050.c: 190:             pacel = bufaccel;
 [e = _pacel -> &U _bufaccel `*s ]
-"161
-[; ;MPU6050.c: 161:             for(i=0;i<len/2;i+=3,pacel+=3)
+"191
+[; ;MPU6050.c: 191:             for(i=0;i<len/2;i+=3,pacel+=3)
 {
 [e = _i -> 0 `i ]
-[e $U 960  ]
-[e :U 957 ]
-"162
-[; ;MPU6050.c: 162:             {
+[e $U 962  ]
+[e :U 959 ]
+"192
+[; ;MPU6050.c: 192:             {
 {
-"163
-[; ;MPU6050.c: 163:                 acux += *pacel;
+"194
+[; ;MPU6050.c: 194:                 acux += *pacel;
 [e =+ _acux -> *U _pacel `l ]
-"164
-[; ;MPU6050.c: 164:                 acuy += *(pacel+1);
+"195
+[; ;MPU6050.c: 195:                 acuy += *(pacel+1);
 [e =+ _acuy -> *U + _pacel * -> -> 1 `i `x -> -> # *U _pacel `i `x `l ]
-"165
-[; ;MPU6050.c: 165:                 acuz += *(pacel+2);
+"196
+[; ;MPU6050.c: 196:                 acuz += *(pacel+2);
 [e =+ _acuz -> *U + _pacel * -> -> 2 `i `x -> -> # *U _pacel `i `x `l ]
-"166
-[; ;MPU6050.c: 166:                 nmues++;
+"197
+[; ;MPU6050.c: 197:                 nmues++;
 [e ++ _nmues -> -> 1 `i `us ]
-"167
-[; ;MPU6050.c: 167:                 modtmp = cmodulo(pacel);
+"198
+[; ;MPU6050.c: 198:                 modtmp = cmodulo(pacel);
 [e = _modtmp ( _cmodulo (1 _pacel ]
-"168
-[; ;MPU6050.c: 168:                 if(modtmp > maxmod)
-[e $ ! > _modtmp _maxmod 961  ]
-"169
-[; ;MPU6050.c: 169:                     maxmod = modtmp;
+"199
+[; ;MPU6050.c: 199:                 if(modtmp > maxmod)
+[e $ ! > _modtmp _maxmod 963  ]
+"200
+[; ;MPU6050.c: 200:                     maxmod = modtmp;
 [e = _maxmod _modtmp ]
-[e :U 961 ]
-"170
-[; ;MPU6050.c: 170:                 picos += cpicos(hmodulos,modtmp);
+[e :U 963 ]
+"201
+[; ;MPU6050.c: 201:                 picos += cpicos(hmodulos,modtmp);
 [e =+ _picos -> ( _cpicos (2 , &U _hmodulos _modtmp `us ]
-"171
-[; ;MPU6050.c: 171:             }
+"202
+[; ;MPU6050.c: 202:             }
 }
 [e ; =+ _i -> 3 `i =+ _pacel * -> -> 3 `i `x -> -> # *U _pacel `i `x ]
-[e :U 960 ]
-[e $ < _i / _len -> 2 `i 957  ]
-[e :U 958 ]
-}
-"172
-[; ;MPU6050.c: 172:             uart_traza();
-[e ( _uart_traza ..  ]
-"173
-[; ;MPU6050.c: 173:             printf("ACC=>%d\r\n",len);
-[e ( _printf , (. :s 1C _len ]
-"174
-[; ;MPU6050.c: 174:         }
-}
-[e $U 962  ]
-"175
-[; ;MPU6050.c: 175:         else if(len < 0)
-[e :U 956 ]
-[e $ ! < _len -> 0 `i 963  ]
-"176
-[; ;MPU6050.c: 176:         {
-{
-"177
-[; ;MPU6050.c: 177:             uart_traza();
-[e ( _uart_traza ..  ]
-"178
-[; ;MPU6050.c: 178:             printf("OVER_ACCEL\r\n");
-[e ( _printf :s 2C ]
-"179
-[; ;MPU6050.c: 179:         }
-}
-[e :U 963 ]
 [e :U 962 ]
-"180
-[; ;MPU6050.c: 180:         tanterior = tics();
+[e $ < _i / _len -> 2 `i 959  ]
+[e :U 960 ]
+}
+"203
+[; ;MPU6050.c: 203:             uart_traza();
+[e ( _uart_traza ..  ]
+"204
+[; ;MPU6050.c: 204:             printf("ACC=>%d\r\n",len);
+[e ( _printf , (. :s 1C _len ]
+"205
+[; ;MPU6050.c: 205:         }
+}
+[e $U 964  ]
+"206
+[; ;MPU6050.c: 206:         else if(len < 0)
+[e :U 958 ]
+[e $ ! < _len -> 0 `i 965  ]
+"207
+[; ;MPU6050.c: 207:         {
+{
+"208
+[; ;MPU6050.c: 208:             uart_traza();
+[e ( _uart_traza ..  ]
+"209
+[; ;MPU6050.c: 209:             printf("OVER_ACCEL\r\n");
+[e ( _printf :s 2C ]
+"210
+[; ;MPU6050.c: 210:         }
+}
+[e :U 965 ]
+[e :U 964 ]
+"211
+[; ;MPU6050.c: 211:         tanterior = tics();
 [e = _tanterior ( _tics ..  ]
-"181
-[; ;MPU6050.c: 181:     }
+"212
+[; ;MPU6050.c: 212:     }
 }
-[e :U 955 ]
-"182
-[; ;MPU6050.c: 182: }
-[e :UE 954 ]
+[e :U 957 ]
+"213
+[; ;MPU6050.c: 213: }
+[e :UE 956 ]
 }
-"185
-[; ;MPU6050.c: 185: void llenaTramaAccel(COLLARM_t *tacel)
-[v _llenaTramaAccel `(v ~T0 @X0 1 ef1`*S928 ]
-"186
-[; ;MPU6050.c: 186: {
+"216
+[; ;MPU6050.c: 216: void llenaTramaAccel(COLLARM_t *tacel)
+[v _llenaTramaAccel `(v ~T0 @X0 1 ef1`*S927 ]
+"217
+[; ;MPU6050.c: 217: {
 {
 [e :U _llenaTramaAccel ]
-"185
-[; ;MPU6050.c: 185: void llenaTramaAccel(COLLARM_t *tacel)
-[v _tacel `*S928 ~T0 @X0 1 r1 ]
-"186
-[; ;MPU6050.c: 186: {
+"216
+[; ;MPU6050.c: 216: void llenaTramaAccel(COLLARM_t *tacel)
+[v _tacel `*S927 ~T0 @X0 1 r1 ]
+"217
+[; ;MPU6050.c: 217: {
 [f ]
-"187
-[; ;MPU6050.c: 187:     tacel->actividad = picos;
+"218
+[; ;MPU6050.c: 218:     if(picos > 0)
+[e $ ! > -> _picos `ui -> -> 0 `i `ui 967  ]
+"219
+[; ;MPU6050.c: 219:         picos--;
+[e -- _picos -> -> 1 `i `us ]
+[e :U 967 ]
+"220
+[; ;MPU6050.c: 220:     tacel->actividad = picos;
 [e = . *U _tacel 4 _picos ]
-"188
-[; ;MPU6050.c: 188:     tacel->amodmax = maxmod;
+"221
+[; ;MPU6050.c: 221:     tacel->amodmax = maxmod;
 [e = . *U _tacel 9 _maxmod ]
-"189
-[; ;MPU6050.c: 189:     tacel->tmpActividad = (tics() - tinicial)/1000;
+"222
+[; ;MPU6050.c: 222:     tacel->tmpActividad = (tics() - tinicial)/1000;
 [e = . *U _tacel 5 -> / - ( _tics ..  _tinicial -> -> -> 1000 `i `l `ul `us ]
-"190
-[; ;MPU6050.c: 190:     tacel->amedx = acux/nmues;
+"223
+[; ;MPU6050.c: 223:     tacel->amedx = acux/nmues;
 [e = . *U _tacel 6 -> / _acux -> _nmues `l `us ]
-"191
-[; ;MPU6050.c: 191:     tacel->amedy = acuy/nmues;
+"224
+[; ;MPU6050.c: 224:     tacel->amedy = acuy/nmues;
 [e = . *U _tacel 7 -> / _acuy -> _nmues `l `us ]
-"192
-[; ;MPU6050.c: 192:     tacel->amedz = acuz/nmues;
+"225
+[; ;MPU6050.c: 225:     tacel->amedz = acuz/nmues;
 [e = . *U _tacel 8 -> / _acuz -> _nmues `l `us ]
-"193
-[; ;MPU6050.c: 193: }
-[e :UE 964 ]
+"226
+[; ;MPU6050.c: 226: }
+[e :UE 966 ]
 }
-"196
-[; ;MPU6050.c: 196: void resetAcell()
+"229
+[; ;MPU6050.c: 229: void resetAcell(void)
 [v _resetAcell `(v ~T0 @X0 1 ef ]
-"197
-[; ;MPU6050.c: 197: {
+"230
+[; ;MPU6050.c: 230: {
 {
 [e :U _resetAcell ]
 [f ]
-"198
-[; ;MPU6050.c: 198:     tinicial = tics();
+"231
+[; ;MPU6050.c: 231:     tinicial = tics();
 [e = _tinicial ( _tics ..  ]
-"199
-[; ;MPU6050.c: 199:     hmodulos[0] = 0;
+"232
+[; ;MPU6050.c: 232:     hmodulos[0] = 0;
 [e = *U + &U _hmodulos * -> -> -> 0 `i `ui `ux -> -> # *U &U _hmodulos `ui `ux -> -> -> 0 `i `l `ul ]
-"200
-[; ;MPU6050.c: 200:     hmodulos[1] = 0;
+"233
+[; ;MPU6050.c: 233:     hmodulos[1] = 0;
 [e = *U + &U _hmodulos * -> -> -> 1 `i `ui `ux -> -> # *U &U _hmodulos `ui `ux -> -> -> 0 `i `l `ul ]
-"201
-[; ;MPU6050.c: 201:     picos = 0;
+"234
+[; ;MPU6050.c: 234:     picos = 0;
 [e = _picos -> -> 0 `i `us ]
-"202
-[; ;MPU6050.c: 202:     maxmod = 0;
+"235
+[; ;MPU6050.c: 235:     maxmod = 0;
 [e = _maxmod -> -> -> 0 `i `l `ul ]
-"203
-[; ;MPU6050.c: 203:     acux = 0;
+"236
+[; ;MPU6050.c: 236:     acux = 0;
 [e = _acux -> -> 0 `i `l ]
-"204
-[; ;MPU6050.c: 204:     acuy = 0;
+"237
+[; ;MPU6050.c: 237:     acuy = 0;
 [e = _acuy -> -> 0 `i `l ]
-"205
-[; ;MPU6050.c: 205:     acuz = 0;
+"238
+[; ;MPU6050.c: 238:     acuz = 0;
 [e = _acuz -> -> 0 `i `l ]
-"206
-[; ;MPU6050.c: 206:     nmues = 0;
+"239
+[; ;MPU6050.c: 239:     nmues = 0;
 [e = _nmues -> -> 0 `i `us ]
-"207
-[; ;MPU6050.c: 207: }
-[e :UE 965 ]
+"240
+[; ;MPU6050.c: 240: }
+[e :UE 968 ]
 }
 [p f _printf 8388736 ]
 [a 1C 65 67 67 61 62 37 100 13 10 0 ]

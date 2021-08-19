@@ -1,23 +1,20 @@
 /* 
  * File:   funaux.h
- * Author: domi
- *
- * Created on August 11, 2021, 5:53 PM
+ * Author: Andres Pardo Redondo
+ * 
+ * Comments:    Funciones auxiliares implementadas en main.
+ * 
+ * Revision history: 
+ *      Primera version : 10/08/2021.
  */
 
 #ifndef FUNAUX_H
 #define	FUNAUX_H
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
+unsigned long tics(void); 
+void uart_traza(void);
+void write_traza(char *msg);    // para no utilizar printf.
 
-unsigned long tics(); 
-void uart_traza();
-
-#ifdef	__cplusplus
-}
-#endif
 
 #endif	/* FUNAUX_H */
 

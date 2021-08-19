@@ -1,8 +1,10 @@
 /* 
  * File:   gsm.c
- * Author: domi
- *
- * Created on August 10, 2021, 7:04 PM
+ * Author: Andres Pardo Redondo
+ * 
+ * Comments:    Funciones de acceso al modulo GSM.
+ * Revision history: 
+ *      Primera version : 02/08/2021.
  */
 
 #include <stdio.h>
@@ -13,15 +15,14 @@
 #include "eeprom.h"
 #include "mcc_generated_files/mcc.h"
 
-// Activacion socket UDP, se completa con datos de EEPROM en MAIN.
+// Comando Activacion socket UDP, se completa con datos de EEPROM en MAIN.
 COMANDAT_t udpstart = {"","CONNECT","ERROR",'\n',4000};
 
-// Activacion de SIM, se completa con datos de EEPROM en MAIN.
+// Comando Activacion de SIM, se completa con datos de EEPROM en MAIN.
 COMANDAT_t simpin = {"","SMS","ERROR",'\n',5000};
 
-//================= Funciones canal comunicacion GSM ===========================
-
-void uart_gsm()
+// Funcion para conectar la UART al modulo GSM.
+void uart_gsm(void)
 {
     DELAY_milliseconds(3); 
     RC2PPS = 0; 
@@ -31,7 +32,7 @@ void uart_gsm()
     DELAY_milliseconds(3);
 }
 
-// Espera a recibir una linea durante un tiempo maximo (ms) especificado.
+// Espera a recibir una linea de GSM durante un tiempo maximo (ms) especificado.
 // Se especifica cual es el caracter terminador de la linea.
 // Retorna numero de car recibidos si OK, 0 si KO.
 int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term)
@@ -72,9 +73,9 @@ int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term)
 			if(tics() >= tfin)          // TOUT sobrepasado?
 			{
 				*linea=0;
-                uart_traza();
-                printf("Rtout NC=>%d\r\n",ncar);
-                uart_gsm();
+            //    uart_traza();
+            //    printf("Rtout NC=>%d\r\n",ncar);
+            //    uart_gsm();
 				return 0;
 			}
 		}
@@ -83,7 +84,8 @@ int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term)
 }
 
 
-// Espera recibir un unico caracter de la UART sobre buffer linea, durante un tiempo maximo.
+// Espera recibir dos caracteres de la UART sobre buffer linea, durante un tiempo maximo.
+// Utilizado para la trama UDP de ack.
 int recDosGSM(char *linea,unsigned int tout)
 {
     unsigned long tfin = tics() + (unsigned long)tout;
@@ -135,8 +137,9 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
     // flush posible resto de caracter recibido.
     while(EUSART_is_rx_ready())
         EUSART_Read();
-    printf("%s",comandos->comando); // Envia comando.
-
+    
+  //  printf("%s",comandos->comando); // Envia comando.
+    writeLineaGSM(comandos->comando,strlen(comandos->comando));
     // Espera respuesta.
 	while(1)
 	{
@@ -148,21 +151,34 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
 			if(strstr(linea,comandos->resok) != NULL)  // Respuesta correcta.
             {
                 uart_traza();
-                printf("EXEOK->%s,RES=>%s\r\n",comandos->comando,linea);
+            //    printf("EXEOK->%s,RES=>%s\r\n",comandos->comando,linea);
+                write_traza("EXEOK->");
+                write_traza(comandos->comando);
+                write_traza(",RES=>");
+                write_traza(linea);
+                write_traza("\r\n");
                 uart_gsm();
 				return 1;
             }
 			if(strstr(linea,comandos->resko) != NULL)  // Respuesta error.
             {
                 uart_traza();
-                printf("Falla->%s, RES=>%s\r\n",comandos->comando,linea);
+            //    printf("Falla->%s, RES=>%s\r\n",comandos->comando,linea);
+                write_traza("Falla->");
+                write_traza(comandos->comando);
+                write_traza(", RES=>");
+                write_traza(linea);
+                write_traza("\r\n");
                 uart_gsm();
 				return 0;
             }
 		}
 	}
     uart_traza();
-    printf("TOUT->%s\r\n",comandos->comando);
+ //   printf("TOUT->%s\r\n",comandos->comando);
+    write_traza("TOUT->");
+    write_traza(comandos->comando);
+    write_traza("\r\n");
     uart_gsm();
 	return 0;
 }
@@ -221,7 +237,9 @@ void sendmsg(char *msg,int msglen, char *linea,int maxlen)
             recLineaGSM(linea,maxlen,2000,'\n');   // Segundo intento a recibir SEND.
         }
         uart_traza();
-        printf("SENDREC=>%s\r\n",linea);
+        write_traza("SENDREC=>");
+        write_traza(linea);
+        write_traza("\r\n");
     }
 }
 
@@ -267,8 +285,12 @@ void stopudp(char *linea,int maxlen)
 int getbat(char *linea,int maxlen)
 {
     char *ptmp;
+    
+    waitIni(linea,maxlen);
+  //  exeuno(&hora,linea,maxlen);
     exeuno(&midebat,linea,maxlen);
     ptmp = strtok(linea,",");
+    // extrae la info del campo milivoltios.
     if(ptmp != NULL)
     {
         ptmp = strtok(NULL,",");
@@ -291,11 +313,13 @@ void despierta(char *linea,int maxlen)
     waitIni(linea,maxlen);
 }
 
+// Funcion para colgar una llamada de voz entrante.
 void cuelgagsm(char *linea,int maxlen)
 {
    exeuno(&cuelga,linea,maxlen); 
 }
 
+// Funcion para descolgar una llamada de voz entrante.
 void descuelgagsm(char *linea,int maxlen)
 {
    exeuno(&descuelga,linea,maxlen); 

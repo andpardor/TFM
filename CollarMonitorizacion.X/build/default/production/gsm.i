@@ -7,13 +7,7 @@
 # 1 "/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "gsm.c" 2
-
-
-
-
-
-
-
+# 10 "gsm.c"
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/stdio.h" 1 3
 
 
@@ -170,7 +164,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 9 "gsm.c" 2
+# 11 "gsm.c" 2
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/stdlib.h" 1 3
 # 21 "/opt/microchip/xc8/v2.31/pic/include/c99/stdlib.h" 3
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/bits/alltypes.h" 1 3
@@ -228,7 +222,7 @@ uldiv_t uldiv (unsigned long, unsigned long);
 
 
 size_t __ctype_get_mb_cur_max(void);
-# 10 "gsm.c" 2
+# 12 "gsm.c" 2
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/string.h" 1 3
 # 25 "/opt/microchip/xc8/v2.31/pic/include/c99/string.h" 3
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/bits/alltypes.h" 1 3
@@ -283,11 +277,11 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 11 "gsm.c" 2
+# 13 "gsm.c" 2
 # 1 "./gsm.h" 1
-# 33 "./gsm.h"
+# 12 "./gsm.h"
 # 1 "./collarM.h" 1
-# 34 "./collarM.h"
+# 13 "./collarM.h"
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/stdint.h" 1 3
 # 22 "/opt/microchip/xc8/v2.31/pic/include/c99/stdint.h" 3
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/bits/alltypes.h" 1 3
@@ -372,15 +366,8 @@ typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 145 "/opt/microchip/xc8/v2.31/pic/include/c99/stdint.h" 2 3
-# 35 "./collarM.h" 2
-
-
-
-
-
-
-
-
+# 14 "./collarM.h" 2
+# 23 "./collarM.h"
 typedef struct {
      int32_t id;
      uint16_t secuencia;
@@ -400,7 +387,8 @@ typedef struct {
      int8_t reser;
      int8_t cksum;
 } COLLARM_t;
-# 34 "./gsm.h" 2
+# 13 "./gsm.h" 2
+
 
 typedef struct {
   char comando[64];
@@ -412,10 +400,11 @@ typedef struct {
 
 
 
-
-
 const COMANDAT_t inicio[1] = {
-   {"at+cnmi=1,2,0,0,0\r\n","OK","ERROR",'\n',100}};
+    {"at+cnmi=1,2,0,0,0\r\n","OK","ERROR",'\n',100}};
+
+
+
 
 
 const COMANDAT_t initudp[3] = {
@@ -437,7 +426,7 @@ const COMANDAT_t dormir = {"at+csclk=2\r\n","OK","ERROR",'\n',100};
 const COMANDAT_t noeco = {"ate0\r\n","OK","ERROR",'\n',1000};
 
 
-const COMANDAT_t rssi = {"at+csq\r\n",":","ERROR",'\n',5000};
+
 
 
 const COMANDAT_t midebat = {"at+cbc\r\n",":","ERROR",'\n',1000};
@@ -446,8 +435,13 @@ const COMANDAT_t midebat = {"at+cbc\r\n",":","ERROR",'\n',1000};
 const COMANDAT_t udpshut[2] = {{"at+cipclose=1\r\n","OK","ERROR",'\n',3000},
                     {"at+cipshut\r\n","OK","ERROR",'\n',6000}};
 
+
 const COMANDAT_t descuelga = {"ata\r\n","OK","CARRIER",'\n',5000};
+
+
 const COMANDAT_t cuelga = {"AT+HVOIC\r\n","OK","ERROR",'\n',5000};
+
+
 
 
 const COMANDAT_t sonidoadj[5] = {
@@ -461,7 +455,7 @@ const COMANDAT_t sonidoadj[5] = {
 
 const char terminador = '\x1A';
 
-void uart_gsm();
+void uart_gsm(void);
 void gsmon(char *linea,int maxlen);
 void sendmsg(char *msg,int msglen,char *linea,int maxlen);
 int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);
@@ -475,16 +469,15 @@ int getbat(char *linea,int maxlen);
 
 void cuelgagsm(char *linea,int maxlen);
 void descuelgagsm(char *linea,int maxlen);
-# 12 "gsm.c" 2
+# 14 "gsm.c" 2
 # 1 "./funaux.h" 1
-# 15 "./funaux.h"
-unsigned long tics();
-void uart_traza();
-# 13 "gsm.c" 2
+# 14 "./funaux.h"
+unsigned long tics(void);
+void uart_traza(void);
+void write_traza(char *msg);
+# 15 "gsm.c" 2
 # 1 "./eeprom.h" 1
-
-
-
+# 16 "./eeprom.h"
 # 1 "./mcc_generated_files/mcc.h" 1
 # 49 "./mcc_generated_files/mcc.h"
 # 1 "/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/xc.h" 1 3
@@ -10899,9 +10892,9 @@ extern __bank0 __bit __timeout;
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 234 "./mcc_generated_files/pin_manager.h"
+# 214 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 246 "./mcc_generated_files/pin_manager.h"
+# 226 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -11036,6 +11029,21 @@ extern void (*TMR1_InterruptHandler)(void);
 void TMR1_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/memory.h" 1
+# 99 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "./mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 58 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -11057,66 +11065,7 @@ void TMR0_ISR(void);
 extern void (*TMR0_InterruptHandler)(void);
 # 346 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/fvr.h" 1
-# 93 "./mcc_generated_files/fvr.h"
- void FVR_Initialize(void);
-# 127 "./mcc_generated_files/fvr.h"
-_Bool FVR_IsOutputReady(void);
 # 59 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/memory.h" 1
-# 99 "./mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint16_t flashAddr);
-# 128 "./mcc_generated_files/memory.h"
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-# 164 "./mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-# 189 "./mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint16_t startAddr);
-# 222 "./mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-# 248 "./mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint16_t bAdd);
-# 60 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/adc.h" 1
-# 72 "./mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
-
-
-
-
-typedef struct
-{
-    adc_result_t adcResult1;
-    adc_result_t adcResult2;
-} adc_sync_double_result_t;
-# 95 "./mcc_generated_files/adc.h"
-typedef enum
-{
-    BAT = 0x5,
-    channel_AVSS = 0x3C,
-    channel_Temp = 0x3D,
-    channel_DAC1 = 0x3E,
-    channel_FVR = 0x3F
-} adc_channel_t;
-# 137 "./mcc_generated_files/adc.h"
-void ADC_Initialize(void);
-# 167 "./mcc_generated_files/adc.h"
-void ADC_SelectChannel(adc_channel_t channel);
-# 194 "./mcc_generated_files/adc.h"
-void ADC_StartConversion(void);
-# 226 "./mcc_generated_files/adc.h"
-_Bool ADC_IsConversionDone(void);
-# 259 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversionResult(void);
-# 289 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversion(adc_channel_t channel);
-# 317 "./mcc_generated_files/adc.h"
-void ADC_TemperatureAcquisitionDelay(void);
-# 61 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/eusart.h" 1
 # 76 "./mcc_generated_files/eusart.h"
@@ -11149,31 +11098,29 @@ void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 398 "./mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 62 "./mcc_generated_files/mcc.h" 2
+# 60 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/delay.h" 1
 # 34 "./mcc_generated_files/delay.h"
 void DELAY_milliseconds(uint16_t milliseconds);
 void DELAY_microseconds(uint16_t microseconds);
-# 63 "./mcc_generated_files/mcc.h" 2
-# 78 "./mcc_generated_files/mcc.h"
+# 61 "./mcc_generated_files/mcc.h" 2
+# 76 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 91 "./mcc_generated_files/mcc.h"
+# 89 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 103 "./mcc_generated_files/mcc.h"
+# 101 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 115 "./mcc_generated_files/mcc.h"
+# 113 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 5 "./eeprom.h" 2
+# 17 "./eeprom.h" 2
 
-
-
-uint32_t getId();
+uint32_t getId(void);
 void getDominio(char *linea);
-uint16_t getPort();
+uint16_t getPort(void);
 void getClAes(char *linea);
-uint16_t getPin();
-# 14 "gsm.c" 2
+uint16_t getPin(void);
+# 16 "gsm.c" 2
 
 
 
@@ -11183,8 +11130,7 @@ COMANDAT_t udpstart = {"","CONNECT","ERROR",'\n',4000};
 COMANDAT_t simpin = {"","SMS","ERROR",'\n',5000};
 
 
-
-void uart_gsm()
+void uart_gsm(void)
 {
     DELAY_milliseconds(3);
     RC2PPS = 0;
@@ -11235,15 +11181,16 @@ int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term)
    if(tics() >= tfin)
    {
     *linea=0;
-                uart_traza();
-                printf("Rtout NC=>%d\r\n",ncar);
-                uart_gsm();
+
+
+
     return 0;
    }
   }
  }
  return 0;
 }
+
 
 
 
@@ -11298,8 +11245,9 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
 
     while(EUSART_is_rx_ready())
         EUSART_Read();
-    printf("%s",comandos->comando);
 
+
+    writeLineaGSM(comandos->comando,strlen(comandos->comando));
 
  while(1)
  {
@@ -11311,21 +11259,34 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
    if(strstr(linea,comandos->resok) != ((void*)0))
             {
                 uart_traza();
-                printf("EXEOK->%s,RES=>%s\r\n",comandos->comando,linea);
+
+                write_traza("EXEOK->");
+                write_traza(comandos->comando);
+                write_traza(",RES=>");
+                write_traza(linea);
+                write_traza("\r\n");
                 uart_gsm();
     return 1;
             }
    if(strstr(linea,comandos->resko) != ((void*)0))
             {
                 uart_traza();
-                printf("Falla->%s, RES=>%s\r\n",comandos->comando,linea);
+
+                write_traza("Falla->");
+                write_traza(comandos->comando);
+                write_traza(", RES=>");
+                write_traza(linea);
+                write_traza("\r\n");
                 uart_gsm();
     return 0;
             }
   }
  }
     uart_traza();
-    printf("TOUT->%s\r\n",comandos->comando);
+
+    write_traza("TOUT->");
+    write_traza(comandos->comando);
+    write_traza("\r\n");
     uart_gsm();
  return 0;
 }
@@ -11384,7 +11345,9 @@ void sendmsg(char *msg,int msglen, char *linea,int maxlen)
             recLineaGSM(linea,maxlen,2000,'\n');
         }
         uart_traza();
-        printf("SENDREC=>%s\r\n",linea);
+        write_traza("SENDREC=>");
+        write_traza(linea);
+        write_traza("\r\n");
     }
 }
 
@@ -11430,8 +11393,12 @@ void stopudp(char *linea,int maxlen)
 int getbat(char *linea,int maxlen)
 {
     char *ptmp;
+
+    waitIni(linea,maxlen);
+
     exeuno(&midebat,linea,maxlen);
     ptmp = strtok(linea,",");
+
     if(ptmp != ((void*)0))
     {
         ptmp = strtok(((void*)0),",");
@@ -11454,10 +11421,12 @@ void despierta(char *linea,int maxlen)
     waitIni(linea,maxlen);
 }
 
+
 void cuelgagsm(char *linea,int maxlen)
 {
    exeuno(&cuelga,linea,maxlen);
 }
+
 
 void descuelgagsm(char *linea,int maxlen)
 {

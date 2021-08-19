@@ -1,3 +1,15 @@
+/*
+ * File  : aes.h
+ * Autor : Adaptado por Andres Pardo a partir de KOKKE/tiny-AES-C
+ *          libreria publica de GITHUB. Varios 
+ * 
+ * Solo contempla cifrado en modo bloque.
+ * 
+ * Revision history: 
+ *      Primera version : 05/08/2021.
+ */
+
+
 #ifndef _AES_H_
 #define _AES_H_
 

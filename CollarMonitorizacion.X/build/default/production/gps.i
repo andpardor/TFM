@@ -7,13 +7,7 @@
 # 1 "/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "gps.c" 2
-
-
-
-
-
-
-
+# 10 "gps.c"
 # 1 "./mcc_generated_files/mcc.h" 1
 # 49 "./mcc_generated_files/mcc.h"
 # 1 "/home/domi/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8/pic/include/xc.h" 1 3
@@ -10597,9 +10591,9 @@ extern __bank0 __bit __timeout;
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 234 "./mcc_generated_files/pin_manager.h"
+# 214 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 246 "./mcc_generated_files/pin_manager.h"
+# 226 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -10877,6 +10871,21 @@ extern void (*TMR1_InterruptHandler)(void);
 void TMR1_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/memory.h" 1
+# 99 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "./mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 58 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -10898,66 +10907,7 @@ void TMR0_ISR(void);
 extern void (*TMR0_InterruptHandler)(void);
 # 346 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/fvr.h" 1
-# 93 "./mcc_generated_files/fvr.h"
- void FVR_Initialize(void);
-# 127 "./mcc_generated_files/fvr.h"
-_Bool FVR_IsOutputReady(void);
 # 59 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/memory.h" 1
-# 99 "./mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint16_t flashAddr);
-# 128 "./mcc_generated_files/memory.h"
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-# 164 "./mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-# 189 "./mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint16_t startAddr);
-# 222 "./mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-# 248 "./mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint16_t bAdd);
-# 60 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/adc.h" 1
-# 72 "./mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
-
-
-
-
-typedef struct
-{
-    adc_result_t adcResult1;
-    adc_result_t adcResult2;
-} adc_sync_double_result_t;
-# 95 "./mcc_generated_files/adc.h"
-typedef enum
-{
-    BAT = 0x5,
-    channel_AVSS = 0x3C,
-    channel_Temp = 0x3D,
-    channel_DAC1 = 0x3E,
-    channel_FVR = 0x3F
-} adc_channel_t;
-# 137 "./mcc_generated_files/adc.h"
-void ADC_Initialize(void);
-# 167 "./mcc_generated_files/adc.h"
-void ADC_SelectChannel(adc_channel_t channel);
-# 194 "./mcc_generated_files/adc.h"
-void ADC_StartConversion(void);
-# 226 "./mcc_generated_files/adc.h"
-_Bool ADC_IsConversionDone(void);
-# 259 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversionResult(void);
-# 289 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversion(adc_channel_t channel);
-# 317 "./mcc_generated_files/adc.h"
-void ADC_TemperatureAcquisitionDelay(void);
-# 61 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/eusart.h" 1
 # 76 "./mcc_generated_files/eusart.h"
@@ -10990,22 +10940,22 @@ void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
 # 398 "./mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 62 "./mcc_generated_files/mcc.h" 2
+# 60 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/delay.h" 1
 # 34 "./mcc_generated_files/delay.h"
 void DELAY_milliseconds(uint16_t milliseconds);
 void DELAY_microseconds(uint16_t microseconds);
-# 63 "./mcc_generated_files/mcc.h" 2
-# 78 "./mcc_generated_files/mcc.h"
+# 61 "./mcc_generated_files/mcc.h" 2
+# 76 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 91 "./mcc_generated_files/mcc.h"
+# 89 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 103 "./mcc_generated_files/mcc.h"
+# 101 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 115 "./mcc_generated_files/mcc.h"
+# 113 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 9 "gps.c" 2
+# 11 "gps.c" 2
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/string.h" 1 3
 # 25 "/opt/microchip/xc8/v2.31/pic/include/c99/string.h" 3
 # 1 "/opt/microchip/xc8/v2.31/pic/include/c99/bits/alltypes.h" 1 3
@@ -11060,11 +11010,11 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 10 "gps.c" 2
+# 12 "gps.c" 2
 # 1 "./gps.h" 1
-# 34 "./gps.h"
+# 13 "./gps.h"
 # 1 "./collarM.h" 1
-# 43 "./collarM.h"
+# 23 "./collarM.h"
 typedef struct {
      int32_t id;
      uint16_t secuencia;
@@ -11084,29 +11034,33 @@ typedef struct {
      int8_t reser;
      int8_t cksum;
 } COLLARM_t;
-# 35 "./gps.h" 2
+# 14 "./gps.h" 2
 
 
 
 const char cabgps[] = "$GPGGA";
+
+
 const uint8_t gpssleep[] = { 0xb5, 0x62, 0x02, 0x41, 0x08, 0x00,0x00, 0x00, 0x00, 0x00,
                             0x02, 0x00, 0x00, 0x00 };
+
+
 const uint8_t gpswake = 0xb5;
 
 
-
-void uart_gps();
+void uart_gps(void);
 void gpsRead(char *linea,int maxlen,unsigned int tout,COLLARM_t *gps);
-void gpson();
-void gpsoff();
-int getstgps();
-void ckgps();
-# 11 "gps.c" 2
+void gpson(void);
+void gpsoff(void);
+int getstgps(void);
+void ckgps(void);
+# 13 "gps.c" 2
 # 1 "./funaux.h" 1
-# 15 "./funaux.h"
-unsigned long tics();
-void uart_traza();
-# 12 "gps.c" 2
+# 14 "./funaux.h"
+unsigned long tics(void);
+void uart_traza(void);
+void write_traza(char *msg);
+# 14 "gps.c" 2
 
 int stgps = 0;
 
@@ -11115,7 +11069,8 @@ int stgps = 0;
 unsigned long maxtime;
 int len;
 
-void uart_gps()
+
+void uart_gps(void)
 {
     DELAY_milliseconds(3);
     RC2PPS = 0;
@@ -11124,8 +11079,6 @@ void uart_gps()
     RXPPS = 0x11;
     DELAY_milliseconds(3);
 }
-
-
 
 
 
@@ -11172,7 +11125,7 @@ int recLineaGPS(char *linea,int maxlen,unsigned int tout)
         DELAY_microseconds(100);
     }
 }
-# 85 "gps.c"
+# 87 "gps.c"
 uint16_t min2grado(char *valor)
 {
     uint32_t tmp,entero;
@@ -11180,9 +11133,11 @@ uint16_t min2grado(char *valor)
 
     entero = atoi(valor)%100;
     punte = strchr(valor,'.');
-    tmp = atoi(punte+1);
+    tmp = atol(punte+1);
 
-    entero = entero*17895697 + tmp*1790;
+    tmp = tmp * 179;
+    entero = entero * 17895697;
+    entero += tmp;
     entero = entero >> 14;
     if(entero > 65535)
         entero = 65535;
@@ -11250,8 +11205,8 @@ void anaGPS(char *linea,COLLARM_t *gps)
     if(punte != ((void*)0))
     {
         gps->nsat = atoi(punte) & 0xff;
-        if(gps->nsat > 15)
-            gps->nsat = 15;
+
+
     }
 
 }
@@ -11280,9 +11235,9 @@ void gpsRead(char *linear,int maxlen,unsigned int tout,COLLARM_t *gps)
         len = recLineaGPS(linear,maxlen,tout);
         if(len)
         {
-
-
-
+           uart_traza();
+           printf("RGPS=>%s\n",linear);
+           uart_gps();
            anaGPS(linear,gps);
            return;
 
@@ -11330,7 +11285,7 @@ void gpscksum(uint8_t *msg,uint8_t len,uint8_t *cka,uint8_t *ckb)
 }
 
 
-void gpson()
+void gpson(void)
 {
     uint8_t wake = gpswake;
 
@@ -11341,7 +11296,7 @@ void gpson()
 }
 
 
-void gpsoff()
+void gpsoff(void)
 {
     uint8_t cka;
     uint8_t ckb;
@@ -11357,10 +11312,13 @@ void gpsoff()
     uart_traza();
 }
 
-int getstgps()
+
+int getstgps(void)
 {
     return stgps;
 }
+
+
 
 void ckgps()
 {
@@ -11370,12 +11328,14 @@ void ckgps()
     if(stgps == 1)
         return;
     uart_gps();
-    for(i=0,n=0;i<10;i++)
+    for(i=0,n=0;i<500;i++)
     {
         if(EUSART_is_rx_ready())
         {
             c = EUSART_Read();
             n++;
+            if(n > 1)
+                break;
         }
         DELAY_milliseconds(2);
     }
@@ -11383,5 +11343,4 @@ void ckgps()
     printf("RGPS=>%d\r\n",n);
     if(n > 1)
         gpsoff();
-
 }
