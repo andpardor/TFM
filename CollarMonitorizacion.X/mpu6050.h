@@ -400,7 +400,7 @@
 
 
 
-#define UMBRALG     (7500000L)     // Umbral minimo aceleracion.(de los modulos al cuadrado)
+#define UMBRALG     (9000000L)     // Umbral minimo aceleracion.(de los modulos al cuadrado)
 
 // Funciones de acceso.
 // ====================

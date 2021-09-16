@@ -137,8 +137,6 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
     // flush posible resto de caracter recibido.
     while(EUSART_is_rx_ready())
         EUSART_Read();
-    
-  //  printf("%s",comandos->comando); // Envia comando.
     writeLineaGSM(comandos->comando,strlen(comandos->comando));
     // Espera respuesta.
 	while(1)
@@ -151,7 +149,6 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
 			if(strstr(linea,comandos->resok) != NULL)  // Respuesta correcta.
             {
                 uart_traza();
-            //    printf("EXEOK->%s,RES=>%s\r\n",comandos->comando,linea);
                 write_traza("EXEOK->");
                 write_traza(comandos->comando);
                 write_traza(",RES=>");
@@ -163,7 +160,6 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
 			if(strstr(linea,comandos->resko) != NULL)  // Respuesta error.
             {
                 uart_traza();
-            //    printf("Falla->%s, RES=>%s\r\n",comandos->comando,linea);
                 write_traza("Falla->");
                 write_traza(comandos->comando);
                 write_traza(", RES=>");
@@ -175,7 +171,6 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
 		}
 	}
     uart_traza();
- //   printf("TOUT->%s\r\n",comandos->comando);
     write_traza("TOUT->");
     write_traza(comandos->comando);
     write_traza("\r\n");
@@ -184,16 +179,18 @@ int exeuno(COMANDAT_t *comandos, char *linea,int maxlen)
 }
 
 // Ejecuta una secuencia de comandos GSM.
-void exesec(COMANDAT_t *comandos,int num, char *linea, int maxlen)
+int exesec(COMANDAT_t *comandos,int num, char *linea, int maxlen)
 {
 	int i;
 	uart_gsm();
     
 	for(i=0;i<num;i++)
 	{
-		exeuno(comandos,linea,maxlen);
+		if(exeuno(comandos,linea,maxlen) == 0)
+            return 0;
 		comandos++;
 	}
+    return 1;
 }
 
 // Espera arranque dispositivo GSM, el ensayo se realiza enviando comandos
@@ -209,19 +206,15 @@ int waitIni(char *linea,int maxlen)
         DELAY_milliseconds(1000);
         return 1;
     }
-//    uart_traza();
-//    printf("Falla INI..\r\n");
-//    uart_gsm();
     return 0;
 }
 
 // Envia un mensaje UDP por el socket ya iniciado
-void sendmsg(char *msg,int msglen, char *linea,int maxlen)
+int sendmsg(char *msg,int msglen, char *linea,int maxlen)
 {
 	int ret;
 	uart_gsm();
     
-    // flush
     sprintf(envimensa.comando,"at+cipsend=%d\r\n",msglen);
     if(exeuno(&envimensa,linea,maxlen))  // Comando para abrir socket
     {
@@ -235,12 +228,20 @@ void sendmsg(char *msg,int msglen, char *linea,int maxlen)
         {
             linea[0] = 0;
             recLineaGSM(linea,maxlen,2000,'\n');   // Segundo intento a recibir SEND.
+            if(strstr(linea,"SEND") == NULL)
+                ret = 0;
+            else
+                ret = 1;
         }
+        else
+            ret = 1;
         uart_traza();
         write_traza("SENDREC=>");
         write_traza(linea);
         write_traza("\r\n");
+        return(ret);
     }
+    return 0;
 }
 
 // Inicializa el GSM y lo pone en modo bajo consumo.
@@ -248,7 +249,8 @@ void gsmon(char *linea,int maxlen)
 { 
     int i;
     
-    getDominio(linea);    
+    getDominio(linea);  
+    // genera mensajes de desbloqueo SIM y conexion UDP segun datos en eeprom.
     sprintf(udpstart.comando,"at+cipstart=\"UDP\",\"%s\",\"%d\"\r\n",linea,getPort());
     sprintf(simpin.comando,"at+cpin=\"%04d\"\r\n",getPin());
     
@@ -258,19 +260,38 @@ void gsmon(char *linea,int maxlen)
         if(waitIni(linea,maxlen))
             break;
     }
-    
-    exeuno(&simpin,linea,maxlen);    // Activamos SIM y conexion a la red
-	exesec(inicio,1,linea,maxlen);   // Modo SMS
+    for(i=0;i<3;i++)
+    {
+        if(exeuno(&simpin,linea,maxlen) == 0) // Activamos SIM y conexion a la red
+        {
+            DELAY_milliseconds(2000);
+            continue;
+        }  
+        exesec(inicio,2,linea,maxlen);   // Modo SMS 
+        break;
+    }
     exesec(sonidoadj,5,linea,maxlen);             // Ajustes de sonido.
-    exeuno(&dormir,linea,maxlen);                 // Bajo consumo.
-    // startudp(linea,maxlen);
 }
 
 // Activa conexión UDP
 void startudp(char *linea,int maxlen)
 {
+    int i;
+    
+    for(i=0;i<5;i++)
+    {
+        waitIni(linea,maxlen);
+        asm("CLRWDT");  // refresco WDT
+        if(exesec(initudp,3,linea,maxlen)== 0)  // Conexion red de datos.
+        {
+            exeuno(&udpshut[1],linea,maxlen); 
+            DELAY_milliseconds(20000);
+            continue;
+        }
+        else
+            break;
+    }
 	waitIni(linea,maxlen);
-    exesec(initudp,3,linea,maxlen);  // Conexion red de datos. 
     exeuno(&udpstart,linea,maxlen);  // Activacion socket UDP.
 }
 
@@ -279,6 +300,8 @@ void stopudp(char *linea,int maxlen)
 {
 	waitIni(linea,maxlen);
     exeuno(&udpshut[0],linea,maxlen);
+    waitIni(linea,maxlen);
+    exeuno(&udpshut[1],linea,maxlen);
 }
 
 // Obtención del estado de la bateria
@@ -287,7 +310,6 @@ int getbat(char *linea,int maxlen)
     char *ptmp;
     
     waitIni(linea,maxlen);
-  //  exeuno(&hora,linea,maxlen);
     exeuno(&midebat,linea,maxlen);
     ptmp = strtok(linea,",");
     // extrae la info del campo milivoltios.

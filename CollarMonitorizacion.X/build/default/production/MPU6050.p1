@@ -1376,8 +1376,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _picos `i ~T0 @X0 1 a ]
 [e = _picos -> 0 `i ]
 "141
-[; ;MPU6050.c: 141:     if(miabsdif(hmodulos[1],actual) > (7500000L))
-[e $ ! > ( _miabsdif (2 , *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual -> -> 7500000 `l `ul 949  ]
+[; ;MPU6050.c: 141:     if(miabsdif(hmodulos[1],actual) > (9000000L))
+[e $ ! > ( _miabsdif (2 , *U + _hmodulos * -> -> 1 `i `x -> -> # *U _hmodulos `i `x _actual -> -> 9000000 `l `ul 949  ]
 "142
 [; ;MPU6050.c: 142:     {
 {

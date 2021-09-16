@@ -114,6 +114,8 @@ void uart_traza(void)
 }
 
 // funcion para escribir un mensaje de texto por la UART (Traza)
+// para no utilizar printf en mensajes de texto por el nivel de anidamiento
+// que implica (limite de stack).
 void write_traza(char *msg)
 {
     int i;
@@ -127,9 +129,9 @@ void write_traza(char *msg)
 
 // Funcion para formar la trama a enviar por UDP, apertura del socket, envio de la
 // trama, recepcion del ACK y tratamiento de flags recibidos.
-void sendTrama(void)
+int sendTrama(void)
 {
-    int i,lencod;
+    int i,lencod,ret;
     uint8_t ack1,ack2;
     
     // rellena estructura de trama
@@ -152,11 +154,10 @@ void sendTrama(void)
     // calculo CKSUM.
     for(i=0,collar.cksum=0;i<(sizeof(collar)-1);i++)
 		collar.cksum += ((unsigned char *)&collar)[i];
-    
- //   printf("A=%d,m=%04x%04x\r\n",collar.actividad,((collar.amodmax)>>16)&0xffff,(collar.amodmax) & 0xffff);
-        
+           
     // cifrado y codificacion a base 64.
     memcpy(linear,(unsigned char *)&collar,sizeof(collar));
+    // cifrado en dos bloques.
     AES_ECB_encrypt(&ctx,linear);
     AES_ECB_encrypt(&ctx,&linear[16]);
     lencod = Base64Encode((BYTE*)linear, (WORD)sizeof(collar), (BYTE*)mensa, (WORD)sizeof(mensa));
@@ -166,74 +167,75 @@ void sendTrama(void)
     baseres[1] = mensa[1];
     // Apertura del socket y envio de trama.
     startudp(linear,sizeof(linear));
-    sendmsg(mensa,lencod,linear,sizeof(linear));
-    
-    // Recepcion ACK respuesta.
-    linear[0] = 0;
-	lencod = recDosGSM(linear,2000);   // espera respuesta.
-    
-    // comprobamos y procesamos ACK
-    if(lencod == 2)     // Ack recibido
+    ret = sendmsg(mensa,lencod,linear,sizeof(linear));
+    if(ret)
     {
-        ack1 = (linear[0] ^ baseres[0]) & 0x3e;
-        ack2 = (linear[1] ^ baseres[1]) & 0x3e;
-        if((ack1 ^ ack2) == 0x3e)   // ACK OK
+        // Recepcion ACK respuesta.
+        linear[0] = 0;
+        lencod = recDosGSM(linear,2000);   // espera respuesta.
+
+        // comprobamos y procesamos ACK
+        if(lencod == 2)     // Ack recibido
         {
-            ack1 >>= 1;             // Get flags.
-            uart_traza();
-      //      printf("RACK=>(%02x,%02x\r\n",linear[0],linear[1]);
-      //      printf("BASRES=>(%02x,%02x\r\n",baseres[0],baseres[1]);
-            printf("ACKOK=>%02x\r\n",ack1);
-            uart_gsm();
-            
-            // Procesamos flags recibidos.
-            if(ack1 & MBOTON)   // Reset alarma
-                boton = 0;
-            
-            if(ack1 & MMODO)    // Modo normal o seguimiento
+            ack1 = (linear[0] ^ baseres[0]) & 0x3e;
+            ack2 = (linear[1] ^ baseres[1]) & 0x3e;
+            if((ack1 ^ ack2) == 0x3e)   // ACK OK
             {
-                modo = 1;
-                intervalo = TSIGUE; // Intervalo entre tramas mas corto
-                gpson();        // En modo seguimiento activamos GPS.
+                ack1 >>= 1;             // Get flags.
+                // Procesamos flags recibidos.
+                if(ack1 & MBOTON)   // Reset alarma
+                    boton = 0;
+
+                if(ack1 & MMODO)    // Modo normal o seguimiento
+                {
+                    modo = 1;
+                    intervalo = TSIGUE; // Intervalo entre tramas mas corto
+                    gpson();            // En modo seguimiento activamos GPS.
+                }
+                else
+                {
+                    intervalo = TOPER;  // Intervalo entre tramas mas largo.
+                    modo = 0;
+                    if(ack1 & MGPS)     // Activacion GPS.
+                        gpson();
+                    else
+                        gpsoff();       // Desactivacion GPS
+                }
+                if(ack1 & MFCALL)   // Apertura cerrojo llamada de voz.
+                {
+                    fcall = 1;
+                    tfcall = tics();
+                }
+                else                // Cierre cerrojo llamada de voz.
+                {
+                    fcall = 0;
+                    llamada = 0;
+                }
             }
             else
-            {
-                intervalo = TOPER;  // Intervalo entre tramas mas largo.
-                modo = 0;
-                if(ack1 & MGPS)     // Activacion GPS.
-                    gpson();
-                else
-                    gpsoff();       // Desactivacion GPS
-            }
-            if(ack1 & MFCALL)   // Apertura cerrojo llamada de voz.
-            {
-                fcall = 1;
-                tfcall = tics();
-            }
-            else                // Cierre cerrojo llamada de voz.
-            {
-                fcall = 0;
-                llamada = 0;
-            }
+                ret = 0;
         }
- //       else
- //       {
- //           uart_traza();
- //           printf("ACKKKOO=>%02x,%02x\r\n",ack1,ack2);
- //           uart_gsm();
- //       }
+        else
+            ret = 0;
         resetAcell();   // Nuevo intervalo calculos acelerometro.
     }
-    else    // ACK no recibido.
-    {
-        uart_traza();
-        printf("NORECACK=>%d\r\n",lencod);
-        uart_gsm();
-    }
+//    else    // ACK no recibido.
+//    {
+//        uart_traza();
+//        printf("NORECACK=>%d\r\n",lencod);
+//        uart_gsm();
+//    }
     secuencia++;
     stopudp(linear,sizeof(linear));     // Cierre sockect.
     duerme(linear,sizeof(linear));      // GSM en bajo consumo.
     lastsend = tics();                  // Anota tiempo ultimo envio.
+    if(!ret)
+    {
+        uart_traza();
+        printf("Send FAIL..\r\n");
+        intervalo = TSIGUE;
+    }
+    return(ret);
 }
 
 // Proceso supervision boton de emergencia. Boton toggle.
@@ -291,6 +293,21 @@ void main(void)
     // Inicialización del GSM
     gsmon(linear,sizeof(linear));
     DELAY_milliseconds(3000);
+    while(1)    // espera conexion con la celda.
+    {
+        DELAY_milliseconds(1000);
+        asm("CLRWDT");  // refresco WDT
+        exeuno(&inicio[1],linear,sizeof(linear));
+        if(strstr(linear,"0,1") != NULL)    // celda conectada
+            break;
+        if(strstr(linear,"0,2") != NULL)    // conexion en curso
+            continue;
+        if(strstr(linear,"0,0") != NULL)    // conexion rechazada
+        {
+            gsmon(linear,sizeof(linear));
+            continue;
+        }    
+    }
     gpsoff();   // Apagado GPS.
     
     // Iniciacion sistema cifrado.
@@ -310,6 +327,8 @@ void main(void)
             uart_gsm();
             linear[0] = 0;
             len = recLineaGSM(linear,sizeof(linear),5000,'\n');
+            uart_traza();
+            printf("R->(%d)%s\r\n",strlen(linear),linear);
             if((len > 0) && (strstr(linear,"RI") != NULL)) // Indicacion de RING recibida.
             {
                 uart_gsm();
@@ -323,7 +342,7 @@ void main(void)
                 {
                     cuelgagsm(linear,sizeof(linear));       // Colgamos llamada entrante.
                     DELAY_milliseconds(4000);
-                    sendTrama();                            // Enviamos trama con estado actual.
+                    sendTrama();                           // Enviamos trama con estado actual.
                 }
             }
             if(len == 0)    // Nada recibido chequeamos estado actual GPS.
@@ -332,7 +351,9 @@ void main(void)
             {
                 pboton();   // Comprobamos boton de emergencia.
                 if((tics() - lastsend) > intervalo) // Tiempo de enviar siguiente trama?
-                   sendTrama(); 
+                {
+                   sendTrama();
+                }
             }
         }
         else    // llamada de voz en curso espera final

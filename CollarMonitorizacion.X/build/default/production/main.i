@@ -10895,6 +10895,21 @@ void I2C1_SetDataNackCallback(i2c1_callback_t cb, void *ptr);
 void I2C1_SetTimeoutCallback(i2c1_callback_t cb, void *ptr);
 # 56 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/memory.h" 1
+# 99 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "./mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 57 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 100 "./mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -10920,21 +10935,6 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "./mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
-# 57 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/memory.h" 1
-# 99 "./mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint16_t flashAddr);
-# 128 "./mcc_generated_files/memory.h"
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-# 164 "./mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-# 189 "./mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint16_t startAddr);
-# 222 "./mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-# 248 "./mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint16_t bAdd);
 # 58 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr0.h" 1
@@ -11088,21 +11088,16 @@ typedef struct {
 
 
 
-const COMANDAT_t inicio[1] = {
-    {"at+cnmi=1,2,0,0,0\r\n","OK","ERROR",'\n',100}};
-
-
-
+const COMANDAT_t inicio[2] = {
+    {"at+cnmi=2,2,0,0,0\r\n","OK","ERROR",'\n',100},
+            {"at+creg?\r\n",":","ERROR",'\n',100}};
 
 
 const COMANDAT_t initudp[3] = {
    {"at+cstt=\"orangeworld\"\r\n","OK","ERROR",'\n',100},
-   {"at+ciicr\r\n","OK","ERROR",'\n',4000},
+   {"at+ciicr\r\n","OK","ERROR",'\n',60000},
    {"at+cifsr\r\n",".","ERROR",'\n',1000}
 };
-
-
-
 
 
 const COMANDAT_t envimensa = {"at+cipsend\r\n",">","ERROR",'>',1000};
@@ -11130,8 +11125,6 @@ const COMANDAT_t descuelga = {"ata\r\n","OK","CARRIER",'\n',5000};
 const COMANDAT_t cuelga = {"AT+HVOIC\r\n","OK","ERROR",'\n',5000};
 
 
-
-
 const COMANDAT_t sonidoadj[5] = {
     {"at+clvl=100\r\n","OK","ERROR",'\n',100},
     {"at+cmic=0,15\r\n","OK","ERROR",'\n',100},
@@ -11143,9 +11136,10 @@ const COMANDAT_t sonidoadj[5] = {
 
 const char terminador = '\x1A';
 
+
 void uart_gsm(void);
 void gsmon(char *linea,int maxlen);
-void sendmsg(char *msg,int msglen,char *linea,int maxlen);
+int sendmsg(char *msg,int msglen,char *linea,int maxlen);
 int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);
 int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
 int recDosGSM(char *linea,unsigned int tout);
@@ -11262,6 +11256,8 @@ void uart_traza(void)
 }
 
 
+
+
 void write_traza(char *msg)
 {
     int i;
@@ -11275,9 +11271,9 @@ void write_traza(char *msg)
 
 
 
-void sendTrama(void)
+int sendTrama(void)
 {
-    int i,lencod;
+    int i,lencod,ret;
     uint8_t ack1,ack2;
 
 
@@ -11302,9 +11298,8 @@ void sendTrama(void)
   collar.cksum += ((unsigned char *)&collar)[i];
 
 
-
-
     memcpy(linear,(unsigned char *)&collar,sizeof(collar));
+
     AES_ECB_encrypt(&ctx,linear);
     AES_ECB_encrypt(&ctx,&linear[16]);
     lencod = Base64Encode((BYTE*)linear, (WORD)sizeof(collar), (BYTE*)mensa, (WORD)sizeof(mensa));
@@ -11314,74 +11309,75 @@ void sendTrama(void)
     baseres[1] = mensa[1];
 
     startudp(linear,sizeof(linear));
-    sendmsg(mensa,lencod,linear,sizeof(linear));
-
-
-    linear[0] = 0;
- lencod = recDosGSM(linear,2000);
-
-
-    if(lencod == 2)
+    ret = sendmsg(mensa,lencod,linear,sizeof(linear));
+    if(ret)
     {
-        ack1 = (linear[0] ^ baseres[0]) & 0x3e;
-        ack2 = (linear[1] ^ baseres[1]) & 0x3e;
-        if((ack1 ^ ack2) == 0x3e)
+
+        linear[0] = 0;
+        lencod = recDosGSM(linear,2000);
+
+
+        if(lencod == 2)
         {
-            ack1 >>= 1;
-            uart_traza();
-
-
-            printf("ACKOK=>%02x\r\n",ack1);
-            uart_gsm();
-
-
-            if(ack1 & 0x01)
-                boton = 0;
-
-            if(ack1 & 0x08)
+            ack1 = (linear[0] ^ baseres[0]) & 0x3e;
+            ack2 = (linear[1] ^ baseres[1]) & 0x3e;
+            if((ack1 ^ ack2) == 0x3e)
             {
-                modo = 1;
-                intervalo = 30000L;
-                gpson();
-            }
-            else
-            {
-                intervalo = 900000L;
-                modo = 0;
-                if(ack1 & 0x04)
+                ack1 >>= 1;
+
+                if(ack1 & 0x01)
+                    boton = 0;
+
+                if(ack1 & 0x08)
+                {
+                    modo = 1;
+                    intervalo = 30000L;
                     gpson();
+                }
                 else
-                    gpsoff();
-            }
-            if(ack1 & 0x02)
-            {
-                fcall = 1;
-                tfcall = tics();
+                {
+                    intervalo = 900000L;
+                    modo = 0;
+                    if(ack1 & 0x04)
+                        gpson();
+                    else
+                        gpsoff();
+                }
+                if(ack1 & 0x02)
+                {
+                    fcall = 1;
+                    tfcall = tics();
+                }
+                else
+                {
+                    fcall = 0;
+                    llamada = 0;
+                }
             }
             else
-            {
-                fcall = 0;
-                llamada = 0;
-            }
+                ret = 0;
         }
-
-
-
-
-
-
+        else
+            ret = 0;
         resetAcell();
     }
-    else
-    {
-        uart_traza();
-        printf("NORECACK=>%d\r\n",lencod);
-        uart_gsm();
-    }
+
+
+
+
+
+
     secuencia++;
     stopudp(linear,sizeof(linear));
     duerme(linear,sizeof(linear));
     lastsend = tics();
+    if(!ret)
+    {
+        uart_traza();
+        printf("Send FAIL..\r\n");
+        intervalo = 30000L;
+    }
+    return(ret);
 }
 
 
@@ -11439,6 +11435,21 @@ void main(void)
 
     gsmon(linear,sizeof(linear));
     DELAY_milliseconds(3000);
+    while(1)
+    {
+        DELAY_milliseconds(1000);
+        __asm("CLRWDT");
+        exeuno(&inicio[1],linear,sizeof(linear));
+        if(strstr(linear,"0,1") != ((void*)0))
+            break;
+        if(strstr(linear,"0,2") != ((void*)0))
+            continue;
+        if(strstr(linear,"0,0") != ((void*)0))
+        {
+            gsmon(linear,sizeof(linear));
+            continue;
+        }
+    }
     gpsoff();
 
 
@@ -11458,6 +11469,8 @@ void main(void)
             uart_gsm();
             linear[0] = 0;
             len = recLineaGSM(linear,sizeof(linear),5000,'\n');
+            uart_traza();
+            printf("R->(%d)%s\r\n",strlen(linear),linear);
             if((len > 0) && (strstr(linear,"RI") != ((void*)0)))
             {
                 uart_gsm();
@@ -11480,7 +11493,9 @@ void main(void)
             {
                 pboton();
                 if((tics() - lastsend) > intervalo)
+                {
                    sendTrama();
+                }
             }
         }
         else

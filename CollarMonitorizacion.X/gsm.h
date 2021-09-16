@@ -22,21 +22,16 @@ typedef struct {
 
 
 // Secuencia inicio GSM
-const COMANDAT_t	inicio[1] = {
- 			{"at+cnmi=1,2,0,0,0\r\n","OK","ERROR",'\n',100}};
- 
-     //       {"at+clts=1\r\n","OK","ERROR",'\n',1000},
-     //       {"at&w\r\n","OK","ERROR",'\n',5000}};
+const COMANDAT_t	inicio[2] = {
+ 			{"at+cnmi=2,2,0,0,0\r\n","OK","ERROR",'\n',100},
+            {"at+creg?\r\n",":","ERROR",'\n',100}};
 
 // Secuencia activacion conexion de datos.
 const COMANDAT_t	initudp[3] = {	
 			{"at+cstt=\"orangeworld\"\r\n","OK","ERROR",'\n',100},
-			{"at+ciicr\r\n","OK","ERROR",'\n',4000},
+			{"at+ciicr\r\n","OK","ERROR",'\n',60000},
 			{"at+cifsr\r\n",".","ERROR",'\n',1000}
 };
-
-// Secuencia cierre conexion datos.
-// const COMANDAT_t	closeudp = {"at+cipshut\r\n","OK","ERROR",'\n',5000};
 
 // Secuencia envio mensaje UDP.
 const COMANDAT_t	envimensa = {"at+cipsend\r\n",">","ERROR",'>',1000};
@@ -63,8 +58,6 @@ const COMANDAT_t	descuelga = {"ata\r\n","OK","CARRIER",'\n',5000};
 // Secuencia para colgar llamada de voz.
 const COMANDAT_t	cuelga = {"AT+HVOIC\r\n","OK","ERROR",'\n',5000};
 
-// const COMANDAT_t	hora = {"AT+CCLK?\r\n",":","ERROR",'\n',5000};
-
 // Secuencia configuracion sonido.
 const COMANDAT_t	sonidoadj[5] = {
     {"at+clvl=100\r\n","OK","ERROR",'\n',100},  // altavoz 100%
@@ -77,9 +70,10 @@ const COMANDAT_t	sonidoadj[5] = {
 // Terminador mensaje UDP.
 const char terminador = '\x1A';
 
+// Funciones de interfaz GSM.
 void uart_gsm(void);
 void gsmon(char *linea,int maxlen);
-void sendmsg(char *msg,int msglen,char *linea,int maxlen);
+int sendmsg(char *msg,int msglen,char *linea,int maxlen);
 int exeuno(COMANDAT_t *comandos,char *linea,int maxlen);
 int recLineaGSM(char *linea,int maxlen,unsigned int tout,char term);
 int recDosGSM(char *linea,unsigned int tout);
