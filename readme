@@ -4,3 +4,5 @@ python nombre_del_programa.py nombre__carperta_archivos_conf
 
 archivo acl: lista de dispositvos permitidos
 archivo gw: configuración puertos y accesos del gateway y mqtt
+
+Las carpetas.X son los fuentes de los pic
