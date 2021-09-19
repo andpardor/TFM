@@ -1,0 +1,491 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Collar Monitorización"
+Date "20/07/21"
+Rev "A0"
+Comp "Andres Pardo Redondo"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L PIC16F18326-I_JQ:PIC16F18326-I_JQ U3
+U 1 1 612A16A7
+P 5450 5050
+F 0 "U3" H 5450 4650 50  0000 C CNN
+F 1 "PIC16F18326-I_JQ" H 5450 4550 50  0000 C CNN
+F 2 "" H 5450 5050 50  0001 C CNN
+F 3 "" H 5450 5050 50  0001 L BNN
+	1    5450 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW1
+U 1 1 612A3437
+P 3650 5550
+F 0 "SW1" V 3604 5502 50  0000 R CNN
+F 1 "SW_Push" V 3695 5502 50  0000 R CNN
+F 2 "" H 3650 5750 50  0001 C CNN
+F 3 "~" H 3650 5750 50  0001 C CNN
+	1    3650 5550
+	0    -1   1    0   
+$EndComp
+$Comp
+L Device:R_US R1
+U 1 1 612A40F7
+P 3650 5150
+F 0 "R1" H 3718 5196 50  0000 L CNN
+F 1 "4K7" H 3718 5105 50  0000 L CNN
+F 2 "" V 3690 5140 50  0001 C CNN
+F 3 "~" H 3650 5150 50  0001 C CNN
+	1    3650 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 612A4B96
+P 5450 4300
+F 0 "C2" V 5350 4150 50  0000 C CNN
+F 1 "100 nF" V 5600 4300 50  0000 C CNN
+F 2 "" H 5488 4150 50  0001 C CNN
+F 3 "~" H 5450 4300 50  0001 C CNN
+	1    5450 4300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:CP C1
+U 1 1 612A561C
+P 5450 4000
+F 0 "C1" V 5705 4000 50  0000 C CNN
+F 1 "47 uF" V 5614 4000 50  0000 C CNN
+F 2 "" H 5488 3850 50  0001 C CNN
+F 3 "~" H 5450 4000 50  0001 C CNN
+	1    5450 4000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L modulosCollar:mod_gps_neo6 U2
+U 1 1 612A85ED
+P 5400 2550
+F 0 "U2" H 5300 3150 50  0000 L CNN
+F 1 "mod_gps_neo6" H 5150 2000 50  0000 L CNN
+F 2 "" H 5400 2550 50  0001 C CNN
+F 3 "" H 5400 2550 50  0001 C CNN
+	1    5400 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L modulosCollar:mod_gsm_sim800 U4
+U 1 1 612AA093
+P 8450 2550
+F 0 "U4" H 8450 3040 50  0000 C CNN
+F 1 "mod_gsm_sim800" H 8450 2100 50  0000 C CNN
+F 2 "" H 8450 2550 50  0001 C CNN
+F 3 "" H 8450 2550 50  0001 C CNN
+	1    8450 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R2
+U 1 1 612BBDB1
+P 3850 4950
+F 0 "R2" V 3645 4950 50  0000 C CNN
+F 1 "10K" V 3736 4950 50  0000 C CNN
+F 2 "" V 3890 4940 50  0001 C CNN
+F 3 "~" H 3850 4950 50  0001 C CNN
+	1    3850 4950
+	0    1    1    0   
+$EndComp
+Text GLabel 4400 4850 0    50   Output ~ 0
+TXGPS
+Wire Wire Line
+	4000 4950 4550 4950
+Wire Wire Line
+	3700 4950 3650 4950
+Wire Wire Line
+	3650 4000 4350 4000
+Wire Wire Line
+	4550 4650 4350 4650
+Wire Wire Line
+	4350 4650 4350 4300
+Connection ~ 4350 4000
+Wire Wire Line
+	4350 4000 5300 4000
+Wire Wire Line
+	5300 4300 4350 4300
+Connection ~ 4350 4300
+Wire Wire Line
+	4350 4300 4350 4000
+Wire Wire Line
+	4400 4850 4550 4850
+NoConn ~ 4550 4750
+Wire Wire Line
+	5600 4000 6600 4000
+Wire Wire Line
+	6600 4000 6600 4300
+Wire Wire Line
+	6600 4650 6350 4650
+Wire Wire Line
+	5600 4300 6600 4300
+Connection ~ 6600 4300
+Wire Wire Line
+	6600 4300 6600 4650
+$Comp
+L power:GND #PWR0101
+U 1 1 612D2133
+P 3650 5850
+F 0 "#PWR0101" H 3650 5600 50  0001 C CNN
+F 1 "GND" H 3655 5677 50  0000 C CNN
+F 2 "" H 3650 5850 50  0001 C CNN
+F 3 "" H 3650 5850 50  0001 C CNN
+	1    3650 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 612D266E
+P 6600 4650
+F 0 "#PWR0102" H 6600 4400 50  0001 C CNN
+F 1 "GND" H 6605 4477 50  0000 C CNN
+F 2 "" H 6600 4650 50  0001 C CNN
+F 3 "" H 6600 4650 50  0001 C CNN
+	1    6600 4650
+	1    0    0    -1  
+$EndComp
+Connection ~ 6600 4650
+NoConn ~ 6350 4750
+NoConn ~ 6350 4850
+Text GLabel 4400 5150 0    50   Output ~ 0
+TXGSM
+Text GLabel 4400 5050 0    50   Input ~ 0
+RXGSM
+Wire Wire Line
+	4400 5150 4550 5150
+Wire Wire Line
+	4400 5050 4550 5050
+Wire Wire Line
+	3650 5000 3650 4950
+Connection ~ 3650 4950
+Wire Wire Line
+	3650 5350 3650 5300
+Wire Wire Line
+	3650 5750 3650 5850
+Wire Wire Line
+	4550 5250 4100 5250
+Wire Wire Line
+	4100 5250 4100 5350
+Wire Wire Line
+	4100 5350 3650 5350
+Connection ~ 3650 5350
+$Comp
+L power:GND #PWR0103
+U 1 1 612E4394
+P 2350 2250
+F 0 "#PWR0103" H 2350 2000 50  0001 C CNN
+F 1 "GND" H 2355 2077 50  0000 C CNN
+F 2 "" H 2350 2250 50  0001 C CNN
+F 3 "" H 2350 2250 50  0001 C CNN
+	1    2350 2250
+	1    0    0    -1  
+$EndComp
+Text GLabel 2800 2350 0    50   BiDi ~ 0
+SCL
+Text GLabel 6500 5050 2    50   BiDi ~ 0
+SCL
+Text GLabel 6500 4950 2    50   BiDi ~ 0
+SDA
+Text GLabel 2800 2500 0    50   BiDi ~ 0
+SDA
+$Comp
+L modulosCollar:mod_mpu6050 U1
+U 1 1 612EF050
+P 3400 2800
+F 0 "U1" H 3400 3800 50  0000 L CNN
+F 1 "mod_mpu6050" H 3200 2250 50  0000 L CNN
+F 2 "" H 3400 2800 50  0001 C CNN
+F 3 "" H 3400 2800 50  0001 C CNN
+	1    3400 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2350 2250 2350 2200
+Wire Wire Line
+	2350 2200 2900 2200
+Wire Wire Line
+	2800 2350 2900 2350
+Wire Wire Line
+	2800 2500 2900 2500
+NoConn ~ 2900 2650
+NoConn ~ 2900 2800
+NoConn ~ 2900 2950
+NoConn ~ 2900 3100
+Wire Wire Line
+	6350 4950 6500 4950
+Wire Wire Line
+	6350 5050 6500 5050
+Text GLabel 6500 5150 2    50   Input ~ 0
+RXGPS
+$Comp
+L Device:Speaker LS1
+U 1 1 613037BC
+P 7700 3500
+F 0 "LS1" H 7663 3817 50  0000 C CNN
+F 1 "Speaker" H 7663 3726 50  0000 C CNN
+F 2 "" H 7700 3300 50  0001 C CNN
+F 3 "~" H 7690 3450 50  0001 C CNN
+	1    7700 3500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 61304B4E
+P 7250 2050
+F 0 "C3" H 7135 2004 50  0000 R CNN
+F 1 "33pF" H 7135 2095 50  0000 R CNN
+F 2 "" H 7288 1900 50  0001 C CNN
+F 3 "~" H 7250 2050 50  0001 C CNN
+	1    7250 2050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 61305F9F
+P 7250 2500
+F 0 "C4" H 7135 2454 50  0000 R CNN
+F 1 "33pF" H 7135 2545 50  0000 R CNN
+F 2 "" H 7288 2350 50  0001 C CNN
+F 3 "~" H 7250 2500 50  0001 C CNN
+	1    7250 2500
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 613066F0
+P 7250 2950
+F 0 "C5" H 7135 2904 50  0000 R CNN
+F 1 "33pF" H 7135 2995 50  0000 R CNN
+F 2 "" H 7288 2800 50  0001 C CNN
+F 3 "~" H 7250 2950 50  0001 C CNN
+	1    7250 2950
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 6130708D
+P 7250 3250
+F 0 "#PWR0104" H 7250 3000 50  0001 C CNN
+F 1 "GND" H 7255 3077 50  0000 C CNN
+F 2 "" H 7250 3250 50  0001 C CNN
+F 3 "" H 7250 3250 50  0001 C CNN
+	1    7250 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0105
+U 1 1 613079F0
+P 6900 1900
+F 0 "#PWR0105" H 6900 1650 50  0001 C CNN
+F 1 "GND" H 6905 1727 50  0000 C CNN
+F 2 "" H 6900 1900 50  0001 C CNN
+F 3 "" H 6900 1900 50  0001 C CNN
+	1    6900 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Microphone MK1
+U 1 1 61309665
+P 6900 2500
+F 0 "MK1" H 6450 2550 50  0000 L CNN
+F 1 "Microphone" H 6300 2450 50  0000 L CNN
+F 2 "" V 6900 2600 50  0001 C CNN
+F 3 "~" V 6900 2600 50  0001 C CNN
+	1    6900 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6900 1900 6900 1800
+Wire Wire Line
+	6900 1800 7250 1800
+Wire Wire Line
+	7250 1800 7250 1900
+Wire Wire Line
+	7250 2200 7250 2300
+Wire Wire Line
+	7250 2650 7250 2700
+Wire Wire Line
+	7250 3100 7250 3250
+Wire Wire Line
+	6900 2300 7250 2300
+Connection ~ 7250 2300
+Wire Wire Line
+	7250 2300 7250 2350
+Wire Wire Line
+	6900 2700 7250 2700
+Connection ~ 7250 2700
+Wire Wire Line
+	7250 2700 7250 2800
+Wire Wire Line
+	7750 2500 7750 2300
+Wire Wire Line
+	7750 2300 7250 2300
+Wire Wire Line
+	7750 2600 7750 2700
+Wire Wire Line
+	7750 2700 7250 2700
+Wire Wire Line
+	7900 3500 7900 2700
+Wire Wire Line
+	7900 3600 7950 3600
+Wire Wire Line
+	7950 3600 7950 2800
+$Comp
+L power:GND #PWR0106
+U 1 1 6131C700
+P 9050 2900
+F 0 "#PWR0106" H 9050 2650 50  0001 C CNN
+F 1 "GND" H 9055 2727 50  0000 C CNN
+F 2 "" H 9050 2900 50  0001 C CNN
+F 3 "" H 9050 2900 50  0001 C CNN
+	1    9050 2900
+	1    0    0    -1  
+$EndComp
+NoConn ~ 8000 2300
+NoConn ~ 8000 2400
+Wire Wire Line
+	8000 2500 7750 2500
+Wire Wire Line
+	8000 2600 7750 2600
+Wire Wire Line
+	8000 2700 7900 2700
+Wire Wire Line
+	8000 2800 7950 2800
+Wire Wire Line
+	8900 2800 9050 2800
+Wire Wire Line
+	9050 2800 9050 2900
+Text GLabel 9200 2700 2    50   Output ~ 0
+RXGSM
+Text GLabel 9200 2600 2    50   Input ~ 0
+TXGSM
+NoConn ~ 8900 2500
+Wire Wire Line
+	8900 2600 9200 2600
+Wire Wire Line
+	8900 2700 9200 2700
+Text GLabel 4650 2650 0    50   Output ~ 0
+RXGPS
+Text GLabel 4650 2450 0    50   Input ~ 0
+TXGPS
+Wire Wire Line
+	4650 2450 4900 2450
+Wire Wire Line
+	4650 2650 4900 2650
+Wire Wire Line
+	3650 4000 1950 4000
+Wire Wire Line
+	1950 4000 1950 2050
+Wire Wire Line
+	1950 2050 2900 2050
+Connection ~ 3650 4000
+Wire Wire Line
+	1950 2050 1950 1400
+Wire Wire Line
+	1950 1400 4600 1400
+Wire Wire Line
+	4600 1400 4600 2300
+Wire Wire Line
+	4600 2300 4900 2300
+Wire Wire Line
+	3650 4000 3650 4950
+Connection ~ 1950 2050
+Wire Wire Line
+	4600 1400 9150 1400
+Wire Wire Line
+	9150 1400 9150 2400
+Wire Wire Line
+	9150 2400 8900 2400
+Connection ~ 4600 1400
+Wire Wire Line
+	6350 5150 6500 5150
+$Comp
+L Connector:Conn_01x02_Male J1
+U 1 1 6136AAC0
+P 1700 5000
+F 0 "J1" H 1808 5181 50  0000 C CNN
+F 1 " " H 1600 5000 50  0000 C CNN
+F 2 "" H 1700 5000 50  0001 C CNN
+F 3 "~" H 1700 5000 50  0001 C CNN
+	1    1700 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Male J2
+U 1 1 6136BEA7
+P 7200 5250
+F 0 "J2" H 7250 5400 50  0000 R CNN
+F 1 "CONSOLA" H 7150 5200 50  0000 R CNN
+F 2 "" H 7200 5250 50  0001 C CNN
+F 3 "~" H 7200 5250 50  0001 C CNN
+	1    7200 5250
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0108
+U 1 1 6136ED37
+P 6850 5400
+F 0 "#PWR0108" H 6850 5150 50  0001 C CNN
+F 1 "GND" H 6855 5227 50  0000 C CNN
+F 2 "" H 6850 5400 50  0001 C CNN
+F 3 "" H 6850 5400 50  0001 C CNN
+	1    6850 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6350 5250 7000 5250
+Wire Wire Line
+	6850 5400 6850 5350
+Wire Wire Line
+	6850 5350 7000 5350
+Wire Wire Line
+	1950 4000 1950 5000
+Wire Wire Line
+	1950 5000 1900 5000
+Connection ~ 1950 4000
+$Comp
+L power:GND #PWR0109
+U 1 1 61374A4F
+P 2000 5150
+F 0 "#PWR0109" H 2000 4900 50  0001 C CNN
+F 1 "GND" H 2005 4977 50  0000 C CNN
+F 2 "" H 2000 5150 50  0001 C CNN
+F 3 "" H 2000 5150 50  0001 C CNN
+	1    2000 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 5100 2000 5100
+Wire Wire Line
+	2000 5100 2000 5150
+Text Notes 900  5150 0    50   ~ 0
+               V+\nBateria 4v\n               V-
+$Comp
+L power:GND #PWR?
+U 1 1 61389D8E
+P 4700 3000
+F 0 "#PWR?" H 4700 2750 50  0001 C CNN
+F 1 "GND" H 4705 2827 50  0000 C CNN
+F 2 "" H 4700 3000 50  0001 C CNN
+F 3 "" H 4700 3000 50  0001 C CNN
+	1    4700 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4700 3000 4700 2850
+Wire Wire Line
+	4700 2850 4900 2850
+$EndSCHEMATC

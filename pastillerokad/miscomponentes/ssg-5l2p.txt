@@ -1,0 +1,13 @@
+﻿"Symbol";"Value";"Unit";
+"TraceParts.PartNumber";"10-16052011-063909";"";
+"REFERENCE";"SSG-5L2P";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"TraceParts.PartTitle";"Subminiature Basic Switch – SSG";"";
+"TraceParts.InstanceId";"10-16052011-0639094WJKAEOODQLTFS4DXH4KB2ILB";"";
+"TraceParts.PartLanguage";"en";"";
+"TraceParts.ClassPath";"OMRON:/F_OMRON/OMRON.050/OMRON.050.040/OMRON.050.040.060/10-16052011-063909";"";
+"SUPPLIER";"OMRON";"";
+"DESIGN";"Subminiature Basic Switch,PCB terminals, Hinge roller lever";"";
+"TraceParts.PartVersion";"1.2.1";"";
+"TraceParts.PartStatus";"Published";"";
+"TraceParts.PartStatusId";"";"";

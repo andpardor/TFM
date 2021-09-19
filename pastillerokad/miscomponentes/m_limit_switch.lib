@@ -1,0 +1,28 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# m_limit_switch
+#
+DEF m_limit_switch J 0 40 Y Y 1 F N
+F0 "J" 0 425 50 H V C CNN
+F1 "m_limit_switch" 0 325 50 H V C CNN
+F2 "miscomponentes:m_limit_switch" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ m_limit_switch
+$ENDFPLIST
+DRAW
+C -25 0 25 0 1 0 N
+C 50 -50 25 0 1 0 N
+C 50 50 25 0 1 0 N
+S -150 200 150 -200 0 1 0 N
+S 150 -200 150 -200 0 1 0 N
+P 2 0 1 0 0 0 75 -25 N
+P 2 0 1 0 150 100 150 100 N
+X N 1 -250 0 100 R 50 50 1 1 P
+X NO 2 250 100 100 L 50 50 1 1 P
+X NC 3 250 -100 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+#End Library

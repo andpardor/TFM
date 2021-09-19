@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name modulosCollar)(type Legacy)(uri ${KIPRJMOD}/modulosCollar.lib)(options "")(descr ""))
+)
