@@ -1,6 +1,6 @@
 para ejecutar los gateways y el programa de alarmas:
 
-python nombre_del_programa.py nombre__carperta_archivos_conf
+python nombre_del_programa.py nombre_carperta_archivos_conf
 
 archivo acl: lista de dispositvos permitidos
 archivo gw: configuración puertos y accesos del gateway y mqtt
